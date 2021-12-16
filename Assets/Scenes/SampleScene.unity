@@ -240,7 +240,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1972141231269503713, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
       propertyPath: m_Name
-      value: MCFlechinha
+      value: Ryzen
       objectReference: {fileID: 0}
     - target: {fileID: 1972141231269503718, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
       propertyPath: m_RootOrder

@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 838248197}
   - component: {fileID: 535416793}
   m_Layer: 0
-  m_Name: MCFlechinha
+  m_Name: Ryzen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c7626f69075d8f468e1ffc50d62c260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterName: MCFlechinha
+  _characterName: Ryzen
 --- !u!114 &362009940
 MonoBehaviour:
   m_ObjectHideFlags: 0
