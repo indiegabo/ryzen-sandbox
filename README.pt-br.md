@@ -1,4 +1,4 @@
-# Ryzen Sandbox - Studying 2D Unity Game Dev
+# Ryzen Sandbox - Estudando desenvolvimento de jogos 2D na Unity
 
 
 <p align="right">
@@ -9,37 +9,38 @@ Esse projeto é um sandbox 2D de plataforma criado para testar e estudar funcion
 
 ![Ryzen Running Animation](https://img.itch.zone/aW1hZ2UvOTA2NjA3LzUxMjExMTAuZ2lm/original/pxapC%2B.gif)
 
-I see you've met Ryzen already. He is our sharpshooter never missing arcane archer. At least he likes us to treat him that way. Err... let me tell me more about the project:
+Vejo que já conheceu o Ryzen, nosso arqueiro arcano extremamente preciso que nunca erra. Ao menos é assim que ele gosta de ser chamado. Abafa... Deixa eu te contar mais sobre o projeto: 
 
-## Features so far
+## Funcionalidades que já temos
 
-Here are some of the features working already. 
-###### General
+Aqui estão algumas funcionalidades que já implementamos: 
+###### Geral
 - [Unity Input System](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/QuickStartGuide.html)
-- Sprite animations through script avoiding animator hell
-- Decoupled Character Controller delegating responsabilities in order to ease possible project scaling
-- Pixel Perfect Camera
+- Animações de sprites através de script para escapar de inferno que poder vir a ser o Animator.
+- Sistema de controle de personagem desacoplado, delegando responsabilidades para facilitar possível escalonamento
+- Camera Pixel Perfect
 
-###### Ryzen (Archer)
+###### Ryzen (Arqueiro)
 
-- "Loading to Shoot" time
-- Arrow projectile being instantiated and destroyed upon collision detected
-- Idle, Running, Loading Shoot, Shoot, Ascendinga and Descending animations
+- Tempo de "carregamento de tiro"
+- Flecha sendo instanciada e destrúida após detecção de colisão
+- Animações dos estados Idle, Running, Loading Shoot, Shoot, Ascendinga e Descending. 
 
-## Used Assets
-Huge thanks and shout out to my dear artists listed bellow. You guys are angels providing 
-assets for us crazy coders who need to test stuff out. For real. Thanks.
+## Material Utilizado
 
-- astrobob's [Arcane Archer](https://astrobob.itch.io/arcane-archer)
-- [Free Pixel Art Forest](https://edermunizz.itch.io/free-pixel-art-forest) by edermunizz
+Muito obrigado e minha imensa recomendação aso artistas aqui listados. Vocês são anjos fornecendo
+material para nós que somos loucos por código e precisamos testar as coisas. Sério, muito obrigado!
 
-## Unity Version
-Tested on [2020.3.25f1 LTS](https://unity3d.com/pt/unity/whats-new/2020.3.25)
+- [Achane Archer](https://astrobob.itch.io/arcane-archer) por astrobob
+- [Free Pixel Art Forest](https://edermunizz.itch.io/free-pixel-art-forest) por edermunizz
 
-## Where to find me
+## Versão da Unity
+Testado na [2020.3.25f1 LTS](https://unity3d.com/pt/unity/whats-new/2020.3.25)
 
-- Join our friendly [Discord](https://discord.gg/uvgWxNPk) server 
-- Streaming on [Twitch](https://twitch.tv/indiegabo_dev)
+## Como me encontrar
+
+- Junte-se ao nosso amigável servidor no [discord](https://discord.gg/uvgWxNPk) 
+- Streamando na [Twitch](https://twitch.tv/indiegabo_dev)
 - [Instagram](https://instagram.com/indiegabo)
 - [Twitter](https://twitter.com/indiegabo)
 
