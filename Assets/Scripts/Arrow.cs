@@ -5,7 +5,7 @@ using UnityEngine;
 public class Arrow : MonoBehaviour
 {
     [Header("Config")]
-    [SerializeField] [Range(1f, 20f)] private float _speed = 2f;
+    [SerializeField] [Range(10f, 40f)] private float _speed = 10f;
 
     private Character _character;
     private Rigidbody2D _rb;
