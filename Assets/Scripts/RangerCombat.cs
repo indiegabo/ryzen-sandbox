@@ -7,7 +7,7 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
 {
 
     [Header("Config")]
-    [SerializeField][Range(0.1f, 1f)] private float _loadingShootTime = 0.6f;
+    [SerializeField] [Range(0.1f, 1f)] private float _loadingShootTime = 0.6f;
 
     [Header("Needed Objects")]
     [SerializeField] private Transform _shootingPoint;
@@ -17,7 +17,6 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
     private ICharacterController _character;
 
     // Flags
-    private bool _engagedOnAttack;
     private float _shootButtonPressedAt = 0;
 
     private void Awake()
@@ -39,6 +38,8 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
 
     private void HandleShooting()
     {
+        if (this._shootButtonPressedAt <= 0 || !this._character.engagedOnAttack)
+            return;
         // Case minimum shoot button press time is reached... SHOOT
         if (Time.time >= this._loadingShootTime + this._shootButtonPressedAt)
         {
@@ -59,9 +60,10 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
         Invoke("AttackDisengage", 0.1f);
     }
 
-    private void AttackDisengage()
+    public void AttackDisengage()
     {
         this._character.engagedOnAttack = false;
+        this._shootButtonPressedAt = 0;
     }
 
     // Events
@@ -70,6 +72,7 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
         // Pressed 
         if (value.started && this._character.grounded)
         {
+            Debug.Log("Entrei no started");
             this._character.engagedOnAttack = true;
             this._shootButtonPressedAt = Time.time;
             this._character.ChangeState(RangerState.LoadingShoot.ToString());

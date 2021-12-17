@@ -156,6 +156,7 @@ public class RangerMovement : MonoBehaviour
                 this._jumpButtomPressed = true;
                 this._isJumping = true;
                 this._jumpTimeCounter = this._jumpTimeLimit;
+                CharacterEventManager.OnJump();
             }
         }
 
