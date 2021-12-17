@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class CharacterEventManager : MonoBehaviour
 {
+    // Event to be fired when character jumps
     public delegate void JumpStarted();
-    public static event JumpStarted OnJumpStart;
+    public static event JumpStarted OnJumpStarted;
 
-    public static void OnJump()
+    // Call this to trigger the OnJumpStart Event
+    public static void OnJumpStart()
     {
-        if (OnJumpStart != null)
-            OnJumpStart();
+        OnJumpStarted();
     }
 }
 

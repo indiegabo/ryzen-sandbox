@@ -43,12 +43,10 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
         // Case minimum shoot button press time is reached... SHOOT
         if (Time.time >= this._loadingShootTime + this._shootButtonPressedAt)
         {
-            Debug.Log("Shooting");
             this.Shoot();
         }
         else
         {
-            Debug.Log("Not Shooting");
             this.AttackDisengage();
         }
     }
@@ -72,12 +70,12 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
         // Pressed 
         if (value.started && this._character.grounded)
         {
-            Debug.Log("Entrei no started");
             this._character.engagedOnAttack = true;
             this._shootButtonPressedAt = Time.time;
             this._character.ChangeState(RangerState.LoadingShoot.ToString());
         }
 
+        // Released
         if (value.canceled && this._character.grounded)
         {
             this.HandleShooting();

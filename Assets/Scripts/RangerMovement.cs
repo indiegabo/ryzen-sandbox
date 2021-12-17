@@ -156,7 +156,7 @@ public class RangerMovement : MonoBehaviour
                 this._jumpButtomPressed = true;
                 this._isJumping = true;
                 this._jumpTimeCounter = this._jumpTimeLimit;
-                CharacterEventManager.OnJump();
+                CharacterEventManager.OnJumpStart();
             }
         }
 
@@ -175,12 +175,6 @@ public class RangerMovement : MonoBehaviour
     public void OnStickMovement(InputAction.CallbackContext value)
     {
         this.currentControlThrow = value.ReadValue<Vector2>();
-    }
-
-    // Getters & Setters
-    public bool onAir
-    {
-        get { return Mathf.Abs(this._rb.velocity.y) > 0; }
     }
 
     // Debug stuff

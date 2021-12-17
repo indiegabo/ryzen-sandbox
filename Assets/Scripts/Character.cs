@@ -13,12 +13,12 @@ public class Character : MonoBehaviour, ICharacterController
 
     private void OnEnable()
     {
-        CharacterEventManager.OnJumpStart += JumpStarted;
+        CharacterEventManager.OnJumpStarted += JumpStarted;
     }
 
     private void OnDisable()
     {
-        CharacterEventManager.OnJumpStart -= JumpStarted;
+        CharacterEventManager.OnJumpStarted -= JumpStarted;
     }
 
     private void Awake()
