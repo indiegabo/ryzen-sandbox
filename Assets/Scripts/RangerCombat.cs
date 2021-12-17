@@ -7,17 +7,18 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
 {
 
     [Header("Config")]
-    [SerializeField][Range(0.1f, 1f)] private float _loadingShootTime = 0.6f;
+    [SerializeField] [Range(0.1f, 1f)] private float _loadingShootTime = 0.6f;
+    [SerializeField] [Range(1f, 3f)] private float _powerShootTime = 1.5f;
 
     [Header("Needed Objects")]
     [SerializeField] private Transform _shootingPoint;
     [SerializeField] private GameObject _arrowObject;
+    [SerializeField] private GameObject _enpoweredArrowObject;
 
     // Needed Components
     private ICharacterController _character;
 
     // Flags
-    private bool _engagedOnAttack;
     private float _shootButtonPressedAt = 0;
 
     private void Awake()
@@ -39,15 +40,19 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
 
     private void HandleShooting()
     {
+        if (!this.CanShoot())
+            return;
         // Case minimum shoot button press time is reached... SHOOT
-        if (Time.time >= this._loadingShootTime + this._shootButtonPressedAt)
+        if (Time.time >= this._powerShootTime + this._shootButtonPressedAt)
         {
-            Debug.Log("Shooting");
+            this.EnpoweredShoot();
+        }
+        else if (Time.time >= this._loadingShootTime + this._shootButtonPressedAt)
+        {
             this.Shoot();
         }
         else
         {
-            Debug.Log("Not Shooting");
             this.AttackDisengage();
         }
     }
@@ -59,9 +64,22 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
         Invoke("AttackDisengage", 0.1f);
     }
 
-    private void AttackDisengage()
+    private void EnpoweredShoot()
+    {
+        this._character.ChangeState(RangerState.Shoot.ToString());
+        Instantiate(this._enpoweredArrowObject, this._shootingPoint.position, this._shootingPoint.rotation);
+        Invoke("AttackDisengage", 0.1f);
+    }
+
+    public void AttackDisengage()
     {
         this._character.engagedOnAttack = false;
+        this._shootButtonPressedAt = 0;
+    }
+
+    public bool CanShoot()
+    {
+        return this._shootButtonPressedAt > 0 && this._character.engagedOnAttack;
     }
 
     // Events
@@ -75,6 +93,7 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
             this._character.ChangeState(RangerState.LoadingShoot.ToString());
         }
 
+        // Released
         if (value.canceled && this._character.grounded)
         {
             this.HandleShooting();
