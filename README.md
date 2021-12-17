@@ -1,5 +1,8 @@
 # Ryzen Sandbox - Studying 2D Unity Game Dev
 
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+
+
 This project is a 2D Platformer sandbox created in order to test and study 2D features using Unity. Feel free to fork and test it out.
 
 ![Ryzen Running Animation](https://img.itch.zone/aW1hZ2UvOTA2NjA3LzUxMjExMTAuZ2lm/original/pxapC%2B.gif)
