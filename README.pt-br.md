@@ -1,4 +1,11 @@
 # Ryzen Sandbox - Studying 2D Unity Game Dev
+
+
+<p align="right">
+  <a href="README.md">U.S. English</a>
+  <img src="https://github.com/indiegabo/ryzen-sandbox/blob/develop/Github/flag-en-us.png?raw=true" width="14" height="14"/>
+</p>
+
 Esse projeto é um sandbox 2D de plataforma criado para testar e estudar funcionalidades usando a Unity. Sinta-se a vontade para testar.
 
 ![Ryzen Running Animation](https://img.itch.zone/aW1hZ2UvOTA2NjA3LzUxMjExMTAuZ2lm/original/pxapC%2B.gif)
