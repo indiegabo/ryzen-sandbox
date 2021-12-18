@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class RangerCombat : MonoBehaviour, IChararacterCombat
 {
+    private const float MIN_EMPOWERING_SCALE = 0f;
+    private const float MAX_EMPOWERING_SCALE = 1f;
 
     [Header("Config")]
     [SerializeField] [Range(0.1f, 1f)] private float _loadingShootTime = 0.45f;
@@ -40,11 +43,11 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
     // Update is called once per frame
     void Update()
     {
-        this.HandleEmpowering();
     }
 
     private void FixedUpdate()
     {
+        this.HandleEmpoweringScaling();
     }
 
     private void HandleShooting()
@@ -66,7 +69,7 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
         }
     }
 
-    private void HandleEmpowering()
+    private void HandleEmpoweringScaling()
     {
         if (this._shootButtonPressedAt <= 0 || this._currentEmpoweringAffordance == null)
             return;
@@ -78,12 +81,9 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
         if (Time.time < min || Time.time > max)
             return;
 
-
         float elapsedTime = Time.time - min;
-
-        float scale = Utils.convertScale(elapsedTime, this._empoweringShootTime, 0, 1);
-
-        this._currentEmpoweringAffordance.transform.localScale = new Vector3(scale, scale, 0f);
+        float scale = Utils.convertScale(elapsedTime, this._empoweringShootTime, MIN_EMPOWERING_SCALE, MAX_EMPOWERING_SCALE);
+        this._currentEmpoweringAffordance.transform.localScale = new Vector3(scale, scale, 1f);
     }
 
     private void Shoot()
