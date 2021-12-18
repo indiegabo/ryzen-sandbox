@@ -22,6 +22,7 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
 
     // Needed Components
     private ICharacterController _character;
+    private CanvasController _canvasController;
 
     // Flags
     private float _shootButtonPressedAt = 0;
@@ -32,6 +33,7 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
     private void Awake()
     {
         this._character = GetComponent<ICharacterController>();
+        this._canvasController = FindObjectOfType<CanvasController>();
     }
 
     // Start is called before the first frame update
@@ -43,11 +45,11 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
     // Update is called once per frame
     void Update()
     {
+        this.HandleEmpoweringScaling();
     }
 
     private void FixedUpdate()
     {
-        this.HandleEmpoweringScaling();
     }
 
     private void HandleShooting()
@@ -82,8 +84,9 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
             return;
 
         float elapsedTime = Time.time - min;
-        float scale = Utils.convertScale(elapsedTime, this._empoweringShootTime, MIN_EMPOWERING_SCALE, MAX_EMPOWERING_SCALE);
+        float scale = Utils.convertScale(elapsedTime, this._empoweringShootTime, MIN_EMPOWERING_SCALE, MAX_EMPOWERING_SCALE, 0.95f);
         this._currentEmpoweringAffordance.transform.localScale = new Vector3(scale, scale, 1f);
+        this._canvasController.SetLoadingShootSlider(scale);
     }
 
     private void Shoot()
@@ -106,6 +109,7 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
         this._shootButtonPressedAt = 0;
         Destroy(this._currentEmpoweringAffordance);
         this._currentEmpoweringAffordance = null;
+        this._canvasController.ActivateLoadingShootSlider(false);
     }
 
     public bool CanShoot()
@@ -124,6 +128,7 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
             this._shootButtonPressedAt = Time.time;
             this._character.ChangeState(RangerState.LoadingShoot.ToString());
             this._currentEmpoweringAffordance = Instantiate(this._empoweringAffordanceObject, this._empoweringAffordancePoint.position, this._empoweringAffordancePoint.rotation);
+            this._canvasController.ActivateLoadingShootSlider(true);
         }
 
         // Released

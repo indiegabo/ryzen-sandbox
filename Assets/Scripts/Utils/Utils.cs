@@ -25,4 +25,19 @@ public class Utils
         }
         return converted;
     }
+
+    public static float convertScale(float value, float maxValue, float min, float max, float maxRounding)
+    {
+        float delta = max - min;
+        float converted = ((delta * value) + (min * maxValue)) / maxValue;
+        if (converted > maxRounding)
+        {
+            return max;
+        }
+        else if (converted < min)
+        {
+            return min;
+        }
+        return converted;
+    }
 }
