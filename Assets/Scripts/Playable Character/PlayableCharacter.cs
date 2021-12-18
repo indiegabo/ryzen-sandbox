@@ -2,29 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour, ICharacterController
+public class PlayableCharacter : MonoBehaviour, IPlayableCharacterController
 {
 
     // States
-    private ICharacterState _characterState;
-    private IChararacterCombat _characterCombat;
+    private IPlayableCharacterState _characterState;
+    private IPlayableChararacterCombat _characterCombat;
     private bool _grounded;
     private bool _engagedOnAttack;
 
     private void OnEnable()
     {
-        CharacterEventManager.OnJumpStarted += JumpStarted;
+        PlayableCharacterEventManager.OnJumpStarted += JumpStarted;
     }
 
     private void OnDisable()
     {
-        CharacterEventManager.OnJumpStarted -= JumpStarted;
+        PlayableCharacterEventManager.OnJumpStarted -= JumpStarted;
     }
 
     private void Awake()
     {
-        this._characterState = GetComponent<ICharacterState>();
-        this._characterCombat = GetComponent<IChararacterCombat>();
+        this._characterState = GetComponent<IPlayableCharacterState>();
+        this._characterCombat = GetComponent<IPlayableChararacterCombat>();
     }
 
     public void ChangeState(string stateName)

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangerStateManager : MonoBehaviour, ICharacterState
+public class RangerStateManager : MonoBehaviour, IPlayableCharacterState
 {
 
     [Header("Config")]

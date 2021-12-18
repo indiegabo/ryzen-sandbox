@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterEventManager : MonoBehaviour
+public class PlayableCharacterEventManager : MonoBehaviour
 {
     // Event to be fired when character jumps
     public delegate void JumpStarted();

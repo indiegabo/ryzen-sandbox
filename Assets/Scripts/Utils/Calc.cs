@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Utils
+/// <summary>
+///     Utility class to provide calculation static methods
+/// </summary>
+public class Calc
 {
 
     /// <summary> This function converts a given value's scale into a given another</summary>
@@ -33,6 +32,7 @@ public class Utils
     /// <param name="max">New scale maximum value</param>
     /// <param name="maxRounding"> A value to round up to max when met </param>
     /// <returns>A float number representing the value rescaled</returns>
+    /// 
     public static float convertScale(float value, float maxValue, float min, float max, float maxRounding)
     {
         float delta = max - min;

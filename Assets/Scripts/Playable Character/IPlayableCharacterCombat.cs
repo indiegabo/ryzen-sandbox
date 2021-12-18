@@ -1,6 +1,6 @@
 using UnityEngine.InputSystem;
 
-public interface IChararacterCombat
+public interface IPlayableChararacterCombat
 {
     void AttackDisengage();
     void OnPrimaryAttack(InputAction.CallbackContext value);

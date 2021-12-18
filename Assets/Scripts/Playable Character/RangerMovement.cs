@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class RangerMovement : MonoBehaviour
+public class RangerMovement : MonoBehaviour, IPlayableCharacterMovement
 {
     [Header("Config")]
     [SerializeField] [Range(1.0f, 10.0f)] private float _runSpeed = 2f;
@@ -20,7 +20,7 @@ public class RangerMovement : MonoBehaviour
 
     // Components
     private Rigidbody2D _rb;
-    private ICharacterController _character;
+    private IPlayableCharacterController _character;
 
     // Configs
     private bool _isJumping;
@@ -33,7 +33,7 @@ public class RangerMovement : MonoBehaviour
     private void Awake()
     {
         this._rb = GetComponent<Rigidbody2D>();
-        this._character = GetComponent<ICharacterController>();
+        this._character = GetComponent<IPlayableCharacterController>();
     }
 
     // Start is called before the first frame update
@@ -136,9 +136,9 @@ public class RangerMovement : MonoBehaviour
 
     private void FaceCharacter()
     {
-        if(this._rb.velocity.x < 0 && this._facingRight || this._rb.velocity.x > 0 && !this._facingRight)
+        if (this._rb.velocity.x < 0 && this._facingRight || this._rb.velocity.x > 0 && !this._facingRight)
         {
-            _facingRight = !_facingRight;
+            this._facingRight = !this._facingRight;
             transform.Rotate(0f, -180f, 0f);
         }
     }
@@ -156,7 +156,7 @@ public class RangerMovement : MonoBehaviour
                 this._jumpButtomPressed = true;
                 this._isJumping = true;
                 this._jumpTimeCounter = this._jumpTimeLimit;
-                CharacterEventManager.OnJumpStart();
+                PlayableCharacterEventManager.OnJumpStart();
             }
         }
 

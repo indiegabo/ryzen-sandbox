@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class RangerCombat : MonoBehaviour, IChararacterCombat
+public class RangerCombat : MonoBehaviour, IPlayableChararacterCombat
 {
     private const float MIN_EMPOWERING_SCALE = 0f;
     private const float MAX_EMPOWERING_SCALE = 1f;
@@ -21,7 +21,7 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
     [SerializeField] private GameObject _empoweringAffordanceObject;
 
     // Needed Components
-    private ICharacterController _character;
+    private IPlayableCharacterController _character;
     private CanvasController _canvasController;
 
     // Flags
@@ -32,7 +32,7 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
 
     private void Awake()
     {
-        this._character = GetComponent<ICharacterController>();
+        this._character = GetComponent<IPlayableCharacterController>();
         this._canvasController = FindObjectOfType<CanvasController>();
     }
 
@@ -84,7 +84,7 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
             return;
 
         float elapsedTime = Time.time - min;
-        float scale = Utils.convertScale(elapsedTime, this._empoweringShootTime, MIN_EMPOWERING_SCALE, MAX_EMPOWERING_SCALE, 0.95f);
+        float scale = Calc.convertScale(elapsedTime, this._empoweringShootTime, MIN_EMPOWERING_SCALE, MAX_EMPOWERING_SCALE, 0.95f);
         this._currentEmpoweringAffordance.transform.localScale = new Vector3(scale, scale, 1f);
         this._canvasController.SetLoadingShootSlider(scale);
     }
