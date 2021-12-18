@@ -1,8 +1,8 @@
-# Ryzen Sandbox - Studying 2D Unity Game Dev
-
 <p align="right">
-  Ler em <a href="README.pt-br.md">Português do Brasil</a>
+  :brazil: Ler em <a href="README.pt-br.md">Português do Brasil</a>
 </p>
+
+# Ryzen Sandbox - Studying 2D Unity Game Dev
 
 This project is a 2D Platformer sandbox created in order to test and study 2D features using Unity. Feel free to fork and test it out.
 
