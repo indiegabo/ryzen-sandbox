@@ -1,5 +1,5 @@
 <p align="right">
-  Ler em <a href="README.pt-br.md">Português do Brasil :brazil:</a>
+  Ler em <a href="README.pt-br.md"> Português do Brasil </a>
 </p>
 
 # Ryzen Sandbox - Studying 2D Unity Game Dev
