@@ -7,19 +7,24 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
 {
 
     [Header("Config")]
-    [SerializeField] [Range(0.1f, 1f)] private float _loadingShootTime = 0.6f;
-    [SerializeField] [Range(1f, 3f)] private float _powerShootTime = 1.5f;
+    [SerializeField] [Range(0.1f, 1f)] private float _loadingShootTime = 0.45f;
+    [SerializeField] [Range(0.5f, 2f)] private float _empoweringShootTime = 1f;
 
     [Header("Needed Objects")]
     [SerializeField] private Transform _shootingPoint;
+    [SerializeField] private Transform _empoweringAffordancePoint;
     [SerializeField] private GameObject _arrowObject;
-    [SerializeField] private GameObject _enpoweredArrowObject;
+    [SerializeField] private GameObject _empoweredArrowObject;
+    [SerializeField] private GameObject _empoweringAffordanceObject;
 
     // Needed Components
     private ICharacterController _character;
 
     // Flags
     private float _shootButtonPressedAt = 0;
+
+    // Objects to be used
+    private GameObject _currentEmpoweringAffordance;
 
     private void Awake()
     {
@@ -35,7 +40,11 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
     // Update is called once per frame
     void Update()
     {
+        this.HandleEmpowering();
+    }
 
+    private void FixedUpdate()
+    {
     }
 
     private void HandleShooting()
@@ -43,7 +52,7 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
         if (!this.CanShoot())
             return;
         // Case minimum shoot button press time is reached... SHOOT
-        if (Time.time >= this._powerShootTime + this._shootButtonPressedAt)
+        if (Time.time >= this._empoweringShootTime + this._loadingShootTime + this._shootButtonPressedAt)
         {
             this.EnpoweredShoot();
         }
@@ -57,6 +66,26 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
         }
     }
 
+    private void HandleEmpowering()
+    {
+        if (this._shootButtonPressedAt <= 0 || this._currentEmpoweringAffordance == null)
+            return;
+
+
+        float min = this._shootButtonPressedAt + this._loadingShootTime;
+        float max = this._shootButtonPressedAt + this._loadingShootTime + this._empoweringShootTime;
+
+        if (Time.time < min || Time.time > max)
+            return;
+
+
+        float elapsedTime = Time.time - min;
+
+        float scale = Utils.convertScale(elapsedTime, this._empoweringShootTime, 0, 1);
+
+        this._currentEmpoweringAffordance.transform.localScale = new Vector3(scale, scale, 0f);
+    }
+
     private void Shoot()
     {
         this._character.ChangeState(RangerState.Shoot.ToString());
@@ -67,7 +96,7 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
     private void EnpoweredShoot()
     {
         this._character.ChangeState(RangerState.Shoot.ToString());
-        Instantiate(this._enpoweredArrowObject, this._shootingPoint.position, this._shootingPoint.rotation);
+        Instantiate(this._empoweredArrowObject, this._shootingPoint.position, this._shootingPoint.rotation);
         Invoke("AttackDisengage", 0.1f);
     }
 
@@ -75,12 +104,15 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
     {
         this._character.engagedOnAttack = false;
         this._shootButtonPressedAt = 0;
+        Destroy(this._currentEmpoweringAffordance);
+        this._currentEmpoweringAffordance = null;
     }
 
     public bool CanShoot()
     {
         return this._shootButtonPressedAt > 0 && this._character.engagedOnAttack;
     }
+
 
     // Events
     public void OnPrimaryAttack(InputAction.CallbackContext value)
@@ -91,6 +123,7 @@ public class RangerCombat : MonoBehaviour, IChararacterCombat
             this._character.engagedOnAttack = true;
             this._shootButtonPressedAt = Time.time;
             this._character.ChangeState(RangerState.LoadingShoot.ToString());
+            this._currentEmpoweringAffordance = Instantiate(this._empoweringAffordanceObject, this._empoweringAffordancePoint.position, this._empoweringAffordancePoint.rotation);
         }
 
         // Released
