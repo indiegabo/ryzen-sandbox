@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class RangerMovement : MonoBehaviour, IPlayableCharacterMovement
+public class RyzenMovement : PlayableCharacterMovement
 {
     [Header("Config")]
     [SerializeField] [Range(1.0f, 10.0f)] private float _runSpeed = 2f;
@@ -20,7 +20,7 @@ public class RangerMovement : MonoBehaviour, IPlayableCharacterMovement
 
     // Components
     private Rigidbody2D _rb;
-    private IPlayableCharacterController _character;
+    private PlayableCharacterController _character;
 
     // Configs
     private bool _isJumping;
@@ -33,7 +33,7 @@ public class RangerMovement : MonoBehaviour, IPlayableCharacterMovement
     private void Awake()
     {
         this._rb = GetComponent<Rigidbody2D>();
-        this._character = GetComponent<IPlayableCharacterController>();
+        this._character = GetComponent<PlayableCharacterController>();
     }
 
     // Start is called before the first frame update
@@ -58,7 +58,7 @@ public class RangerMovement : MonoBehaviour, IPlayableCharacterMovement
 
 
     // Handling Stuff
-    private void HandleGrounding()
+    protected override void HandleGrounding()
     {
         this._character.grounded = this.CheckGrounding();
 
@@ -67,16 +67,16 @@ public class RangerMovement : MonoBehaviour, IPlayableCharacterMovement
         {
             if (Mathf.Sign(this._rb.velocity.y) > 0)
             {
-                this._character.ChangeState(RangerState.Ascending.ToString());
+                this._character.ChangeState(RyzenState.Ascending.ToString());
             }
             else
             {
-                this._character.ChangeState(RangerState.Descending.ToString());
+                this._character.ChangeState(RyzenState.Descending.ToString());
             }
         }
     }
 
-    private void HandleJump()
+    protected override void HandleJump()
     {
         if (this._jumpButtomPressed && this._isJumping)
         {
@@ -94,13 +94,20 @@ public class RangerMovement : MonoBehaviour, IPlayableCharacterMovement
         }
     }
 
+    protected override void FaceCharacter()
+    {
+        if (this._rb.velocity.x < 0 && this._facingRight || this._rb.velocity.x > 0 && !this._facingRight)
+        {
+            this._facingRight = !this._facingRight;
+            transform.Rotate(0f, -180f, 0f);
+        }
+    }
+
     // Checks
     private bool CheckGrounding()
     {
         // Checks if the feet object collides with some ground
-        bool isHittingGround = Physics2D.OverlapCircle(this._playerFeet.transform.position, this._groundCheckRadius, this._whatIsGround);
-        // Only grounded if hitting ground and not moving on Y axis.
-        return isHittingGround; // && Mathf.Abs(this._rb.velocity.y) == 0;
+        return Physics2D.OverlapCircle(this._playerFeet.transform.position, this._groundCheckRadius, this._whatIsGround);
     }
 
     private bool CanJump()
@@ -109,7 +116,7 @@ public class RangerMovement : MonoBehaviour, IPlayableCharacterMovement
     }
 
     // Executing Stuff
-    private void Move()
+    protected override void Move()
     {
         if (!this._character.engagedOnAttack)
         {
@@ -120,11 +127,11 @@ public class RangerMovement : MonoBehaviour, IPlayableCharacterMovement
             {
                 if (Mathf.Abs(this._rb.velocity.x) > 0)
                 {
-                    this._character.ChangeState(RangerState.Running.ToString());
+                    this._character.ChangeState(RyzenState.Running.ToString());
                 }
                 else if (Mathf.Abs(this._rb.velocity.x) == 0)
                 {
-                    this._character.ChangeState(RangerState.Idle.ToString());
+                    this._character.ChangeState(RyzenState.Idle.ToString());
                 }
             }
         }
@@ -134,18 +141,9 @@ public class RangerMovement : MonoBehaviour, IPlayableCharacterMovement
         }
     }
 
-    private void FaceCharacter()
-    {
-        if (this._rb.velocity.x < 0 && this._facingRight || this._rb.velocity.x > 0 && !this._facingRight)
-        {
-            this._facingRight = !this._facingRight;
-            transform.Rotate(0f, -180f, 0f);
-        }
-    }
-
 
     // Event Callbacks
-    public void OnJump(InputAction.CallbackContext value)
+    public override void OnJump(InputAction.CallbackContext value)
     {
         // If button is pressed
         if (value.started)
@@ -156,7 +154,7 @@ public class RangerMovement : MonoBehaviour, IPlayableCharacterMovement
                 this._jumpButtomPressed = true;
                 this._isJumping = true;
                 this._jumpTimeCounter = this._jumpTimeLimit;
-                PlayableCharacterEventManager.OnJumpStart();
+                PlayableCharacterEventManager.OnJumpStart(this.gameObject);
             }
         }
 
@@ -167,12 +165,12 @@ public class RangerMovement : MonoBehaviour, IPlayableCharacterMovement
         }
 
     }
-    public void OnMovement(InputAction.CallbackContext value)
+    public override void OnMovement(InputAction.CallbackContext value)
     {
         this.currentControlThrow = value.ReadValue<Vector2>();
     }
 
-    public void OnStickMovement(InputAction.CallbackContext value)
+    public override void OnStickMovement(InputAction.CallbackContext value)
     {
         this.currentControlThrow = value.ReadValue<Vector2>();
     }

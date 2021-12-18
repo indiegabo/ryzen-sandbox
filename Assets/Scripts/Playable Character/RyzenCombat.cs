@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
-public class RangerCombat : MonoBehaviour, IPlayableChararacterCombat
+public class RyzenCombat : PlayableChararacterCombat
 {
     private const float MIN_EMPOWERING_SCALE = 0f;
     private const float MAX_EMPOWERING_SCALE = 1f;
@@ -21,7 +19,7 @@ public class RangerCombat : MonoBehaviour, IPlayableChararacterCombat
     [SerializeField] private GameObject _empoweringAffordanceObject;
 
     // Needed Components
-    private IPlayableCharacterController _character;
+    private PlayableCharacterController _character;
     private CanvasController _canvasController;
 
     // Flags
@@ -32,7 +30,7 @@ public class RangerCombat : MonoBehaviour, IPlayableChararacterCombat
 
     private void Awake()
     {
-        this._character = GetComponent<IPlayableCharacterController>();
+        this._character = GetComponent<PlayableCharacterController>();
         this._canvasController = FindObjectOfType<CanvasController>();
     }
 
@@ -52,22 +50,42 @@ public class RangerCombat : MonoBehaviour, IPlayableChararacterCombat
     {
     }
 
+    protected override void Engage()
+    {
+        this._character.engagedOnAttack = true;
+        this._shootButtonPressedAt = Time.time;
+        this._character.ChangeState(RyzenState.LoadingShoot.ToString());
+        this._currentEmpoweringAffordance = Instantiate(this._empoweringAffordanceObject, this._empoweringAffordancePoint.position, this._empoweringAffordancePoint.rotation);
+        this._canvasController.ActivateLoadingShootSlider(true);
+    }
+
+    public override void Disengage()
+    {
+        this._character.engagedOnAttack = false;
+        this._shootButtonPressedAt = 0;
+        Destroy(this._currentEmpoweringAffordance);
+        this._currentEmpoweringAffordance = null;
+        this._canvasController.ActivateLoadingShootSlider(false);
+    }
+
     private void HandleShooting()
     {
         if (!this.CanShoot())
             return;
-        // Case minimum shoot button press time is reached... SHOOT
+
+        // Case primary attack button was pressed long enough to power shoot
         if (Time.time >= this._empoweringShootTime + this._loadingShootTime + this._shootButtonPressedAt)
         {
-            this.EnpoweredShoot();
+            this.EmpoweredShoot();
         }
+        // Case minimum shoot button press time is reached... SHOOT
         else if (Time.time >= this._loadingShootTime + this._shootButtonPressedAt)
         {
             this.Shoot();
         }
         else
         {
-            this.AttackDisengage();
+            this.Disengage();
         }
     }
 
@@ -91,25 +109,16 @@ public class RangerCombat : MonoBehaviour, IPlayableChararacterCombat
 
     private void Shoot()
     {
-        this._character.ChangeState(RangerState.Shoot.ToString());
+        this._character.ChangeState(RyzenState.Shoot.ToString());
         Instantiate(this._arrowObject, this._shootingPoint.position, this._shootingPoint.rotation);
-        Invoke("AttackDisengage", 0.1f);
+        Invoke("Disengage", 0.1f);
     }
 
-    private void EnpoweredShoot()
+    private void EmpoweredShoot()
     {
-        this._character.ChangeState(RangerState.Shoot.ToString());
+        this._character.ChangeState(RyzenState.Shoot.ToString());
         Instantiate(this._empoweredArrowObject, this._shootingPoint.position, this._shootingPoint.rotation);
-        Invoke("AttackDisengage", 0.1f);
-    }
-
-    public void AttackDisengage()
-    {
-        this._character.engagedOnAttack = false;
-        this._shootButtonPressedAt = 0;
-        Destroy(this._currentEmpoweringAffordance);
-        this._currentEmpoweringAffordance = null;
-        this._canvasController.ActivateLoadingShootSlider(false);
+        Invoke("Disengage", 0.1f);
     }
 
     public bool CanShoot()
@@ -119,19 +128,15 @@ public class RangerCombat : MonoBehaviour, IPlayableChararacterCombat
 
 
     // Events
-    public void OnPrimaryAttack(InputAction.CallbackContext value)
+    public override void OnPrimaryAttack(InputAction.CallbackContext value)
     {
-        // Pressed 
+        // Primary attack button pressed 
         if (value.started && this._character.grounded)
         {
-            this._character.engagedOnAttack = true;
-            this._shootButtonPressedAt = Time.time;
-            this._character.ChangeState(RangerState.LoadingShoot.ToString());
-            this._currentEmpoweringAffordance = Instantiate(this._empoweringAffordanceObject, this._empoweringAffordancePoint.position, this._empoweringAffordancePoint.rotation);
-            this._canvasController.ActivateLoadingShootSlider(true);
+            this.Engage();
         }
 
-        // Released
+        // Primary attack button Released
         if (value.canceled && this._character.grounded)
         {
             this.HandleShooting();

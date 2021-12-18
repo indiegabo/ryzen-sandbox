@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangerStateManager : MonoBehaviour, IPlayableCharacterState
+public class PlayableCharacterStateManager : MonoBehaviour, IStateManager
 {
 
     [Header("Config")]
@@ -20,7 +20,7 @@ public class RangerStateManager : MonoBehaviour, IPlayableCharacterState
     // Start is called before the first frame update
     void Start()
     {
-        this.ChangeState(RangerState.Idle.ToString());
+        this.ChangeState(RyzenState.Idle.ToString());
     }
 
     // Update is called once per frame

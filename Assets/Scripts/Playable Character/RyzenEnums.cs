@@ -1,5 +1,5 @@
 
-public enum RangerState
+public enum RyzenState
 {
     Idle,
     Running,

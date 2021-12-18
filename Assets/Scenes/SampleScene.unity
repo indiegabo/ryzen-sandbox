@@ -290,7 +290,9 @@ PrefabInstance:
       propertyPath: _empoweringShootTime
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1698093830742248361, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
+    - {fileID: 127455370042535854, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
 --- !u!1 &503043905
 GameObject:
