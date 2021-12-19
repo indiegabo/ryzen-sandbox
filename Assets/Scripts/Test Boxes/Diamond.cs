@@ -5,16 +5,16 @@ using UnityEngine;
 public class Diamond : MonoBehaviour
 {
     private enum DiamondState { Idle, Blink }
-    private DiamondStateManager _diamondStateManager;
+    private Animator _animator;
 
     private void Awake()
     {
-        this._diamondStateManager = GetComponent<DiamondStateManager>();
+        this._animator = GetComponent<Animator>();
     }
 
     private void Start()
     {
-        this._diamondStateManager.ChangeState(DiamondState.Idle.ToString());
+
     }
 
     private void OnEnable()
@@ -29,13 +29,6 @@ public class Diamond : MonoBehaviour
 
     public void PlayableCharacterJumpStarted(GameObject jumpingChararacter)
     {
-        bool changedState = this._diamondStateManager.ChangeState(DiamondState.Blink.ToString());
-        if (changedState)
-            StartCoroutine(this.Blink());
-    }
-    IEnumerator Blink()
-    {
-        yield return new WaitForSeconds(this._diamondStateManager.blinkAnimationTime);
-        this._diamondStateManager.ChangeState(DiamondState.Idle.ToString());
+        this._animator.SetTrigger("_blink");
     }
 }

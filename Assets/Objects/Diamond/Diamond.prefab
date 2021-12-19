@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2470669351064300533}
   - component: {fileID: 4397246147118698994}
   - component: {fileID: 1486943550585637985}
-  - component: {fileID: 3055698941673975725}
   - component: {fileID: 1465794801589022511}
   m_Layer: 0
   m_Name: Diamond
@@ -97,20 +96,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75325765788323a45931281ce59627f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3055698941673975725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1588955387040644622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d0f545ef7ca97a499c237c79c1be1ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _objectName: Diamond
-  _blinkAnimationTime: 1.167
 --- !u!95 &1465794801589022511
 Animator:
   serializedVersion: 3
