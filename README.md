@@ -21,7 +21,9 @@ Here are some of the features working already.
 - Decoupled Character Controller delegating responsabilities in order to ease possible project scaling
 - Pixel Perfect Camera
 - Canvas visual affordance for power shooting throug a Slider
+
   ** New **
+
 - Character events prepared to be triggered. Currently as of Ryzen starts a jump a visual affordance of that event will be set off through a blinking diamond positioned on the right upper corner of the screen.
 
 ###### Ryzen (Archer)
@@ -30,7 +32,9 @@ Here are some of the features working already.
 - Power Shooting if attack button is pressed for a minimum given amount of time
 - Arrow projectile being instantiated and destroyed upon collision detected
 - Idle, Running, Loading Shoot, Shoot, Ascending and Descending animations
+
   ** New **
+
 - Ryzen can now Dash (rolling on the ground). He can only do this if grounded.
 - Case Primary Attack Button is pressed during dash or jumping time (and remains this way upon finishing the action) he will automatically engage on attack.
 - Dashes and Jumps Cancel attacks in progress
