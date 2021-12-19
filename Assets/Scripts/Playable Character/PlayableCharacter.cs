@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayableCharacterController : MonoBehaviour
+public class PlayableCharacter : MonoBehaviour
 {
     protected IStateManager _stateManager;
     protected PlayableChararacterCombat _characterCombat;

@@ -20,7 +20,7 @@ public class RyzenMovement : PlayableCharacterMovement
 
     // Components
     private Rigidbody2D _rb;
-    private PlayableCharacterController _character;
+    private PlayableCharacter _character;
 
     // Configs
     private bool _isJumping;
@@ -33,7 +33,7 @@ public class RyzenMovement : PlayableCharacterMovement
     private void Awake()
     {
         this._rb = GetComponent<Rigidbody2D>();
-        this._character = GetComponent<PlayableCharacterController>();
+        this._character = GetComponent<PlayableCharacter>();
     }
 
     // Start is called before the first frame update

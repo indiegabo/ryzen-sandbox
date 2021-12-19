@@ -19,7 +19,7 @@ public class RyzenCombat : PlayableChararacterCombat
     [SerializeField] private GameObject _empoweringAffordanceObject;
 
     // Needed Components
-    private PlayableCharacterController _character;
+    private PlayableCharacter _character;
     private CanvasController _canvasController;
 
     // Flags
@@ -30,7 +30,7 @@ public class RyzenCombat : PlayableChararacterCombat
 
     private void Awake()
     {
-        this._character = GetComponent<PlayableCharacterController>();
+        this._character = GetComponent<PlayableCharacter>();
         this._canvasController = FindObjectOfType<CanvasController>();
     }
 
