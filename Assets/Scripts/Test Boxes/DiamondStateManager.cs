@@ -2,15 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayableCharacterStateManager : MonoBehaviour, IStateManager
+public class DiamondStateManager : MonoBehaviour, IStateManager
 {
 
     [Header("Config")]
-    [SerializeField] private string _characterName = "";
+    [SerializeField] private string _objectName = "";
+    [SerializeField] [Range(0f, 2f)] private float _blinkAnimationTime = 1f;
 
     private Animator _animator;
 
     private string _currentStateName;
+
+    public float blinkAnimationTime
+    {
+        get { return this._blinkAnimationTime; }
+    }
 
     private void Awake()
     {
@@ -22,7 +28,7 @@ public class PlayableCharacterStateManager : MonoBehaviour, IStateManager
         if (this._currentStateName == newStateName)
             return false;
 
-        string animationStateName = this._characterName + "_" + newStateName;
+        string animationStateName = this._objectName + "_" + newStateName;
         this._animator.Play(animationStateName);
         this._currentStateName = newStateName;
         return true;
@@ -30,6 +36,7 @@ public class PlayableCharacterStateManager : MonoBehaviour, IStateManager
 
     public float CurrentAnimationDuration()
     {
-        return this._animator.GetCurrentAnimatorStateInfo(0).length;
+        AnimatorStateInfo stateInfo = this._animator.GetCurrentAnimatorStateInfo(0);
+        return stateInfo.length;
     }
 }

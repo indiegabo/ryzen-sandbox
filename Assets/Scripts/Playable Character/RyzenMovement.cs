@@ -23,7 +23,6 @@ public class RyzenMovement : PlayableCharacterMovement
     private PlayableCharacter _character;
 
     // Configs
-    private bool _isJumping;
     private float _jumpTimeCounter = 0f;
     private bool _jumpButtomPressed = false;
     private bool _facingRight = true;
@@ -60,7 +59,7 @@ public class RyzenMovement : PlayableCharacterMovement
     // Handling Stuff
     protected override void HandleGrounding()
     {
-        this._character.grounded = this.CheckGrounding();
+        this._character.grounded = Physics2D.OverlapCircle(this._playerFeet.transform.position, this._groundCheckRadius, this._whatIsGround);
 
         // Animates Ascending or descending based on Y axis velocity
         if (!this._character.grounded)
@@ -78,19 +77,19 @@ public class RyzenMovement : PlayableCharacterMovement
 
     protected override void HandleJump()
     {
-        if (this._jumpButtomPressed && this._isJumping)
+        if (this._jumpButtomPressed && this._character.jumping)
         {
             this._rb.velocity = new Vector2(this._rb.velocity.x, this._jumpForce);
             this._jumpTimeCounter -= Time.deltaTime;
         }
-        else if (!this._jumpButtomPressed && this._isJumping)
+        else if (!this._jumpButtomPressed && this._character.jumping)
         {
-            this._isJumping = false;
+            this._character.jumping = false;
         }
 
         if (this._jumpTimeCounter <= 0)
         {
-            this._isJumping = false;
+            this._character.jumping = false;
         }
     }
 
@@ -104,13 +103,11 @@ public class RyzenMovement : PlayableCharacterMovement
     }
 
     // Checks
-    private bool CheckGrounding()
-    {
-        // Checks if the feet object collides with some ground
-        return Physics2D.OverlapCircle(this._playerFeet.transform.position, this._groundCheckRadius, this._whatIsGround);
-    }
-
     private bool CanJump()
+    {
+        return this._character.grounded;
+    }
+    private bool CanDash()
     {
         return this._character.grounded;
     }
@@ -125,11 +122,11 @@ public class RyzenMovement : PlayableCharacterMovement
             // Change States based on being grounded
             if (this._character.grounded)
             {
-                if (Mathf.Abs(this._rb.velocity.x) > 0)
+                if (Mathf.Abs(this._rb.velocity.x) > 0 && !this._character.dashing) // Checks if dashing
                 {
                     this._character.ChangeState(RyzenState.Running.ToString());
                 }
-                else if (Mathf.Abs(this._rb.velocity.x) == 0)
+                else if (Mathf.Abs(this._rb.velocity.x) == 0 && !this._character.dashing) // Checks if dashing
                 {
                     this._character.ChangeState(RyzenState.Idle.ToString());
                 }
@@ -143,25 +140,39 @@ public class RyzenMovement : PlayableCharacterMovement
 
 
     // Event Callbacks
-    public override void OnJump(InputAction.CallbackContext value)
+    public override void OnJumpAction(InputAction.CallbackContext action)
     {
         // If button is pressed
-        if (value.started)
+        if (action.started)
         {
             // Starts jump case criteria is met
             if (this.CanJump())
             {
                 this._jumpButtomPressed = true;
-                this._isJumping = true;
                 this._jumpTimeCounter = this._jumpTimeLimit;
-                PlayableCharacterEventManager.OnJumpStart(this.gameObject);
+                this._character.jumping = true;
+                PlayableCharacterEventManager.OnPLayableCharacterJumpStart(this.gameObject);
             }
         }
 
         // If button is released
-        if (value.canceled)
+        if (action.canceled)
         {
             this._jumpButtomPressed = false;
+        }
+
+    }
+
+    public override void OnDashAction(InputAction.CallbackContext action)
+    {
+        // If button is pressed
+        if (action.started)
+        {
+            // Starts dashing case criteria is met
+            if (this.CanDash())
+            {
+                Debug.Log("Dashing");
+            }
         }
 
     }

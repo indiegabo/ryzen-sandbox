@@ -71,7 +71,10 @@ public class RyzenCombat : PlayableChararacterCombat
     private void HandleShooting()
     {
         if (!this.CanShoot())
+        {
+            this.Disengage();
             return;
+        }
 
         // Case primary attack button was pressed long enough to power shoot
         if (Time.time >= this._empoweringShootTime + this._loadingShootTime + this._shootButtonPressedAt)
@@ -121,9 +124,14 @@ public class RyzenCombat : PlayableChararacterCombat
         Invoke("Disengage", 0.1f);
     }
 
-    public bool CanShoot()
+    private bool CanShoot()
     {
         return this._shootButtonPressedAt > 0 && this._character.engagedOnAttack;
+    }
+
+    private bool CanEngage()
+    {
+        return this._character.grounded && !this._character.dashing;
     }
 
 
@@ -131,7 +139,7 @@ public class RyzenCombat : PlayableChararacterCombat
     public override void OnPrimaryAttack(InputAction.CallbackContext value)
     {
         // Primary attack button pressed 
-        if (value.started && this._character.grounded)
+        if (value.started && this.CanEngage())
         {
             this.Engage();
         }

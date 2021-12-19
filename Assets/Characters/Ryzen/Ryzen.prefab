@@ -306,6 +306,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 871f7ae8-b77c-406d-b232-6ec572d04e10
     m_ActionName: PlayerActions/StickMovement[/DualShock4GamepadHID/leftStick]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2114831211254002122}
+        m_TargetAssemblyTypeName: RyzenMovement, Assembly-CSharp
+        m_MethodName: OnDashAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 333eb0db-a7bf-4419-a892-db851895068e
+    m_ActionName: PlayerActions/Dash[/Keyboard/q,/DualShock4GamepadHID/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerActions

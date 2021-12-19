@@ -1,6 +1,6 @@
 
 public interface IStateManager
 {
-    void ChangeState(string newStateName);
+    bool ChangeState(string newStateName);
     float CurrentAnimationDuration();
 }
