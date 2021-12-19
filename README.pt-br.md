@@ -22,7 +22,7 @@ Aqui estão algumas funcionalidades que já implementamos:
 - Camera Pixel Perfect
 - Feedback visual para o "Power Shooting" através de Slider do Canvas
 
-  ** Novidade **
+  **Novidade**
 
 - Eventos do personagem preparados para serem enviados. Atualmente se o Ryzen iniciar um pulo, haverá um feedback visual do evento através de um diamante no canto direito superior da tela piscar.
 
@@ -33,7 +33,7 @@ Aqui estão algumas funcionalidades que já implementamos:
 - Flecha sendo instanciada e destrúida após detecção de colisão
 - Animações dos estados Idle, Running, Loading Shoot, Shoot, Ascendinga e Descending.
 
-  ** Novidade **
+  **Novidade**
 
 - Ryzen agora pode rolar (dash). Porém, apenas se estiver no chão.
 - Caso o botão de Ataque primário seja pressionado durante um pulo ou dash (e continuar pressionado ao fim da ação) ele automaticamente engajará em combate.
