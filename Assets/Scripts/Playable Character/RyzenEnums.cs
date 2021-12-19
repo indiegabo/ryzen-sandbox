@@ -6,5 +6,6 @@ public enum RyzenState
     Ascending,
     Descending,
     LoadingShoot,
-    Shoot
+    Shoot,
+    Dashing,
 }

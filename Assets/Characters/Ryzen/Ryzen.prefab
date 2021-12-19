@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _loadingShootTime: 0.45
-  _empoweringShootTime: 1
+  _empoweringShootTime: 0.5
   _shootingPoint: {fileID: 218930736}
   _empoweringAffordancePoint: {fileID: 361240073}
   _arrowObject: {fileID: 4815655255666730516, guid: a9320e7daae7e5e46a006c0d2269052a, type: 3}
@@ -195,10 +195,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0245ab0ab36d13a488d2800bce07fea1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _groundCheckRadius: 0.15
   _runSpeed: 3.5
   _jumpForce: 6
-  _groundCheckRadius: 0.15
   _jumpTimeLimit: 0.3
+  _dashSpeed: 6
+  _dashDuration: 0.65
+  _timeBetweenDashes: 1
   _whatIsGround:
     serializedVersion: 2
     m_Bits: 8
@@ -261,8 +264,8 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2114831211254002122}
-        m_TargetAssemblyTypeName: RangerMovement, Assembly-CSharp
-        m_MethodName: OnJump
+        m_TargetAssemblyTypeName: RyzenMovement, Assembly-CSharp
+        m_MethodName: OnJumpAction
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -306,6 +309,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 871f7ae8-b77c-406d-b232-6ec572d04e10
     m_ActionName: PlayerActions/StickMovement[/DualShock4GamepadHID/leftStick]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2114831211254002122}
+        m_TargetAssemblyTypeName: RyzenMovement, Assembly-CSharp
+        m_MethodName: OnDashAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 333eb0db-a7bf-4419-a892-db851895068e
+    m_ActionName: PlayerActions/Dash[/Keyboard/q,/DualShock4GamepadHID/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerActions

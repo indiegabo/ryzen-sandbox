@@ -5,11 +5,17 @@ using UnityEngine.InputSystem;
 
 public class RyzenMovement : PlayableCharacterMovement
 {
-    [Header("Config")]
-    [SerializeField] [Range(1.0f, 10.0f)] private float _runSpeed = 2f;
-    [SerializeField] [Range(1.0f, 10.0f)] private float _jumpForce = 2f;
+    [Header("Grounding")]
     [SerializeField] [Range(0.1f, 1f)] private float _groundCheckRadius = 0.3f;
+    [Header("Running")]
+    [SerializeField] [Range(1.0f, 10.0f)] private float _runSpeed = 2f;
+    [Header("Jumping")]
+    [SerializeField] [Range(1.0f, 10.0f)] private float _jumpForce = 2f;
     [SerializeField] [Range(0.1f, 1f)] private float _jumpTimeLimit = 0.2f;
+    [Header("Dashing")]
+    [SerializeField] [Range(2f, 6f)] private float _dashSpeed = 3f;
+    [SerializeField] [Range(0f, 2f)] private float _dashDuration = 0.5f;
+    [SerializeField] [Range(0f, 2f)] private float _timeBetweenDashes = 1f;
 
     [Header("Needed Objects")]
     [SerializeField] private LayerMask _whatIsGround;
@@ -23,10 +29,11 @@ public class RyzenMovement : PlayableCharacterMovement
     private PlayableCharacter _character;
 
     // Configs
-    private bool _isJumping;
     private float _jumpTimeCounter = 0f;
     private bool _jumpButtomPressed = false;
     private bool _facingRight = true;
+    private float _currentDashTimeRemaining = 0f;
+    private float _canDashAgainTime = 0f;
 
     private Vector2 currentControlThrow = new Vector2(0, 0);
 
@@ -54,13 +61,14 @@ public class RyzenMovement : PlayableCharacterMovement
     private void FixedUpdate()
     {
         this.Move();
+        this.Dash();
     }
 
 
     // Handling Stuff
     protected override void HandleGrounding()
     {
-        this._character.grounded = this.CheckGrounding();
+        this._character.grounded = Physics2D.OverlapCircle(this._playerFeet.transform.position, this._groundCheckRadius, this._whatIsGround);
 
         // Animates Ascending or descending based on Y axis velocity
         if (!this._character.grounded)
@@ -69,7 +77,7 @@ public class RyzenMovement : PlayableCharacterMovement
             {
                 this._character.ChangeState(RyzenState.Ascending.ToString());
             }
-            else
+            else if (!this._character.dashing)
             {
                 this._character.ChangeState(RyzenState.Descending.ToString());
             }
@@ -78,19 +86,19 @@ public class RyzenMovement : PlayableCharacterMovement
 
     protected override void HandleJump()
     {
-        if (this._jumpButtomPressed && this._isJumping)
+        if (this._jumpButtomPressed && this._character.jumping)
         {
             this._rb.velocity = new Vector2(this._rb.velocity.x, this._jumpForce);
             this._jumpTimeCounter -= Time.deltaTime;
         }
-        else if (!this._jumpButtomPressed && this._isJumping)
+        else if (!this._jumpButtomPressed && this._character.jumping)
         {
-            this._isJumping = false;
+            this._character.jumping = false;
         }
 
         if (this._jumpTimeCounter <= 0)
         {
-            this._isJumping = false;
+            this._character.jumping = false;
         }
     }
 
@@ -103,22 +111,10 @@ public class RyzenMovement : PlayableCharacterMovement
         }
     }
 
-    // Checks
-    private bool CheckGrounding()
-    {
-        // Checks if the feet object collides with some ground
-        return Physics2D.OverlapCircle(this._playerFeet.transform.position, this._groundCheckRadius, this._whatIsGround);
-    }
-
-    private bool CanJump()
-    {
-        return this._character.grounded;
-    }
-
     // Executing Stuff
     protected override void Move()
     {
-        if (!this._character.engagedOnAttack)
+        if (!this._character.engagedOnAttack && !this._character.dashing)
         {
             this._rb.velocity = new Vector2(this.currentControlThrow.x * this._runSpeed, this._rb.velocity.y);
 
@@ -135,33 +131,79 @@ public class RyzenMovement : PlayableCharacterMovement
                 }
             }
         }
-        else
+        else if (!this._character.dashing)
         {
             this._rb.velocity = new Vector2(0, this._rb.velocity.y);
         }
     }
 
+    private void Dash()
+    {
+        if (this._currentDashTimeRemaining > 0 && this._character.dashing)
+        {
+            this._currentDashTimeRemaining -= Time.deltaTime;
+            if (this._facingRight)
+            {
+                this._rb.velocity = new Vector2(this._dashSpeed, this.transform.position.y);
+            }
+            else
+            {
+                this._rb.velocity = new Vector2(-this._dashSpeed, this.transform.position.y);
+            }
+        }
+        else if (this._character.dashing)
+        {
+            this._character.dashing = false;
+        }
+    }
+
+    // Checks
+    private bool CanJump()
+    {
+        return this._character.grounded;
+    }
+    private bool CanDash()
+    {
+        return this._character.grounded && Time.time >= this._canDashAgainTime;
+    }
 
     // Event Callbacks
-    public override void OnJump(InputAction.CallbackContext value)
+    public override void OnJumpAction(InputAction.CallbackContext action)
     {
         // If button is pressed
-        if (value.started)
+        if (action.started)
         {
             // Starts jump case criteria is met
             if (this.CanJump())
             {
                 this._jumpButtomPressed = true;
-                this._isJumping = true;
                 this._jumpTimeCounter = this._jumpTimeLimit;
-                PlayableCharacterEventManager.OnJumpStart(this.gameObject);
+                this._character.jumping = true;
+                PlayableCharacterEventManager.OnPLayableCharacterJumpStart(this.gameObject);
             }
         }
 
         // If button is released
-        if (value.canceled)
+        if (action.canceled)
         {
             this._jumpButtomPressed = false;
+        }
+
+    }
+
+    public override void OnDashAction(InputAction.CallbackContext action)
+    {
+        // If button is pressed
+        if (action.started)
+        {
+            // Starts dashing case criteria is met
+            if (this.CanDash())
+            {
+                this._character.dashing = true;
+                this._currentDashTimeRemaining = this._dashDuration;
+                this._character.ChangeState(RyzenState.Dashing.ToString());
+                this._canDashAgainTime = Time.time + this._timeBetweenDashes;
+            }
         }
 
     }

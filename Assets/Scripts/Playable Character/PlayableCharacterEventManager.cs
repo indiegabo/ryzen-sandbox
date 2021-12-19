@@ -3,13 +3,13 @@ using UnityEngine;
 public class PlayableCharacterEventManager : MonoBehaviour
 {
     // Event to be fired when character jumps
-    public delegate void JumpStarted(GameObject jumpingChararacter);
-    public static event JumpStarted OnJumpStarted;
+    public delegate void PlayableCharacterJumpStarted(GameObject jumpingChararacter);
+    public static event PlayableCharacterJumpStarted OnPlayableCharacterJumpStarted;
 
     // Call this to trigger the OnJumpStart Event
-    public static void OnJumpStart(GameObject jumpingChararacter)
+    public static void OnPLayableCharacterJumpStart(GameObject jumpingChararacter)
     {
-        OnJumpStarted(jumpingChararacter);
+        OnPlayableCharacterJumpStarted(jumpingChararacter);
     }
 }
 

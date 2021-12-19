@@ -23,7 +23,8 @@ public class RyzenCombat : PlayableChararacterCombat
     private CanvasController _canvasController;
 
     // Flags
-    private float _shootButtonPressedAt = 0;
+    private float _engagedAt = 0;
+    private bool _attemptingToEngage = false;
 
     // Objects to be used
     private GameObject _currentEmpoweringAffordance;
@@ -43,6 +44,7 @@ public class RyzenCombat : PlayableChararacterCombat
     // Update is called once per frame
     void Update()
     {
+        this.HandleEngagement();
         this.HandleEmpoweringScaling();
     }
 
@@ -50,36 +52,29 @@ public class RyzenCombat : PlayableChararacterCombat
     {
     }
 
-    protected override void Engage()
+    // Handling Stuff
+    private void HandleEngagement()
     {
-        this._character.engagedOnAttack = true;
-        this._shootButtonPressedAt = Time.time;
-        this._character.ChangeState(RyzenState.LoadingShoot.ToString());
-        this._currentEmpoweringAffordance = Instantiate(this._empoweringAffordanceObject, this._empoweringAffordancePoint.position, this._empoweringAffordancePoint.rotation);
-        this._canvasController.ActivateLoadingShootSlider(true);
+        if (this.CanEngage())
+        {
+            this.Engage();
+        }
     }
-
-    public override void Disengage()
-    {
-        this._character.engagedOnAttack = false;
-        this._shootButtonPressedAt = 0;
-        Destroy(this._currentEmpoweringAffordance);
-        this._currentEmpoweringAffordance = null;
-        this._canvasController.ActivateLoadingShootSlider(false);
-    }
-
     private void HandleShooting()
     {
         if (!this.CanShoot())
+        {
+            this.Disengage();
             return;
+        }
 
         // Case primary attack button was pressed long enough to power shoot
-        if (Time.time >= this._empoweringShootTime + this._loadingShootTime + this._shootButtonPressedAt)
+        if (Time.time >= this._empoweringShootTime + this._loadingShootTime + this._engagedAt)
         {
             this.EmpoweredShoot();
         }
         // Case minimum shoot button press time is reached... SHOOT
-        else if (Time.time >= this._loadingShootTime + this._shootButtonPressedAt)
+        else if (Time.time >= this._loadingShootTime + this._engagedAt)
         {
             this.Shoot();
         }
@@ -91,12 +86,12 @@ public class RyzenCombat : PlayableChararacterCombat
 
     private void HandleEmpoweringScaling()
     {
-        if (this._shootButtonPressedAt <= 0 || this._currentEmpoweringAffordance == null)
+        if (this._engagedAt <= 0 || this._currentEmpoweringAffordance == null)
             return;
 
 
-        float min = this._shootButtonPressedAt + this._loadingShootTime;
-        float max = this._shootButtonPressedAt + this._loadingShootTime + this._empoweringShootTime;
+        float min = this._engagedAt + this._loadingShootTime;
+        float max = this._engagedAt + this._loadingShootTime + this._empoweringShootTime;
 
         if (Time.time < min || Time.time > max)
             return;
@@ -107,6 +102,7 @@ public class RyzenCombat : PlayableChararacterCombat
         this._canvasController.SetLoadingShootSlider(scale);
     }
 
+    // Executing Stuff
     private void Shoot()
     {
         this._character.ChangeState(RyzenState.Shoot.ToString());
@@ -121,9 +117,34 @@ public class RyzenCombat : PlayableChararacterCombat
         Invoke("Disengage", 0.1f);
     }
 
-    public bool CanShoot()
+    protected override void Engage()
     {
-        return this._shootButtonPressedAt > 0 && this._character.engagedOnAttack;
+        this._character.engagedOnAttack = true;
+        this._engagedAt = Time.time;
+        this._character.ChangeState(RyzenState.LoadingShoot.ToString());
+        this._currentEmpoweringAffordance = Instantiate(this._empoweringAffordanceObject, this._empoweringAffordancePoint.position, this._empoweringAffordancePoint.rotation);
+        this._canvasController.ActivateLoadingShootSlider(true);
+    }
+
+    public override void Disengage()
+    {
+        this._character.engagedOnAttack = false;
+        this._attemptingToEngage = false;
+        this._engagedAt = 0;
+        Destroy(this._currentEmpoweringAffordance);
+        this._currentEmpoweringAffordance = null;
+        this._canvasController.ActivateLoadingShootSlider(false);
+    }
+
+    // Checks
+    private bool CanShoot()
+    {
+        return this._engagedAt > 0 && this._character.engagedOnAttack;
+    }
+
+    private bool CanEngage()
+    {
+        return !this._character.engagedOnAttack && this._character.grounded && !this._character.dashing && this._attemptingToEngage;
     }
 
 
@@ -131,14 +152,15 @@ public class RyzenCombat : PlayableChararacterCombat
     public override void OnPrimaryAttack(InputAction.CallbackContext value)
     {
         // Primary attack button pressed 
-        if (value.started && this._character.grounded)
+        if (value.started)
         {
-            this.Engage();
+            this._attemptingToEngage = true;
         }
 
         // Primary attack button Released
         if (value.canceled && this._character.grounded)
         {
+            this._attemptingToEngage = false;
             this.HandleShooting();
         }
     }

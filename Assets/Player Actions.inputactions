@@ -11,7 +11,8 @@
                     "id": "624df573-4068-4779-a4ac-21f3e7910426",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Jump",
@@ -19,7 +20,17 @@
                     "id": "e3f3c356-1f89-4480-9d8a-08069058faf7",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "333eb0db-a7bf-4419-a892-db851895068e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Movement",
@@ -27,7 +38,8 @@
                     "id": "ce24b5cb-bd34-4c3b-9683-d0caaccc1b25",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "StickMovement",
@@ -35,7 +47,8 @@
                     "id": "871f7ae8-b77c-406d-b232-6ec572d04e10",
                     "expectedControlType": "Stick",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -256,6 +269,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "StickMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2c35cb0e-3285-4508-aa94-d0db39cf76eb",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "004e14d3-3425-4c04-a1e7-4f708c3c8a32",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
