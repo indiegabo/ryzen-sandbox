@@ -130,14 +130,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 362009940, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnJumpAction
-      objectReference: {fileID: 0}
-    - target: {fileID: 362009940, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RyzenMovement, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 1972141231269503713, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
       propertyPath: m_Name
       value: Ryzen
@@ -186,13 +178,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2130771028932437166, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: _empoweringShootTime
-      value: 0.5
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1698093830742248361, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-    - {fileID: 127455370042535854, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
 --- !u!1001 &513326246146063312
 PrefabInstance:
