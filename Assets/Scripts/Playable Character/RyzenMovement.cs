@@ -50,8 +50,9 @@ public class RyzenMovement : PlayableCharacterMovement
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        base.Update(); // Calling parent's update method
         this.HandleGrounding();
         this.HandleJump();
         this.FaceCharacter();
@@ -68,16 +69,16 @@ public class RyzenMovement : PlayableCharacterMovement
     // Handling Stuff
     protected override void HandleGrounding()
     {
-        this._character.grounded = Physics2D.OverlapCircle(this._playerFeet.transform.position, this._groundCheckRadius, this._whatIsGround);
+        this._grounded = Physics2D.OverlapCircle(this._playerFeet.transform.position, this._groundCheckRadius, this._whatIsGround);
 
         // Animates Ascending or descending based on Y axis velocity
-        if (!this._character.grounded)
+        if (!this._grounded)
         {
             if (Mathf.Sign(this._rb.velocity.y) > 0)
             {
                 this._character.ChangeState(RyzenState.Ascending.ToString());
             }
-            else if (!this._character.dashing)
+            else if (!this._dashing)
             {
                 this._character.ChangeState(RyzenState.Descending.ToString());
             }
@@ -86,19 +87,19 @@ public class RyzenMovement : PlayableCharacterMovement
 
     protected override void HandleJump()
     {
-        if (this._jumpButtomPressed && this._character.jumping)
+        if (this._jumpButtomPressed && this._jumping)
         {
             this._rb.velocity = new Vector2(this._rb.velocity.x, this._jumpForce);
             this._jumpTimeCounter -= Time.deltaTime;
         }
-        else if (!this._jumpButtomPressed && this._character.jumping)
+        else if (!this._jumpButtomPressed && this._jumping)
         {
-            this._character.jumping = false;
+            this._jumping = false;
         }
 
         if (this._jumpTimeCounter <= 0)
         {
-            this._character.jumping = false;
+            this._jumping = false;
         }
     }
 
@@ -114,12 +115,12 @@ public class RyzenMovement : PlayableCharacterMovement
     // Executing Stuff
     protected override void Move()
     {
-        if (!this._character.engagedOnAttack && !this._character.dashing)
+        if (!this._character.isEngagedOnAttack() && !this._dashing)
         {
             this._rb.velocity = new Vector2(this.currentControlThrow.x * this._runSpeed, this._rb.velocity.y);
 
             // Change States based on being grounded
-            if (this._character.grounded)
+            if (this._grounded)
             {
                 if (Mathf.Abs(this._rb.velocity.x) > 0)
                 {
@@ -131,7 +132,7 @@ public class RyzenMovement : PlayableCharacterMovement
                 }
             }
         }
-        else if (!this._character.dashing)
+        else if (!this._dashing)
         {
             this._rb.velocity = new Vector2(0, this._rb.velocity.y);
         }
@@ -139,7 +140,7 @@ public class RyzenMovement : PlayableCharacterMovement
 
     private void Dash()
     {
-        if (this._currentDashTimeRemaining > 0 && this._character.dashing)
+        if (this._currentDashTimeRemaining > 0 && this._dashing)
         {
             this._currentDashTimeRemaining -= Time.deltaTime;
             if (this._facingRight)
@@ -151,20 +152,20 @@ public class RyzenMovement : PlayableCharacterMovement
                 this._rb.velocity = new Vector2(-this._dashSpeed, this.transform.position.y);
             }
         }
-        else if (this._character.dashing)
+        else if (this._dashing)
         {
-            this._character.dashing = false;
+            this._dashing = false;
         }
     }
 
     // Checks
     private bool CanJump()
     {
-        return this._character.grounded;
+        return this._grounded;
     }
     private bool CanDash()
     {
-        return this._character.grounded && Time.time >= this._canDashAgainTime;
+        return this._grounded && Time.time >= this._canDashAgainTime;
     }
 
     // Event Callbacks
@@ -178,7 +179,8 @@ public class RyzenMovement : PlayableCharacterMovement
             {
                 this._jumpButtomPressed = true;
                 this._jumpTimeCounter = this._jumpTimeLimit;
-                this._character.jumping = true;
+                this._jumping = true;
+                this._character.OnJumpStart();
                 PlayableCharacterEventManager.OnPLayableCharacterJumpStart(this.gameObject);
             }
         }
@@ -199,10 +201,11 @@ public class RyzenMovement : PlayableCharacterMovement
             // Starts dashing case criteria is met
             if (this.CanDash())
             {
-                this._character.dashing = true;
+                this._dashing = true;
                 this._currentDashTimeRemaining = this._dashDuration;
                 this._character.ChangeState(RyzenState.Dashing.ToString());
                 this._canDashAgainTime = Time.time + this._timeBetweenDashes;
+                this._character.OnDashStart();
             }
         }
 

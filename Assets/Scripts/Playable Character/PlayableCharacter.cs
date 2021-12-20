@@ -1,58 +1,34 @@
 using UnityEngine;
 
-public class PlayableCharacter : MonoBehaviour
+public abstract class PlayableCharacter : MonoBehaviour
 {
     protected IStateManager _stateManager;
-    protected PlayableChararacterCombat _characterCombat;
-    protected PlayableCharacterMovement _characterMovement;
+    public PlayableChararacterCombat _characterCombat;
+    public PlayableCharacterMovement _characterMovement;
 
-    protected bool _grounded;
-    protected bool _engagedOnAttack;
-    protected bool _dashing;
-    protected bool _jumping;
-
-    public bool grounded
+    public void OnJumpStart()
     {
-        get { return this._grounded; }
-        set { this._grounded = value; }
+        this.InterruptAttack();
     }
 
-    public bool engagedOnAttack
+    public void OnDashStart()
     {
-        get { return this._engagedOnAttack; }
-        set
-        {
-            this._engagedOnAttack = value;
-            if (this.engagedOnAttack)
-            {
-                this._dashing = false;
-            }
-        }
+        this.InterruptAttack();
     }
 
-    public bool dashing
+    public void OnTakingDamage(float damageAmount)
     {
-        get { return this._dashing; }
-        set
-        {
-            this._dashing = value;
-            if (this._dashing)
-            {
-                this._characterCombat.Disengage();
-            }
-        }
+
     }
-    public bool jumping
+
+    public bool isEngagedOnAttack()
     {
-        get { return this._jumping; }
-        set
-        {
-            this._jumping = value;
-            if (this._jumping)
-            {
-                this._characterCombat.Disengage();
-            }
-        }
+        return this._characterCombat.engagedOnAttack;
+    }
+
+    private void InterruptAttack()
+    {
+        this._characterCombat.Disengage();
     }
 
     // Monobehaviour Cycle

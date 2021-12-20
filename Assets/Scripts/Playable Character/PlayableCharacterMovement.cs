@@ -4,6 +4,18 @@ using UnityEngine.InputSystem;
 
 public abstract class PlayableCharacterMovement : MonoBehaviour
 {
+    protected bool _grounded;
+    protected bool _dashing;
+    protected bool _jumping;
+
+    public bool grounded => _grounded;
+    public bool dashing => _dashing;
+    public bool jumping => _jumping;
+
+    protected virtual void Update()
+    {
+
+    }
     protected abstract void HandleGrounding();
     protected abstract void HandleJump();
     protected abstract void FaceCharacter();

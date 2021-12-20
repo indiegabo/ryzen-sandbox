@@ -119,7 +119,7 @@ public class RyzenCombat : PlayableChararacterCombat
 
     protected override void Engage()
     {
-        this._character.engagedOnAttack = true;
+        this._engagedOnAttack = true;
         this._engagedAt = Time.time;
         this._character.ChangeState(RyzenState.LoadingShoot.ToString());
         this._currentEmpoweringAffordance = Instantiate(this._empoweringAffordanceObject, this._empoweringAffordancePoint.position, this._empoweringAffordancePoint.rotation);
@@ -128,7 +128,7 @@ public class RyzenCombat : PlayableChararacterCombat
 
     public override void Disengage()
     {
-        this._character.engagedOnAttack = false;
+        this._engagedOnAttack = false;
         this._attemptingToEngage = false;
         this._engagedAt = 0;
         Destroy(this._currentEmpoweringAffordance);
@@ -139,12 +139,12 @@ public class RyzenCombat : PlayableChararacterCombat
     // Checks
     private bool CanShoot()
     {
-        return this._engagedAt > 0 && this._character.engagedOnAttack;
+        return this._engagedAt > 0 && this._engagedOnAttack;
     }
 
     private bool CanEngage()
     {
-        return !this._character.engagedOnAttack && this._character.grounded && !this._character.dashing && this._attemptingToEngage;
+        return !this._engagedOnAttack && this._character._characterMovement.grounded && !this._character._characterMovement.dashing && this._attemptingToEngage;
     }
 
 
@@ -158,7 +158,7 @@ public class RyzenCombat : PlayableChararacterCombat
         }
 
         // Primary attack button Released
-        if (value.canceled && this._character.grounded)
+        if (value.canceled && this._character._characterMovement.grounded)
         {
             this._attemptingToEngage = false;
             this.HandleShooting();
