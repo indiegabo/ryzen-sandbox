@@ -40,9 +40,7 @@ public class Parallax : MonoBehaviour
     {
         float parallax = (this._previousCamPos.x - this._cameraTransform.position.x) * parallaxable.scale;
         float parallaxableTargetPosX = parallaxable.layerTransform.position.x + parallax;
-
         Vector3 parallaxableTargetPos = new Vector3(parallaxableTargetPosX, parallaxable.layerTransform.position.y, parallaxable.layerTransform.position.z);
-
         parallaxable.layerTransform.position = Vector3.Lerp(parallaxable.layerTransform.position, parallaxableTargetPos, this.smoothing * Time.deltaTime);
     }
 }
