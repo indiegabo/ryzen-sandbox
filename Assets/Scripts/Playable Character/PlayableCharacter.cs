@@ -3,9 +3,35 @@ using UnityEngine;
 public abstract class PlayableCharacter : MonoBehaviour
 {
     protected IStateManager _stateManager;
-    public PlayableChararacterCombat _characterCombat;
-    public PlayableCharacterMovement _characterMovement;
+    protected PlayableChararacterCombat _characterCombat;
+    protected PlayableCharacterMovement _characterMovement;
 
+
+    // Monobehaviour Cycle
+    protected void Awake()
+    {
+        this._stateManager = GetComponent<IStateManager>();
+        this._characterCombat = GetComponent<PlayableChararacterCombat>();
+        this._characterMovement = GetComponent<PlayableCharacterMovement>();
+    }
+
+    // State Check
+    public bool isEngagedOnAttack()
+    {
+        return this._characterCombat.engagedOnAttack;
+    }
+
+    public bool isGrounded()
+    {
+        return this._characterMovement.grounded;
+    }
+
+    public bool isDashing()
+    {
+        return this._characterMovement.dashing;
+    }
+
+    // Upon Certain Events
     public void OnJumpStart()
     {
         this.InterruptAttack();
@@ -21,22 +47,10 @@ public abstract class PlayableCharacter : MonoBehaviour
 
     }
 
-    public bool isEngagedOnAttack()
+    // Actions
+    protected void InterruptAttack()
     {
-        return this._characterCombat.engagedOnAttack;
-    }
-
-    private void InterruptAttack()
-    {
-        this._characterCombat.Disengage();
-    }
-
-    // Monobehaviour Cycle
-    private void Awake()
-    {
-        this._stateManager = GetComponent<IStateManager>();
-        this._characterCombat = GetComponent<PlayableChararacterCombat>();
-        this._characterMovement = GetComponent<PlayableCharacterMovement>();
+        this._characterCombat.InterruptAttack();
     }
 
     // Executing tasks

@@ -19,47 +19,25 @@ public class RyzenCombat : PlayableChararacterCombat
     [SerializeField] private GameObject _empoweringAffordanceObject;
 
     // Needed Components
-    private PlayableCharacter _character;
     private CanvasController _canvasController;
-
-    // Flags
-    private float _engagedAt = 0;
-    private bool _attemptingToEngage = false;
 
     // Objects to be used
     private GameObject _currentEmpoweringAffordance;
 
-    private void Awake()
+    // Monobehaviour Cycle
+    protected override void Awake()
     {
-        this._character = GetComponent<PlayableCharacter>();
+        base.Awake();
         this._canvasController = FindObjectOfType<CanvasController>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        this.HandleEngagement();
+        base.Update();
         this.HandleEmpoweringScaling();
     }
 
-    private void FixedUpdate()
-    {
-    }
-
-    // Handling Stuff
-    private void HandleEngagement()
-    {
-        if (this.CanEngage())
-        {
-            this.Engage();
-        }
-    }
     private void HandleShooting()
     {
         if (!this.CanShoot())
@@ -119,18 +97,15 @@ public class RyzenCombat : PlayableChararacterCombat
 
     protected override void Engage()
     {
-        this._engagedOnAttack = true;
-        this._engagedAt = Time.time;
+        base.Engage();
         this._character.ChangeState(RyzenState.LoadingShoot.ToString());
         this._currentEmpoweringAffordance = Instantiate(this._empoweringAffordanceObject, this._empoweringAffordancePoint.position, this._empoweringAffordancePoint.rotation);
         this._canvasController.ActivateLoadingShootSlider(true);
     }
 
-    public override void Disengage()
+    protected override void Disengage()
     {
-        this._engagedOnAttack = false;
-        this._attemptingToEngage = false;
-        this._engagedAt = 0;
+        base.Disengage();
         Destroy(this._currentEmpoweringAffordance);
         this._currentEmpoweringAffordance = null;
         this._canvasController.ActivateLoadingShootSlider(false);
@@ -142,12 +117,6 @@ public class RyzenCombat : PlayableChararacterCombat
         return this._engagedAt > 0 && this._engagedOnAttack;
     }
 
-    private bool CanEngage()
-    {
-        return !this._engagedOnAttack && this._character._characterMovement.grounded && !this._character._characterMovement.dashing && this._attemptingToEngage;
-    }
-
-
     // Events
     public override void OnPrimaryAttack(InputAction.CallbackContext value)
     {
@@ -158,7 +127,7 @@ public class RyzenCombat : PlayableChararacterCombat
         }
 
         // Primary attack button Released
-        if (value.canceled && this._character._characterMovement.grounded)
+        if (value.canceled && this._character.isGrounded())
         {
             this._attemptingToEngage = false;
             this.HandleShooting();
