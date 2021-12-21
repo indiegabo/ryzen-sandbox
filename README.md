@@ -22,7 +22,9 @@ Here are some of the features working already.
 - Pixel Perfect Camera
 - Canvas visual affordance for power shooting throug a Slider
 - Character events prepared to be triggered. Currently as of Ryzen starts a jump a visual affordance of that event will be set off through a blinking diamond positioned on the right upper corner of the screen.
+
   **New**
+
 - CineMachine used so camera will follow ryzen's steps.
 - We now have a multiple layers scenario.
 - We can now experience an "parallax effect" while moving Ryzen around.
@@ -36,7 +38,9 @@ Here are some of the features working already.
 - Ryzen can now Dash (rolling on the ground). He can only do this if grounded.
 - Case Primary Attack Button is pressed during dash or jumping time (and remains this way upon finishing the action) he will automatically engage on attack.
 - Dashes and Jumps Cancel attacks in progress
+
   **New**
+
 - Both jump and dash actions trigger events wich can be listened to any other game entity.
 
 ## Used Assets
