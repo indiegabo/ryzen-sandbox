@@ -30,6 +30,7 @@ public class Diamond : MonoBehaviour
 
     public void PlayableCharacterDashed(GameObject dashingChararacter)
     {
+        Debug.Log("Blinkou Blue");
         this._animator.SetTrigger("_blink_blue");
     }
 }
