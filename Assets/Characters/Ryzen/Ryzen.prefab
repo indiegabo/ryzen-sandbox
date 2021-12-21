@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 218930736}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShootingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 361240073}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EagleEyePoint
   m_TagString: Untagged
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
@@ -69,7 +69,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1972141230930964036}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Feet
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 1972141231269503717}
   - component: {fileID: 838248197}
   - component: {fileID: 535416793}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ryzen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,8 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c22fc2ac0bdb19c4ebdf748ba78f33df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterCombat: {fileID: 0}
-  _characterMovement: {fileID: 0}
 --- !u!114 &2130771028932437166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +195,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0245ab0ab36d13a488d2800bce07fea1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _whatIsGround:
+    serializedVersion: 2
+    m_Bits: 8
+  _playerFeet: {fileID: 1972141230930964039}
   _groundCheckRadius: 0.15
   _runSpeed: 3.5
   _jumpForce: 6
@@ -204,11 +206,6 @@ MonoBehaviour:
   _dashSpeed: 6
   _dashDuration: 0.65
   _timeBetweenDashes: 1
-  _whatIsGround:
-    serializedVersion: 2
-    m_Bits: 8
-  _playerFeet: {fileID: 1972141230930964039}
-  playerInput: {fileID: 362009940}
 --- !u!114 &5198260495867893350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,7 +427,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1972141231884716890}
   - component: {fileID: 1972141231884716891}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}

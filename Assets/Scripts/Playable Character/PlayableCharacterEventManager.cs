@@ -9,7 +9,10 @@ public class PlayableCharacterEventManager : MonoBehaviour
     // Call this to trigger the PlayableCharacterJumped Event
     public static void PlaybleCharacterJumping(GameObject chararacter)
     {
-        OnPLayableCharacterJumped(chararacter);
+        if (chararacter == null)
+            return;
+        if (OnPLayableCharacterJumped != null)
+            OnPLayableCharacterJumped(chararacter);
     }
 
     // Event to be fired when character dashes
@@ -19,7 +22,10 @@ public class PlayableCharacterEventManager : MonoBehaviour
     // Call this to trigger the OnJumpStart Event
     public static void PlaybleCharacterDashing(GameObject chararacter)
     {
-        OnPlayableCharacterDashed(chararacter);
+        if (chararacter == null)
+            return;
+        if (OnPlayableCharacterDashed != null)
+            OnPlayableCharacterDashed(chararacter);
     }
 
 }
