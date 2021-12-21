@@ -157,7 +157,7 @@ public abstract class PlayableCharacterMovement : MonoBehaviour
                 this._jumpTimeCounter = this._jumpTimeLimit;
                 this._jumping = true;
                 this._character.OnJumpStart();
-                PlayableCharacterEventManager.OnPLayableCharacterJumpStart(this.gameObject);
+                PlayableCharacterEventManager.PlaybleCharacterJumping(this.gameObject);
             }
         }
 
@@ -181,6 +181,7 @@ public abstract class PlayableCharacterMovement : MonoBehaviour
                 this._currentDashTimeRemaining = this._dashDuration;
                 this._canDashAgainTime = Time.time + this._timeBetweenDashes;
                 this._character.OnDashStart();
+                PlayableCharacterEventManager.PlaybleCharacterDashing(this.gameObject);
             }
         }
 

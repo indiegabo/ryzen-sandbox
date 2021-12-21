@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Diamond : MonoBehaviour
 {
-    private enum DiamondState { Idle, Blink }
     private Animator _animator;
 
     private void Awake()
@@ -12,23 +11,25 @@ public class Diamond : MonoBehaviour
         this._animator = GetComponent<Animator>();
     }
 
-    private void Start()
-    {
-
-    }
-
     private void OnEnable()
     {
-        PlayableCharacterEventManager.OnPlayableCharacterJumpStarted += PlayableCharacterJumpStarted;
+        PlayableCharacterEventManager.OnPLayableCharacterJumped += PlayableCharacterJumped;
+        PlayableCharacterEventManager.OnPlayableCharacterDashed += PlayableCharacterDashed;
     }
 
     private void OnDisable()
     {
-        PlayableCharacterEventManager.OnPlayableCharacterJumpStarted -= PlayableCharacterJumpStarted;
+        PlayableCharacterEventManager.OnPLayableCharacterJumped -= PlayableCharacterJumped;
+        PlayableCharacterEventManager.OnPlayableCharacterDashed -= PlayableCharacterDashed;
     }
 
-    public void PlayableCharacterJumpStarted(GameObject jumpingChararacter)
+    public void PlayableCharacterJumped(GameObject jumpingChararacter)
     {
-        this._animator.SetTrigger("_blink");
+        this._animator.SetTrigger("_blink_red");
+    }
+
+    public void PlayableCharacterDashed(GameObject dashingChararacter)
+    {
+        this._animator.SetTrigger("_blink_blue");
     }
 }

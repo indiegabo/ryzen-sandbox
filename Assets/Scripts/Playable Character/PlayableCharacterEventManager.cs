@@ -3,13 +3,24 @@ using UnityEngine;
 public class PlayableCharacterEventManager : MonoBehaviour
 {
     // Event to be fired when character jumps
-    public delegate void PlayableCharacterJumpStarted(GameObject jumpingChararacter);
-    public static event PlayableCharacterJumpStarted OnPlayableCharacterJumpStarted;
+    public delegate void PlayableCharacterJumped(GameObject chararacter);
+    public static event PlayableCharacterJumped OnPLayableCharacterJumped;
+
+    // Call this to trigger the PlayableCharacterJumped Event
+    public static void PlaybleCharacterJumping(GameObject chararacter)
+    {
+        OnPLayableCharacterJumped(chararacter);
+    }
+
+    // Event to be fired when character dashes
+    public delegate void PlayableCharacterDashed(GameObject chararacter);
+    public static event PlayableCharacterDashed OnPlayableCharacterDashed;
 
     // Call this to trigger the OnJumpStart Event
-    public static void OnPLayableCharacterJumpStart(GameObject jumpingChararacter)
+    public static void PlaybleCharacterDashing(GameObject chararacter)
     {
-        OnPlayableCharacterJumpStarted(jumpingChararacter);
+        OnPlayableCharacterDashed(chararacter);
     }
+
 }
 
