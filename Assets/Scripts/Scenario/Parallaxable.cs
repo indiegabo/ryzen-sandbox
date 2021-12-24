@@ -16,12 +16,12 @@ public class Parallaxable : MonoBehaviour
     private void Awake()
     {
         this._camera = Camera.main;
+        this._startPos = this.transform.position;
+        this._startingZ = this.transform.position.z;
     }
 
     private void Start()
     {
-        this._startPos = this.transform.position;
-        this._startingZ = this.transform.position.z;
     }
 
     private void Update()
