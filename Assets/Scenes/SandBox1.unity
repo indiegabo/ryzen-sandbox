@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &140564533 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7696502511518329649, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-  m_PrefabInstance: {fileID: 362009938}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &362009938
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -181,30 +176,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1972141231269503718, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2130771028932437166, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: _empoweredAffordanceObject
-      value: 
-      objectReference: {fileID: 140564533}
-    - target: {fileID: 2252467194834022761, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3675821636064131678, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3675821636064131678, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3675821636064131678, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7696502511518329649, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -10,12 +10,12 @@ public class RyzenCombat : PlayableChararacterCombat
     [Header("Config")]
     [SerializeField] [Range(0.1f, 1f)] private float _loadingShootTime = 0.45f;
     [SerializeField] [Range(0.5f, 2f)] private float _empoweringShootTime = 1f;
-    [SerializeField] [Range(0.5f, 2f)] private float _empoweredAnimationTime = 1f;
 
     [Header("Needed Objects")]
     [SerializeField] private Transform _shootingPoint;
     [SerializeField] private GameObject _arrowObject;
     [SerializeField] private GameObject _empoweredArrowObject;
+    [SerializeField] private GameObject _empoweredAffordancePoint;
     [SerializeField] private GameObject _empoweredAffordanceObject;
 
     // Needed Components
@@ -25,7 +25,7 @@ public class RyzenCombat : PlayableChararacterCombat
     private GameObject _currentEmpoweringAffordance;
 
     // Config Properties
-    private bool _animatingEmpower = false;
+    private bool _currentEmpoweringMaxReached = false;
 
     // Monobehaviour Cycle
     protected override void Awake()
@@ -74,10 +74,10 @@ public class RyzenCombat : PlayableChararacterCombat
         float max = this._engagedAt + this._loadingShootTime + this._empoweringShootTime;
 
         // Reached maximum empowering 
-        if (Time.time >= max && !this._animatingEmpower)
+        if (Time.time >= max && !this._currentEmpoweringMaxReached)
         {
-            this._animatingEmpower = true;
-            StartCoroutine(this.EmpoweredAnimation());
+            this._currentEmpoweringMaxReached = true;
+            Instantiate(this._empoweredAffordanceObject, this._empoweredAffordancePoint.transform.position, this._empoweredAffordancePoint.transform.rotation);
         }
 
         if (Time.time < min || Time.time > max)
@@ -113,6 +113,7 @@ public class RyzenCombat : PlayableChararacterCombat
     protected override void Disengage()
     {
         base.Disengage();
+        this._currentEmpoweringMaxReached = false;
         this._canvasController.ActivateLoadingShootSlider(false);
     }
 
@@ -122,35 +123,6 @@ public class RyzenCombat : PlayableChararacterCombat
         return this._engagedAt > 0 && this._engagedOnAttack;
     }
 
-    // Coroutines
-    private IEnumerator EmpoweredAnimation()
-    {
-        SpriteRenderer spriteRenderer = this._empoweredAffordanceObject.transform.GetComponent<SpriteRenderer>();
-        this._empoweredAffordanceObject.SetActive(true);
-        Debug.Log(this._empoweredAffordanceObject.transform.localScale);
-
-        float elapsedTime = 0f;
-
-        Vector3 initialScale = new Vector3(1f, 1f, 1f);
-        Vector3 targetScale = new Vector3(3f, 3f, 1f);
-
-        Color initialColor = spriteRenderer.color;
-        Color targetColor = new Color(initialColor.r, initialColor.g, initialColor.b, 0f);
-
-        while (elapsedTime < this._empoweredAnimationTime)
-        {
-            elapsedTime += Time.deltaTime;
-            Color currentColor = Color.Lerp(initialColor, targetColor, elapsedTime / this._empoweredAnimationTime);
-            Vector3 currentScale = Vector3.Lerp(initialScale, targetScale, elapsedTime / this._empoweredAnimationTime);
-            spriteRenderer.color = currentColor;
-            this._empoweredAffordanceObject.transform.localScale = currentScale;
-            yield return null;
-        }
-
-        this._empoweredAffordanceObject.SetActive(false);
-        spriteRenderer.color = initialColor;
-        this._animatingEmpower = false;
-    }
 
     // Events
     public override void OnPrimaryAttack(InputAction.CallbackContext value)
