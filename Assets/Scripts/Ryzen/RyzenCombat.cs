@@ -1,6 +1,6 @@
-
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class RyzenCombat : PlayableChararacterCombat
 {
@@ -10,19 +10,22 @@ public class RyzenCombat : PlayableChararacterCombat
     [Header("Config")]
     [SerializeField] [Range(0.1f, 1f)] private float _loadingShootTime = 0.45f;
     [SerializeField] [Range(0.5f, 2f)] private float _empoweringShootTime = 1f;
+    [SerializeField] [Range(0.5f, 2f)] private float _empoweredAnimationTime = 1f;
 
     [Header("Needed Objects")]
     [SerializeField] private Transform _shootingPoint;
-    [SerializeField] private Transform _empoweringAffordancePoint;
     [SerializeField] private GameObject _arrowObject;
     [SerializeField] private GameObject _empoweredArrowObject;
-    [SerializeField] private GameObject _empoweringAffordanceObject;
+    [SerializeField] private GameObject _empoweredAffordanceObject;
 
     // Needed Components
     private CanvasController _canvasController;
 
     // Objects to be used
     private GameObject _currentEmpoweringAffordance;
+
+    // Config Properties
+    private bool _animatingEmpower = false;
 
     // Monobehaviour Cycle
     protected override void Awake()
@@ -64,19 +67,24 @@ public class RyzenCombat : PlayableChararacterCombat
 
     private void HandleEmpoweringScaling()
     {
-        if (this._engagedAt <= 0 || this._currentEmpoweringAffordance == null)
+        if (this._engagedAt <= 0)
             return;
-
 
         float min = this._engagedAt + this._loadingShootTime;
         float max = this._engagedAt + this._loadingShootTime + this._empoweringShootTime;
+
+        // Reached maximum empowering 
+        if (Time.time >= max && !this._animatingEmpower)
+        {
+            this._animatingEmpower = true;
+            StartCoroutine(this.EmpoweredAnimation());
+        }
 
         if (Time.time < min || Time.time > max)
             return;
 
         float elapsedTime = Time.time - min;
-        float scale = Calc.convertScale(elapsedTime, this._empoweringShootTime, MIN_EMPOWERING_SCALE, MAX_EMPOWERING_SCALE, 0.95f);
-        this._currentEmpoweringAffordance.transform.localScale = new Vector3(scale, scale, 1f);
+        float scale = Calc.convertScale(elapsedTime, this._empoweringShootTime, MIN_EMPOWERING_SCALE, MAX_EMPOWERING_SCALE, 0.98f);
         this._canvasController.SetLoadingShootSlider(scale);
     }
 
@@ -99,15 +107,12 @@ public class RyzenCombat : PlayableChararacterCombat
     {
         base.Engage();
         this._character.ChangeState(RyzenState.LoadingShoot.ToString());
-        this._currentEmpoweringAffordance = Instantiate(this._empoweringAffordanceObject, this._empoweringAffordancePoint.position, this._empoweringAffordancePoint.rotation);
         this._canvasController.ActivateLoadingShootSlider(true);
     }
 
     protected override void Disengage()
     {
         base.Disengage();
-        Destroy(this._currentEmpoweringAffordance);
-        this._currentEmpoweringAffordance = null;
         this._canvasController.ActivateLoadingShootSlider(false);
     }
 
@@ -115,6 +120,36 @@ public class RyzenCombat : PlayableChararacterCombat
     private bool CanShoot()
     {
         return this._engagedAt > 0 && this._engagedOnAttack;
+    }
+
+    // Coroutines
+    private IEnumerator EmpoweredAnimation()
+    {
+        SpriteRenderer spriteRenderer = this._empoweredAffordanceObject.transform.GetComponent<SpriteRenderer>();
+        this._empoweredAffordanceObject.SetActive(true);
+        Debug.Log(this._empoweredAffordanceObject.transform.localScale);
+
+        float elapsedTime = 0f;
+
+        Vector3 initialScale = new Vector3(1f, 1f, 1f);
+        Vector3 targetScale = new Vector3(3f, 3f, 1f);
+
+        Color initialColor = spriteRenderer.color;
+        Color targetColor = new Color(initialColor.r, initialColor.g, initialColor.b, 0f);
+
+        while (elapsedTime < this._empoweredAnimationTime)
+        {
+            elapsedTime += Time.deltaTime;
+            Color currentColor = Color.Lerp(initialColor, targetColor, elapsedTime / this._empoweredAnimationTime);
+            Vector3 currentScale = Vector3.Lerp(initialScale, targetScale, elapsedTime / this._empoweredAnimationTime);
+            spriteRenderer.color = currentColor;
+            this._empoweredAffordanceObject.transform.localScale = currentScale;
+            yield return null;
+        }
+
+        this._empoweredAffordanceObject.SetActive(false);
+        spriteRenderer.color = initialColor;
+        this._animatingEmpower = false;
     }
 
     // Events
