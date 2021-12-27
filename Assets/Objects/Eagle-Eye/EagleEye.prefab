@@ -96,6 +96,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _empoweredAnimationTime: 0.5
-  _empowerenmentScale: 5
+  _empowerenmentScale: 7.5
   _eagleSound: {fileID: 8300000, guid: b2fbaa9eb31094347a6d0aca2bd14be8, type: 3}
   _soundVolume: 0.05
