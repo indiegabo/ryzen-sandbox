@@ -7,16 +7,32 @@ public class Enemy : MonoBehaviour, IDamageable
 
     [Header("Config")]
     [SerializeField] [Range(40f, 10000f)] protected float _totalHP = 100f; // Read HP as Health Points
+    [SerializeField] [Range(1f, 50f)] protected float _defaultSpeed = 2f;
+    [SerializeField] [Range(0.5f, 20f)] protected float _eyeSightRange = 5f;
 
-    // Need Components
+    [Header("Needed objects")]
+    [SerializeField] protected Transform _eyeSight;
+
+    // Non param Needed objects
+    Transform _player;
+
+    // Needed Components
     protected IStateManager _stateManager;
+    protected Rigidbody2D _rb;
 
     // Combat Logic
     protected float _currentHP;
 
-    private void Awake()
+    // Flags
+    protected bool _facingRight = false;
+    protected bool _takingHit = false;
+    protected bool _dead = false;
+
+    protected void Awake()
     {
         this._stateManager = GetComponent<IStateManager>();
+        this._rb = GetComponent<Rigidbody2D>();
+        this._player = FindObjectOfType<PlayableCharacter>().gameObject.transform;
     }
 
     // Start is called before the first frame update
@@ -26,11 +42,53 @@ public class Enemy : MonoBehaviour, IDamageable
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
-
+        this.FaceEnemy();
+        this.HandleState();
     }
 
+    protected void FixedUpdate()
+    {
+        this.HandleWalk();
+    }
+
+    // Handling Stuff
+    protected void HandleWalk()
+    {
+        if (this.CanWalk() && this.CanSeePlayer())
+        {
+            float distanceSign = Mathf.Sign(this._player.position.x - this.transform.position.x);
+            this._rb.velocity = (Vector2.right * this._defaultSpeed) * distanceSign;
+        }
+        else
+        {
+            this._rb.velocity = new Vector2(0, 0);
+        }
+    }
+
+    protected void HandleState()
+    {
+        if (Mathf.Abs(this._rb.velocity.x) > 0)
+            this._stateManager.ChangeState("Walk");
+        else if (!this._takingHit && !this._dead)
+            this._stateManager.ChangeState("Idle");
+        else if (this._takingHit)
+            this._stateManager.ChangeState("Hit");
+        else if (this._dead)
+            this._stateManager.ChangeState("Die");
+    }
+
+    protected void FaceEnemy()
+    {
+        if (this._rb.velocity.x < 0 && this._facingRight || this._rb.velocity.x > 0 && !this._facingRight)
+        {
+            this._facingRight = !this._facingRight;
+            transform.Rotate(0f, -180f, 0f);
+        }
+    }
+
+    // Actions
     public void TakeDamage(float amount)
     {
         this._currentHP -= amount;
@@ -44,25 +102,45 @@ public class Enemy : MonoBehaviour, IDamageable
             // Take hit
             this.TakeHit();
         }
-
-        Debug.Log(this._currentHP);
     }
-
-    private void TakeHit()
+    protected void TakeHit()
     {
-        this._stateManager.ChangeState("Hit");
-        Invoke("EnterIdleState", 0.625f);
+        this._takingHit = true;
+        Invoke("DoneTakingHit", 0.625f);
 
     }
-    private void Die()
+    protected void Die()
     {
-        this._stateManager.ChangeState("Die");
         GetComponent<Collider2D>().enabled = false;
+        this._dead = true;
     }
 
-    private void EnterIdleState()
+    protected void DoneTakingHit()
     {
-        this._stateManager.ChangeState("Idle");
+        this._takingHit = false;
     }
 
+    // Checks
+    protected bool CanWalk()
+    {
+        return !this._takingHit && !this._dead;
+    }
+
+    protected bool CanSeePlayer()
+    {
+        Vector2 endPos = this._eyeSight.position + Vector3.left * this._eyeSightRange;
+        RaycastHit2D hit = Physics2D.Linecast(this._eyeSight.position, endPos, 1 << LayerMask.NameToLayer("Player"));
+        Debug.DrawLine(this._eyeSight.position, endPos, Color.red);
+        return hit.collider != null;
+    }
+
+    // Debug stuff
+    public void OnDrawGizmosSelected()
+    {
+        if (this._eyeSight == null)
+            return;
+
+        Vector2 endPos = this._eyeSight.position + Vector3.left * this._eyeSightRange;
+        Gizmos.DrawLine(this._eyeSight.position, endPos);
+    }
 }
