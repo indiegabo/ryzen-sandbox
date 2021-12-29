@@ -12,7 +12,9 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] protected bool _facingLeft = false;
 
     [Header("Needed objects")]
+    [SerializeField] protected LayerMask _sightableLayers;
     [SerializeField] protected Transform _eyeSight;
+    [SerializeField] protected GameObject _body;
 
     // Non param Needed objects
     Transform _player;
@@ -113,6 +115,7 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         GetComponent<Collider2D>().enabled = false;
         this._dead = true;
+        StartCoroutine(this.FadeAndDestroy());
     }
 
     protected void DoneTakingHit()
@@ -128,20 +131,34 @@ public class Enemy : MonoBehaviour, IDamageable
 
     protected bool CanSeePlayer()
     {
-        Vector2 endPos = this.CalculateSighEndPosition();
+        Vector2 endPos = this.CalculateSigthEndPosition();
 
-        RaycastHit2D hit = Physics2D.Linecast(this._eyeSight.position, endPos, 1 << LayerMask.NameToLayer("Player"));
-        return hit.collider != null;
+        RaycastHit2D hit = Physics2D.Linecast(this._eyeSight.position, endPos, this._sightableLayers);
+
+        bool collidingWithPlayer = false;
+
+        if (hit.collider != null)
+        {
+            if (hit.collider.gameObject.CompareTag("Platform"))
+            {
+                collidingWithPlayer = false;
+            }
+            else if (hit.collider.gameObject.CompareTag("Playable"))
+            {
+                collidingWithPlayer = true;
+            }
+        }
+
+        return collidingWithPlayer;
     }
 
-    protected Vector2 CalculateSighEndPosition()
+    protected Vector2 CalculateSigthEndPosition()
     {
         Vector2 endPos;
 
         if (this._facingLeft)
         {
             endPos = this._eyeSight.position + Vector3.left * this._eyeSightRange;
-
         }
         else
         {
@@ -152,13 +169,29 @@ public class Enemy : MonoBehaviour, IDamageable
         return endPos;
     }
 
+    protected IEnumerator FadeAndDestroy()
+    {
+        yield return new WaitForSeconds(5f);
+        SpriteRenderer spriteRenderer = this._body.GetComponent<SpriteRenderer>();
+        Color c = spriteRenderer.color;
+
+        for (float alpha = 1f; alpha >= 0; alpha -= 0.1f)
+        {
+            c.a = alpha;
+            spriteRenderer.color = c;
+            yield return new WaitForSeconds(.1f);
+        }
+
+        Destroy(this.gameObject);
+    }
+
     // Debug stuff
     public void OnDrawGizmosSelected()
     {
         if (this._eyeSight == null)
             return;
 
-        Vector2 endPos = this.CalculateSighEndPosition();
+        Vector2 endPos = this.CalculateSigthEndPosition();
         Gizmos.DrawLine(this._eyeSight.position, endPos);
     }
 }
