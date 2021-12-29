@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] [Range(40f, 10000f)] protected float _totalHP = 100f; // Read HP as Health Points
     [SerializeField] [Range(1f, 50f)] protected float _defaultSpeed = 2f;
     [SerializeField] [Range(0.5f, 20f)] protected float _eyeSightRange = 5f;
+    [SerializeField] [Range(0.5f, 5f)] protected float _attackRange = 1f;
+    [SerializeField] [Range(2f, 5f)] protected float _attackDelay = 2.5f;
     [SerializeField] protected bool _facingLeft = false;
 
     [Header("Needed objects")]
@@ -25,10 +27,13 @@ public class Enemy : MonoBehaviour, IDamageable
 
     // Combat Logic
     protected float _currentHP;
+    protected float _lastAttackedAt = 0;
 
     // Flags
     protected bool _takingHit = false;
     protected bool _dead = false;
+    protected bool _chasingPlayer = false;
+    protected bool _attacking = false;
 
     protected void Awake()
     {
@@ -46,7 +51,10 @@ public class Enemy : MonoBehaviour, IDamageable
     // Update is called once per frame
     protected void Update()
     {
+
+        this.HandlePlayerChase();
         this.FaceEnemy();
+        this.HandleAttack();
         this.HandleState();
     }
 
@@ -56,9 +64,39 @@ public class Enemy : MonoBehaviour, IDamageable
     }
 
     // Handling Stuff
+    protected void HandlePlayerChase()
+    {
+        Vector2 endPos = this.CalculateSigthEndPosition();
+
+        RaycastHit2D hit = Physics2D.Linecast(this._eyeSight.position, endPos, this._sightableLayers);
+
+        if (hit.collider != null)
+        {
+            // if (hit.collider.gameObject.CompareTag("Platform"))
+            // {
+            //     this._chasingPlayer = false;
+            // }
+
+            if (hit.collider.gameObject.CompareTag("Playable"))
+            {
+                this._chasingPlayer = true;
+            }
+            else
+            {
+                this._chasingPlayer = false;
+            }
+        }
+        else
+        {
+            this._chasingPlayer = false;
+        }
+    }
     protected void HandleWalk()
     {
-        if (this.CanWalk() && this.CanSeePlayer())
+        if (this._dead)
+            return;
+
+        if (this.CanWalk() && this._chasingPlayer)
         {
             float distanceSign = Mathf.Sign(this._player.position.x - this.transform.position.x);
             this._rb.velocity = (Vector2.right * this._defaultSpeed) * distanceSign;
@@ -69,12 +107,32 @@ public class Enemy : MonoBehaviour, IDamageable
         }
     }
 
+    protected void HandleAttack()
+    {
+        if (this._dead)
+            return;
+
+        if (this._chasingPlayer && Time.time >= this._lastAttackedAt + this._attackDelay)
+        {
+            float distance = Mathf.Abs(this.transform.position.x - this._player.transform.position.x);
+            if (distance <= this._attackRange)
+            {
+                // attack
+                this._lastAttackedAt = Time.time;
+                this._attacking = true;
+                Invoke("AttackDone", 1.444f);
+            }
+        }
+    }
+
     protected void HandleState()
     {
         if (Mathf.Abs(this._rb.velocity.x) > 0)
             this._stateManager.ChangeState("Walk");
-        else if (!this._takingHit && !this._dead)
+        else if (!this._takingHit && !this._dead && !this._attacking)
             this._stateManager.ChangeState("Idle");
+        else if (this._attacking)
+            this._stateManager.ChangeState("Attack");
         else if (this._takingHit)
             this._stateManager.ChangeState("Hit");
         else if (this._dead)
@@ -109,7 +167,6 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         this._takingHit = true;
         Invoke("DoneTakingHit", 0.625f);
-
     }
     protected void Die()
     {
@@ -126,30 +183,7 @@ public class Enemy : MonoBehaviour, IDamageable
     // Checks
     protected bool CanWalk()
     {
-        return !this._takingHit && !this._dead;
-    }
-
-    protected bool CanSeePlayer()
-    {
-        Vector2 endPos = this.CalculateSigthEndPosition();
-
-        RaycastHit2D hit = Physics2D.Linecast(this._eyeSight.position, endPos, this._sightableLayers);
-
-        bool collidingWithPlayer = false;
-
-        if (hit.collider != null)
-        {
-            if (hit.collider.gameObject.CompareTag("Platform"))
-            {
-                collidingWithPlayer = false;
-            }
-            else if (hit.collider.gameObject.CompareTag("Playable"))
-            {
-                collidingWithPlayer = true;
-            }
-        }
-
-        return collidingWithPlayer;
+        return !this._takingHit && !this._dead && !this._attacking;
     }
 
     protected Vector2 CalculateSigthEndPosition()
@@ -183,6 +217,11 @@ public class Enemy : MonoBehaviour, IDamageable
         }
 
         Destroy(this.gameObject);
+    }
+
+    protected void AttackDone()
+    {
+        this._attacking = false;
     }
 
     // Debug stuff
