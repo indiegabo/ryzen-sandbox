@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] [Range(40f, 10000f)] protected float _totalHP = 100f; // Read HP as Health Points
     [SerializeField] [Range(1f, 50f)] protected float _defaultSpeed = 2f;
     [SerializeField] [Range(0.5f, 20f)] protected float _eyeSightRange = 5f;
+    [SerializeField] protected bool _facingLeft = false;
 
     [Header("Needed objects")]
     [SerializeField] protected Transform _eyeSight;
@@ -24,7 +25,6 @@ public class Enemy : MonoBehaviour, IDamageable
     protected float _currentHP;
 
     // Flags
-    protected bool _facingRight = false;
     protected bool _takingHit = false;
     protected bool _dead = false;
 
@@ -81,9 +81,9 @@ public class Enemy : MonoBehaviour, IDamageable
 
     protected void FaceEnemy()
     {
-        if (this._rb.velocity.x < 0 && this._facingRight || this._rb.velocity.x > 0 && !this._facingRight)
+        if (this._rb.velocity.x > 0 && this._facingLeft || this._rb.velocity.x < 0 && !this._facingLeft)
         {
-            this._facingRight = !this._facingRight;
+            this._facingLeft = !this._facingLeft;
             transform.Rotate(0f, -180f, 0f);
         }
     }
@@ -128,10 +128,28 @@ public class Enemy : MonoBehaviour, IDamageable
 
     protected bool CanSeePlayer()
     {
-        Vector2 endPos = this._eyeSight.position + Vector3.left * this._eyeSightRange;
+        Vector2 endPos = this.CalculateSighEndPosition();
+
         RaycastHit2D hit = Physics2D.Linecast(this._eyeSight.position, endPos, 1 << LayerMask.NameToLayer("Player"));
-        Debug.DrawLine(this._eyeSight.position, endPos, Color.red);
         return hit.collider != null;
+    }
+
+    protected Vector2 CalculateSighEndPosition()
+    {
+        Vector2 endPos;
+
+        if (this._facingLeft)
+        {
+            endPos = this._eyeSight.position + Vector3.left * this._eyeSightRange;
+
+        }
+        else
+        {
+            endPos = this._eyeSight.position + Vector3.right * this._eyeSightRange;
+
+        }
+
+        return endPos;
     }
 
     // Debug stuff
@@ -140,7 +158,7 @@ public class Enemy : MonoBehaviour, IDamageable
         if (this._eyeSight == null)
             return;
 
-        Vector2 endPos = this._eyeSight.position + Vector3.left * this._eyeSightRange;
+        Vector2 endPos = this.CalculateSighEndPosition();
         Gizmos.DrawLine(this._eyeSight.position, endPos);
     }
 }

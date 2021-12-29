@@ -402,8 +402,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1562795655}
     - target: {fileID: 1579176610268990044, guid: e090f2b1ff92813418ef2e31b669c103, type: 3}
+      propertyPath: _facingLeft
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1579176610268990044, guid: e090f2b1ff92813418ef2e31b669c103, type: 3}
+      propertyPath: _defaultSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1579176610268990044, guid: e090f2b1ff92813418ef2e31b669c103, type: 3}
       propertyPath: _eyeSightRange
-      value: 1.84
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2851415465377637568, guid: e090f2b1ff92813418ef2e31b669c103, type: 3}
       propertyPath: m_BodyType
