@@ -125,6 +125,8 @@ GameObject:
   - component: {fileID: 936804908943052196}
   - component: {fileID: 936804908943052199}
   - component: {fileID: 1579176610268990044}
+  - component: {fileID: 6523052455244542455}
+  - component: {fileID: 1520688908206834043}
   - component: {fileID: 1381734803}
   m_Layer: 7
   m_Name: Tito
@@ -218,16 +220,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _totalHP: 100
-  _defaultSpeed: 1.5
-  _eyeSightRange: 4
+  _body: {fileID: 936804908919318267}
+--- !u!114 &6523052455244542455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936804908943052195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f5eda6bfd139324a8b8c048eb73d6e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defaultSpeed: 2
+  _facingLeft: 0
+--- !u!114 &1520688908206834043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936804908943052195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db253b42726058499ea883b37cedccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eyeSightRange: 5
   _attackRange: 1
   _attackDelay: 2.5
-  _facingLeft: 1
   _sightableLayers:
     serializedVersion: 2
-    m_Bits: 73
+    m_Bits: 72
   _eyeSight: {fileID: 1562795655}
-  _body: {fileID: 936804908919318267}
 --- !u!114 &1381734803
 MonoBehaviour:
   m_ObjectHideFlags: 0

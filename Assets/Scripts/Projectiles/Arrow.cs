@@ -29,8 +29,7 @@ public class Arrow : MonoBehaviour, IDamager
             return;
         }
 
-        IDamageable damageable = other.GetComponent<IDamageable>();
-        if (damageable != null)
+        if (other.TryGetComponent(out IDamageable damageable))
         {
             this.ApplyDamage(damageable);
         }
