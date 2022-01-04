@@ -5,14 +5,20 @@ using UnityEngine;
 public class EnemyCombat : MonoBehaviour
 {
 
-    [Header("Config")]
+    [Header("Eye Sight")]
     [SerializeField] [Range(0.5f, 20f)] protected float _eyeSightRange = 5f;
+
+    [Header("Attack")]
     [SerializeField] [Range(0.5f, 5f)] protected float _attackRange = 1f;
     [SerializeField] [Range(2f, 5f)] protected float _attackDelay = 2.5f;
+    [SerializeField] [Range(0.1f, 5f)] protected float _attackRadius = 2.5f;
+    [SerializeField] [Range(5f, 500f)] protected float _attackDamage = 20f;
 
     [Header("Needed objects")]
     [SerializeField] protected LayerMask _sightableLayers;
     [SerializeField] protected Transform _eyeSight;
+    [SerializeField] protected Transform _attackPosition;
+    [SerializeField] protected LayerMask _attackables;
 
     protected Enemy _enemy;
 
@@ -52,7 +58,7 @@ public class EnemyCombat : MonoBehaviour
     // Handling Stuff
     protected void HandlePlayerChase()
     {
-        if (this._enemy._dead)
+        if (this._enemy.dead)
             return;
 
         Vector2 endPos = this.CalculateSigthEndPosition();
@@ -97,6 +103,21 @@ public class EnemyCombat : MonoBehaviour
                 this._enemy.ChangeState("Attack");
                 Invoke("AttackDone", 1.444f);
             }
+        }
+    }
+
+    // Actions
+
+    // Called based on EnemyAttackBehaviour
+    public void ExecuteAttack()
+    {
+        Collider2D attackableCollider = Physics2D.OverlapCircle(this._attackPosition.transform.position, this._attackRadius, this._attackables);
+        if (attackableCollider == null)
+            return;
+
+        if (attackableCollider.TryGetComponent(out IDamageable damageable))
+        {
+            damageable.TakeDamage(this._attackDamage);
         }
     }
 
@@ -147,7 +168,14 @@ public class EnemyCombat : MonoBehaviour
         if (this._eyeSight == null)
             return;
 
-        Vector2 endPos = this.CalculateSigthEndPosition();
+        // Draw EyeSight
+        Vector2 endPos = this._eyeSight.position + Vector3.left * this._eyeSightRange;
         Gizmos.DrawLine(this._eyeSight.position, endPos);
+
+        if (this._attackPosition == null)
+            return;
+
+        // Draw Attack Range
+        Gizmos.DrawWireSphere(this._attackPosition.transform.position, this._attackRadius);
     }
 }

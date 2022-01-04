@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class PlayableCharacter : MonoBehaviour
+public abstract class PlayableCharacter : MonoBehaviour, IDamageable
 {
     protected IStateManager _stateManager;
     protected PlayableChararacterCombat _characterCombat;
@@ -52,6 +52,12 @@ public abstract class PlayableCharacter : MonoBehaviour
     {
         this._characterCombat.InterruptAttack();
     }
+
+    public void TakeDamage(float amount)
+    {
+        Debug.Log(amount);
+    }
+
 
     // Executing tasks
 

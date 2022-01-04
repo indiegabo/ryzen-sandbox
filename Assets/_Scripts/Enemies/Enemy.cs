@@ -24,17 +24,16 @@ public class Enemy : MonoBehaviour, IDamageable
     protected float _currentHP;
 
     // Flags
-    public bool _dead = false;
+    private bool _dead = false;
 
-    public bool dead
-    {
-        get { return this._dead; }
-    }
+    public bool dead => this._dead;
 
     // Combat feedbacks
     public bool takingHit => this._enemyCombat.takingHit;
     public bool chasingPlayer => this._enemyCombat.chasingPlayer;
     public bool attacking => this._enemyCombat.attacking;
+
+    public bool closeToPlayer => Mathf.Abs(this._player.position.x - this.transform.position.x) <= 1;
 
     // Movement feedbacks
     public bool facingLeft => this._enemyMovement.facingLeft;

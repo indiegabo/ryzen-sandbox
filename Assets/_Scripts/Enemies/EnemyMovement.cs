@@ -71,7 +71,7 @@ public class EnemyMovement : MonoBehaviour
     // Checks
     protected bool CanWalk()
     {
-        return !this._enemy.takingHit && !this._enemy.dead && !this._enemy.attacking;
+        return !this._enemy.takingHit && !this._enemy.dead && !this._enemy.attacking && !this._enemy.closeToPlayer;
     }
 
 }
