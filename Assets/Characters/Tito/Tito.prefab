@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517955582}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.108, z: 0}
+  m_LocalPosition: {x: 0.52, y: 0.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 936804908943052194}
@@ -281,10 +281,16 @@ MonoBehaviour:
   _eyeSightRange: 5
   _attackRange: 1
   _attackDelay: 2.5
+  _attackRadius: 0.47
+  _attackDamage: 20
   _sightableLayers:
     serializedVersion: 2
     m_Bits: 72
   _eyeSight: {fileID: 1562795655}
+  _attackPosition: {fileID: 1517955583}
+  _attackables:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &1381734803
 MonoBehaviour:
   m_ObjectHideFlags: 0

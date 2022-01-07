@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class EnemyCombat : MonoBehaviour
 {
@@ -111,13 +112,14 @@ public class EnemyCombat : MonoBehaviour
     // Called based on EnemyAttackBehaviour
     public void ExecuteAttack()
     {
-        Collider2D attackableCollider = Physics2D.OverlapCircle(this._attackPosition.transform.position, this._attackRadius, this._attackables);
-        if (attackableCollider == null)
-            return;
+        Collider2D[] attackableColliders = Physics2D.OverlapCircleAll(this._attackPosition.transform.position, this._attackRadius, this._attackables);
 
-        if (attackableCollider.TryGetComponent(out IDamageable damageable))
+        foreach (Collider2D attackableCollider in attackableColliders)
         {
-            damageable.TakeDamage(this._attackDamage);
+            if (attackableCollider.TryGetComponent(out IDamageable damageable) && attackableCollider.CompareTag(Tag.Playable.ToString()))
+            {
+                damageable.TakeDamage(this._attackDamage);
+            }
         }
     }
 

@@ -23,17 +23,15 @@ public class Arrow : MonoBehaviour, IDamager
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag.Equals("Garbage"))
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        if (other.TryGetComponent(out IDamageable damageable))
+        if (other.TryGetComponent(out IDamageable damageable) && !other.CompareTag(Tag.Playable.ToString()))
         {
             this.ApplyDamage(damageable);
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+        else if (!other.CompareTag(Tag.Playable.ToString()))
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void ApplyDamage(IDamageable damageable)
