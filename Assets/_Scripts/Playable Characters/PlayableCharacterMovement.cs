@@ -96,18 +96,27 @@ public abstract class PlayableCharacterMovement : MonoBehaviour
     // Executing stuff
     protected virtual void Move()
     {
+        if (this._character.isDead)
+        {
+            this.PreventMovement();
+            return;
+        }
+
         if (!this._character.isEngagedOnAttack() && !this._dashing)
         {
             this._rb.velocity = new Vector2(this.currentControlThrow.x * this._runSpeed, this._rb.velocity.y);
         }
         else if (!this._dashing)
         {
-            this._rb.velocity = new Vector2(0, this._rb.velocity.y);
+            this.PreventMovement();
         }
     }
 
     protected virtual void Dash()
     {
+        if (this._character.isDead || this._character.takingHit)
+            return;
+
         if (this._currentDashTimeRemaining > 0 && this._dashing)
         {
             this._currentDashTimeRemaining -= Time.deltaTime;
@@ -127,6 +136,9 @@ public abstract class PlayableCharacterMovement : MonoBehaviour
     }
     protected virtual void FaceCharacter()
     {
+        if (this._character.takingHit)
+            return;
+
         if (this._rb.velocity.x < 0 && this._facingRight || this._rb.velocity.x > 0 && !this._facingRight)
         {
             this._facingRight = !this._facingRight;
@@ -134,14 +146,19 @@ public abstract class PlayableCharacterMovement : MonoBehaviour
         }
     }
 
+    protected void PreventMovement()
+    {
+        this._rb.velocity = new Vector2(0, this._rb.velocity.y);
+    }
+
     // Checks
     protected bool CanJump()
     {
-        return this._grounded;
+        return !this._character.isDead && this._grounded;
     }
     protected bool CanDash()
     {
-        return this._grounded && Time.time >= this._canDashAgainTime;
+        return !this._character.isDead && this._grounded && Time.time >= this._canDashAgainTime;
     }
 
     // Event Callbacks

@@ -134,7 +134,7 @@ public class RyzenCombat : PlayableChararacterCombat
         }
 
         // Primary attack button Released
-        if (value.canceled && this._character.isGrounded())
+        if (value.canceled && this._character.isGrounded)
         {
             this._attemptingToEngage = false;
             this.HandleShooting();

@@ -60,7 +60,7 @@ public abstract class PlayableChararacterCombat : MonoBehaviour
 
     private bool CanEngage()
     {
-        return !this._engagedOnAttack && this._character.isGrounded() && !this._character.isDashing() && this._attemptingToEngage;
+        return !this._character.takingHit && !this._character.isDead && !this._engagedOnAttack && this._character.isGrounded && !this._character.isDashing && this._attemptingToEngage;
     }
 
     // Events
@@ -73,7 +73,7 @@ public abstract class PlayableChararacterCombat : MonoBehaviour
         }
 
         // Primary attack button Released
-        if (value.canceled && this._character.isGrounded())
+        if (value.canceled && this._character.isGrounded)
         {
             this._attemptingToEngage = false;
         }

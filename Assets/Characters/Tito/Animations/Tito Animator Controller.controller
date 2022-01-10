@@ -38,8 +38,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7864fd2f1efcb94d8c7e95b19f6614e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _firstAttackEventTime: 0.31
-  _secondAttackEventTime: 0.62
+  _firstAttackEventTime: 0.44
 --- !u!1102 &-7370028861629799546
 AnimatorState:
   serializedVersion: 6

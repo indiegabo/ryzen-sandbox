@@ -10,9 +10,13 @@ public class Unit : MonoBehaviour
 
     // Config non parameter
     protected float _currentHP;
+    protected bool _invunerable = false;
+    protected bool _takingHit = false;
 
     // Logic stuff 
     public bool dead => this._currentHP <= 0;
+    public bool takingHit => this._takingHit;
+    public bool invunerable => this._invunerable;
 
     // MonoBehaviour Cycle
     protected virtual void Start()

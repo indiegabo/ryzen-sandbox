@@ -36,6 +36,6 @@ public class Arrow : MonoBehaviour, IDamager
 
     public void ApplyDamage(IDamageable damageable)
     {
-        damageable.TakeDamage(this._damage);
+        damageable.TakeDamage(this._damage, null);
     }
 }

@@ -2,33 +2,37 @@ using UnityEngine;
 
 public abstract class PlayableCharacter : MonoBehaviour
 {
+    protected Rigidbody2D _rb;
     protected IStateManager _stateManager;
     protected PlayableChararacterCombat _characterCombat;
     protected PlayableCharacterMovement _characterMovement;
+    protected Unit _unit;
+
+    protected bool _invunerable = false;
+
+    public Rigidbody2D rb => this._rb;
+    public bool isGrounded => this._characterMovement.grounded;
+    public bool isDashing => this._characterMovement.dashing;
+    public bool isDead => this._unit.dead;
+
+    public bool takingHit => this._unit.takingHit;
+    public bool invunerable => this._unit.invunerable;
 
 
     // Monobehaviour Cycle
     protected void Awake()
     {
+        this._rb = GetComponent<Rigidbody2D>();
         this._stateManager = GetComponent<IStateManager>();
         this._characterCombat = GetComponent<PlayableChararacterCombat>();
         this._characterMovement = GetComponent<PlayableCharacterMovement>();
+        this._unit = GetComponent<Unit>();
     }
 
     // State Check
     public bool isEngagedOnAttack()
     {
         return this._characterCombat.engagedOnAttack;
-    }
-
-    public bool isGrounded()
-    {
-        return this._characterMovement.grounded;
-    }
-
-    public bool isDashing()
-    {
-        return this._characterMovement.dashing;
     }
 
     // Upon Certain Events
@@ -52,7 +56,6 @@ public abstract class PlayableCharacter : MonoBehaviour
     {
         this._characterCombat.InterruptAttack();
     }
-
 
     // Executing tasks
 

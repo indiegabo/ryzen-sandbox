@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayableUnit : Unit, IDamageable
 {
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, float? knockBackForce)
     {
         this.LoseHP(amount);
-        Debug.Log("Current HP: " + this._currentHP);
+
         if (this.dead)
         {
             Debug.Log("Playable unit has died");

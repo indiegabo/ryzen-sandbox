@@ -5,19 +5,16 @@ using UnityEngine;
 public class EnemyAttackBehaviour : StateMachineBehaviour
 {
     [SerializeField] [Range(0f, 1f)] private float _firstAttackEventTime;
-    [SerializeField] [Range(0f, 1f)] private float _secondAttackEventTime;
 
     private EnemyCombat _enemyCombat;
 
     private bool _firstAttackTriggered = false;
-    private bool _secondAttackTriggered = false;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         // Clearing flags
         this._firstAttackTriggered = false;
-        this._secondAttackTriggered = false;
         if (this._enemyCombat == null)
         {
             this._enemyCombat = animator.GetComponent<EnemyCombat>();
@@ -31,12 +28,6 @@ public class EnemyAttackBehaviour : StateMachineBehaviour
         {
             this._enemyCombat.ExecuteAttack();
             this._firstAttackTriggered = true;
-        }
-
-        if (stateInfo.normalizedTime >= this._secondAttackEventTime && !this._secondAttackTriggered)
-        {
-            this._enemyCombat.ExecuteAttack();
-            this._secondAttackTriggered = true;
         }
     }
 

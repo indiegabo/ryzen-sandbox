@@ -13,6 +13,9 @@ public class RyzenMovement : PlayableCharacterMovement
     // Handling Stuff
     protected override void HandleOnAirState()
     {
+        if (this._character.isDead || this._character.takingHit)
+            return;
+
         // Animates Ascending or descending based on Y axis velocity
         if (!this._grounded)
         {
@@ -29,6 +32,9 @@ public class RyzenMovement : PlayableCharacterMovement
 
     protected override void HandleHorizontalMovementState()
     {
+        if (this._character.isDead || this._character.takingHit)
+            return;
+
         // Change States based on being grounded
         if (this._grounded && !this._character.isEngagedOnAttack() && !this._dashing)
         {

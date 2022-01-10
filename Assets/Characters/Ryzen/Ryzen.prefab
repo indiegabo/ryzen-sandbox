@@ -101,7 +101,6 @@ GameObject:
   - component: {fileID: 1972141231269503718}
   - component: {fileID: 1972141231269503719}
   - component: {fileID: 4848936810722457688}
-  - component: {fileID: 8014089743116543172}
   - component: {fileID: 2130771028932437166}
   - component: {fileID: 2114831211254002122}
   - component: {fileID: 5198260495867893350}
@@ -109,6 +108,7 @@ GameObject:
   - component: {fileID: 1972141231269503717}
   - component: {fileID: 838248197}
   - component: {fileID: 535416793}
+  - component: {fileID: 292943476}
   m_Layer: 7
   m_Name: Ryzen
   m_TagString: Playable
@@ -165,19 +165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c22fc2ac0bdb19c4ebdf748ba78f33df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8014089743116543172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1972141231269503713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 363ab7e5c95af9f47879a0bf4e903c77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _totalHP: 60
 --- !u!114 &2130771028932437166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,6 +418,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &292943476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972141231269503713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d3ea77c6aee9da4cb50878a2a5a1a24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _totalHP: 60
+  _hitAnimationTime: 0.25
 --- !u!1 &1972141231884716901
 GameObject:
   m_ObjectHideFlags: 0
