@@ -92,7 +92,6 @@ public abstract class PlayableCharacterMovement : MonoBehaviour
         }
     }
 
-
     // Executing stuff
     protected virtual void Move()
     {
@@ -101,6 +100,10 @@ public abstract class PlayableCharacterMovement : MonoBehaviour
             this.PreventMovement();
             return;
         }
+
+        if (this._character.takingHit)
+            return;
+
 
         if (!this._character.isEngagedOnAttack() && !this._dashing)
         {

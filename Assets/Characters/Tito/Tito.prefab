@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultSpeed: 2
-  _facingLeft: 1
+  _facingLeft: 0
 --- !u!114 &1520688908206834043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,12 +285,12 @@ MonoBehaviour:
   _attackDamage: 20
   _sightableLayers:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 200
   _eyeSight: {fileID: 1562795655}
   _attackPosition: {fileID: 1517955583}
   _attackables:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
 --- !u!114 &1381734803
 MonoBehaviour:
   m_ObjectHideFlags: 0

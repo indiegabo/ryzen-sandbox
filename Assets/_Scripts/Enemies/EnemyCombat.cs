@@ -118,7 +118,7 @@ public class EnemyCombat : MonoBehaviour
         {
             if (attackableCollider.TryGetComponent(out IDamageable damageable) && attackableCollider.CompareTag(Tag.Playable.ToString()))
             {
-                damageable.TakeDamage(this._attackDamage, null);
+                damageable.TakeDamage(this._attackDamage, gameObject, null);
             }
         }
     }

@@ -80,7 +80,7 @@ public class Enemy : MonoBehaviour, IDamageable
         this._stateManager.ChangeState(stateName);
     }
 
-    public void TakeDamage(float amount, float? knockBackForce)
+    public void TakeDamage(float amount, GameObject aggressor, float? knockBackForce)
     {
         this._currentHP -= amount;
         if (this._currentHP <= 0)

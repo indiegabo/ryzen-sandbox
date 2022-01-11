@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayableUnit : Unit, IDamageable
 {
-    public void TakeDamage(float amount, float? knockBackForce)
+    public void TakeDamage(float amount, GameObject aggressor, float? knockBackForce)
     {
         this.LoseHP(amount);
 

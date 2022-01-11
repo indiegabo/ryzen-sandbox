@@ -430,8 +430,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d3ea77c6aee9da4cb50878a2a5a1a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _totalHP: 60
-  _hitAnimationTime: 0.25
+  _totalHP: 200
+  _hitAnimationTime: 0.5
+  _defaultKnockBackForce: 5
 --- !u!1 &1972141231884716901
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ public class RyzenUnit : Unit, IDamageable
     [SerializeField] protected float _defaultKnockBackForce = 0.25f;
     protected PlayableCharacter _playableCharacter;
     protected float _currentKnockBackForce = 0f;
+    protected GameObject _currentAggressor = null;
 
     protected void Awake()
     {
@@ -18,12 +19,21 @@ public class RyzenUnit : Unit, IDamageable
     {
         if (this._takingHit)
         {
-            Debug.Log(this._currentKnockBackForce);
-            this._playableCharacter.rb.AddForce(Vector2.left * this._currentKnockBackForce);
+            float sign = Mathf.Sign(this.transform.position.x - this._currentAggressor.transform.position.x);
+            if (sign >= 0)
+            {
+                this._playableCharacter.rb.AddForce(Vector2.right * this._currentKnockBackForce);
+
+            }
+            else
+            {
+
+                this._playableCharacter.rb.AddForce(Vector2.left * this._currentKnockBackForce);
+            }
         }
     }
 
-    public void TakeDamage(float amount, float? knockBackForce)
+    public void TakeDamage(float amount, GameObject aggressor, float? knockBackForce)
     {
         if (this._invunerable)
             return;
@@ -37,7 +47,7 @@ public class RyzenUnit : Unit, IDamageable
         else
         {
             this._currentKnockBackForce = (knockBackForce.HasValue) ? knockBackForce.Value : this._defaultKnockBackForce;
-            this.TakeHit();
+            this.TakeHit(aggressor);
         }
     }
 
@@ -46,10 +56,11 @@ public class RyzenUnit : Unit, IDamageable
         this._playableCharacter.ChangeState(RyzenState.Death.ToString());
     }
 
-    public void TakeHit()
+    public void TakeHit(GameObject aggressor)
     {
         this._invunerable = true;
         this._takingHit = true;
+        this._currentAggressor = aggressor;
         this._playableCharacter.ChangeState(RyzenState.Hit.ToString());
         Invoke("DoneTakingHit", this._hitAnimationTime);
     }
@@ -59,6 +70,8 @@ public class RyzenUnit : Unit, IDamageable
     {
         this._invunerable = false;
         this._takingHit = false;
+        this._currentAggressor = null;
+        this._playableCharacter.rb.velocity = new Vector2(0, 0);
         this._currentKnockBackForce = 0f;
     }
 }

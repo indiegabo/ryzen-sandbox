@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    void TakeDamage(float amount, float? knockBackForce);
+    void TakeDamage(float amount, GameObject aggressor, float? knockBackForce);
 }
