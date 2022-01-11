@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class RyzenUnit : Unit, IDamageable
 {
-    [SerializeField] protected float _hitAnimationTime = 0.25f;
-    [SerializeField] protected float _defaultKnockBackForce = 0.25f;
+    [SerializeField] [Range(0.5f, 1f)] protected float _hitAnimationTime = 0.25f;
+    [SerializeField] [Range(0.5f, 5f)] protected float _invulnerabilityTime = 1f;
+    [SerializeField] [Range(0.1f, 200f)] protected float _defaultKnockBackForce = 0.25f;
+
     protected PlayableCharacter _playableCharacter;
     protected float _currentKnockBackForce = 0f;
     protected GameObject _currentAggressor = null;
@@ -58,20 +60,31 @@ public class RyzenUnit : Unit, IDamageable
 
     public void TakeHit(GameObject aggressor)
     {
-        this._invunerable = true;
         this._takingHit = true;
         this._currentAggressor = aggressor;
         this._playableCharacter.ChangeState(RyzenState.Hit.ToString());
         Invoke("DoneTakingHit", this._hitAnimationTime);
     }
+    private void StartInvulnerability()
+    {
+        this._invunerable = true;
+    }
 
     // Invokables
     protected void DoneTakingHit()
     {
-        this._invunerable = false;
         this._takingHit = false;
         this._currentAggressor = null;
         this._playableCharacter.rb.velocity = new Vector2(0, 0);
         this._currentKnockBackForce = 0f;
+    }
+    protected void DoneBeingInvulnerable()
+    {
+        this._invunerable = false;
+    }
+
+    private IEnumerator InvulnerabilityEffect()
+    {
+        yield return new WaitForSeconds(.1f);
     }
 }
