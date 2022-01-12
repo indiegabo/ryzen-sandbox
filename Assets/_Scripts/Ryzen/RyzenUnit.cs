@@ -7,7 +7,7 @@ public class RyzenUnit : Unit, IDamageable
     [Header("Animation")]
     [SerializeField] [Range(0.5f, 1f)] protected float _hitAnimationTime = 0.25f;
 
-    [Header("Knokback")]
+    [Header("knockbackknockback")]
     [SerializeField] [Range(0.1f, 200f)] protected float _defaultKnockBackForce = 0.25f;
 
     protected PlayableCharacter _playableCharacter;
