@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class RyzenUnit : Unit, IDamageable
 {
+    [Header("Animation")]
     [SerializeField] [Range(0.5f, 1f)] protected float _hitAnimationTime = 0.25f;
-    [SerializeField] [Range(0.5f, 5f)] protected float _invulnerabilityTime = 1f;
+
+    [Header("Knokback")]
     [SerializeField] [Range(0.1f, 200f)] protected float _defaultKnockBackForce = 0.25f;
 
     protected PlayableCharacter _playableCharacter;
     protected float _currentKnockBackForce = 0f;
     protected GameObject _currentAggressor = null;
 
-    protected void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         this._playableCharacter = GetComponent<PlayableCharacter>();
     }
 
@@ -63,6 +66,7 @@ public class RyzenUnit : Unit, IDamageable
         this._takingHit = true;
         this._currentAggressor = aggressor;
         this._playableCharacter.ChangeState(RyzenState.Hit.ToString());
+        this.StartInvulnerability();
         Invoke("DoneTakingHit", this._hitAnimationTime);
     }
     private void StartInvulnerability()
