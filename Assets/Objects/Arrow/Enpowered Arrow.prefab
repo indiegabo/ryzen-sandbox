@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4815655255666730516, guid: a9320e7daae7e5e46a006c0d2269052a, type: 3}
       propertyPath: m_Name
-      value: Arrow
+      value: Enpowered Arrow
       objectReference: {fileID: 0}
     - target: {fileID: 4815655255666730518, guid: a9320e7daae7e5e46a006c0d2269052a, type: 3}
       propertyPath: m_RootOrder
@@ -58,6 +58,10 @@ PrefabInstance:
     - target: {fileID: 4815655255666730521, guid: a9320e7daae7e5e46a006c0d2269052a, type: 3}
       propertyPath: _speed
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4815655255666730521, guid: a9320e7daae7e5e46a006c0d2269052a, type: 3}
+      propertyPath: _damage
+      value: 60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9320e7daae7e5e46a006c0d2269052a, type: 3}

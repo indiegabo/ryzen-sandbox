@@ -8,4 +8,6 @@ public enum RyzenState
     LoadingShoot,
     Shoot,
     Dashing,
+    Death,
+    Hit,
 }

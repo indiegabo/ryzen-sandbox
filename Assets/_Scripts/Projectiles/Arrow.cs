@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Arrow : MonoBehaviour
+public class Arrow : MonoBehaviour, IDamager
 {
     [Header("Config")]
     [SerializeField] [Range(10f, 40f)] private float _speed = 10f;
+    [SerializeField] [Range(10f, 1000f)] private float _damage = 20f;
 
     private Rigidbody2D _rb;
 
@@ -22,9 +23,19 @@ public class Arrow : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag.Equals("Garbage"))
+        if (other.TryGetComponent(out IDamageable damageable) && !other.CompareTag(Tag.Playable.ToString()))
+        {
+            this.ApplyDamage(damageable);
+            Destroy(gameObject);
+        }
+        else if (!other.CompareTag(Tag.Playable.ToString()))
         {
             Destroy(gameObject);
         }
+    }
+
+    public void ApplyDamage(IDamageable damageable)
+    {
+        damageable.TakeDamage(this._damage, gameObject, null);
     }
 }

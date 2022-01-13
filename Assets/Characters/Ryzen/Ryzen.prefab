@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 218930736}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: ShootingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 954834320}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Empowered Affordance Point
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -69,7 +69,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1972141230930964036}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Feet
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -108,9 +108,10 @@ GameObject:
   - component: {fileID: 1972141231269503717}
   - component: {fileID: 838248197}
   - component: {fileID: 535416793}
-  m_Layer: 6
+  - component: {fileID: 292943476}
+  m_Layer: 7
   m_Name: Ryzen
-  m_TagString: Untagged
+  m_TagString: Playable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -197,7 +198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _whatIsGround:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 72
   _playerFeet: {fileID: 1972141230930964039}
   _groundCheckRadius: 0.15
   _runSpeed: 3.5
@@ -417,6 +418,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &292943476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972141231269503713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d3ea77c6aee9da4cb50878a2a5a1a24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _totalHP: 200
+  _hitAnimationTime: 0.5
+  _defaultKnockBackForce: 5
 --- !u!1 &1972141231884716901
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,7 +443,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1972141231884716890}
   - component: {fileID: 1972141231884716891}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
