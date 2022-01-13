@@ -178,7 +178,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _loadingShootTime: 0.45
-  _empoweringShootTime: 0.5
+  _empoweringShootMin: 0.6
+  _empoweringShootMax: 0.9
   _shootingPoint: {fileID: 218930736}
   _arrowObject: {fileID: 4815655255666730516, guid: a9320e7daae7e5e46a006c0d2269052a, type: 3}
   _empoweredArrowObject: {fileID: 574953280101503811, guid: 7693ce7ab4f1581419c3f3b6d57efb83, type: 3}
@@ -430,7 +431,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d3ea77c6aee9da4cb50878a2a5a1a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _body: {fileID: 1972141231884716901}
   _totalHP: 200
+  _invulnerabilityTimer: 1.5
+  _invunerabillityMiniDuration: 0.1
+  _invunerabillityTotalDuration: 1.5
   _hitAnimationTime: 0.5
   _defaultKnockBackForce: 5
 --- !u!1 &1972141231884716901

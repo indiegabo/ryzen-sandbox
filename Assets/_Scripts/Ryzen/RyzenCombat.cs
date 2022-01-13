@@ -9,7 +9,8 @@ public class RyzenCombat : PlayableChararacterCombat
 
     [Header("Config")]
     [SerializeField] [Range(0.1f, 1f)] private float _loadingShootTime = 0.45f;
-    [SerializeField] [Range(0.5f, 2f)] private float _empoweringShootTime = 1f;
+    [SerializeField] [Range(0.5f, 2f)] private float _empoweringShootMin = 1f;
+    [SerializeField] [Range(0.5f, 2f)] private float _empoweringShootMax = 1.5f;
 
     [Header("Needed Objects")]
     [SerializeField] private Transform _shootingPoint;
@@ -50,7 +51,10 @@ public class RyzenCombat : PlayableChararacterCombat
         }
 
         // Case primary attack button was pressed long enough to power shoot
-        if (Time.time >= this._empoweringShootTime + this._loadingShootTime + this._engagedAt)
+        float empoweringMin = this._empoweringShootMin + this._loadingShootTime + this._engagedAt;
+        float empoweringMax = this._empoweringShootMax + this._loadingShootTime + this._engagedAt;
+
+        if (Time.time >= empoweringMin && Time.time <= empoweringMax)
         {
             this.EmpoweredShoot();
         }
@@ -71,7 +75,7 @@ public class RyzenCombat : PlayableChararacterCombat
             return;
 
         float min = this._engagedAt + this._loadingShootTime;
-        float max = this._engagedAt + this._loadingShootTime + this._empoweringShootTime;
+        float max = this._engagedAt + this._loadingShootTime + this._empoweringShootMin;
 
         // Reached maximum empowering 
         if (Time.time >= max && !this._currentEmpoweringMaxReached)
@@ -84,7 +88,7 @@ public class RyzenCombat : PlayableChararacterCombat
             return;
 
         float elapsedTime = Time.time - min;
-        float scale = Calc.convertScale(elapsedTime, this._empoweringShootTime, MIN_EMPOWERING_SCALE, MAX_EMPOWERING_SCALE, 0.98f);
+        float scale = Calc.convertScale(elapsedTime, this._empoweringShootMin, MIN_EMPOWERING_SCALE, MAX_EMPOWERING_SCALE, 0.98f);
         this._canvasController.SetLoadingShootSlider(scale);
     }
 

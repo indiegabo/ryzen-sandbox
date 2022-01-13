@@ -190,10 +190,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 292943476, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: _body
-      value: 
-      objectReference: {fileID: 672263760}
     - target: {fileID: 1972141231269503713, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
       propertyPath: m_Name
       value: Ryzen
@@ -248,11 +244,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3560750050536559222, guid: 2e2396885dc3bd647b2e269a376db185, type: 3}
   m_PrefabInstance: {fileID: 3560750051119955011}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &672263760 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1972141231884716901, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-  m_PrefabInstance: {fileID: 362009938}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &759247178
 GameObject:
@@ -677,6 +668,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2336226403823981385, guid: a34fa1b8082a5c140adb04e2acdb4b00, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2336226404200214876, guid: a34fa1b8082a5c140adb04e2acdb4b00, type: 3}
+      propertyPath: m_PresetInfoIsWorld
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2336226404200214878, guid: a34fa1b8082a5c140adb04e2acdb4b00, type: 3}
