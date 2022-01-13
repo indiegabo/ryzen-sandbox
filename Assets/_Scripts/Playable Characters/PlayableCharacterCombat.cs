@@ -5,11 +5,13 @@ public abstract class PlayableChararacterCombat : MonoBehaviour
 {
 
     // Needed Components
-    protected PlayableCharacter _character;
+    protected PlayableCharacter _playableCharacter;
 
 
     // Flags
     protected bool _engagedOnAttack;
+
+    // Logic Stuff
     protected float _engagedAt = 0;
     protected bool _attemptingToEngage = false;
 
@@ -19,7 +21,7 @@ public abstract class PlayableChararacterCombat : MonoBehaviour
     // Monobehaviour Cycle
     protected virtual void Awake()
     {
-        this._character = GetComponent<PlayableCharacter>();
+        this._playableCharacter = GetComponent<PlayableCharacter>();
     }
 
     protected virtual void Update()
@@ -58,9 +60,9 @@ public abstract class PlayableChararacterCombat : MonoBehaviour
 
     // Checks
 
-    private bool CanEngage()
+    protected bool CanEngage()
     {
-        return !this._character.takingHit && !this._character.isDead && !this._engagedOnAttack && this._character.isGrounded && !this._character.isDashing && this._attemptingToEngage;
+        return !this._playableCharacter.takingHit && !this._playableCharacter.isDead && !this._engagedOnAttack && this._playableCharacter.isGrounded && !this._playableCharacter.isDashing && this._attemptingToEngage;
     }
 
     // Events
@@ -73,7 +75,7 @@ public abstract class PlayableChararacterCombat : MonoBehaviour
         }
 
         // Primary attack button Released
-        if (value.canceled && this._character.isGrounded)
+        if (value.canceled && this._playableCharacter.isGrounded)
         {
             this._attemptingToEngage = false;
         }

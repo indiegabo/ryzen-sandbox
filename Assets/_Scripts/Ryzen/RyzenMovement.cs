@@ -13,43 +13,43 @@ public class RyzenMovement : PlayableCharacterMovement
     // Handling Stuff
     protected override void HandleOnAirState()
     {
-        if (this._character.isDead || this._character.takingHit)
+        if (this._playableCharacter.isDead || this._playableCharacter.takingHit)
             return;
 
         // Animates Ascending or descending based on Y axis velocity
         if (!this._grounded)
         {
-            if (Mathf.Sign(this._rb.velocity.y) > 0)
+            if (Mathf.Sign(this._rb.velocity.y) > 0) // Case Ryzen is ascending
             {
-                this._character.ChangeState(RyzenState.Ascending.ToString());
+                this._playableCharacter.ChangeState(RyzenState.Ascending.ToString());
             }
-            else if (!this._dashing)
+            else if (!this._dashing) // Case Ryzen is descending and not dash animated
             {
-                this._character.ChangeState(RyzenState.Descending.ToString());
+                this._playableCharacter.ChangeState(RyzenState.Descending.ToString());
             }
         }
     }
 
     protected override void HandleHorizontalMovementState()
     {
-        if (this._character.isDead || this._character.takingHit)
+        if (this._playableCharacter.isDead || this._playableCharacter.takingHit) // Can't move if dead or during hit animation
             return;
 
         // Change States based on being grounded
-        if (this._grounded && !this._character.isEngagedOnAttack() && !this._dashing)
+        if (this._grounded && !this._playableCharacter.engagedOnAttack && !this._dashing)
         {
-            if (Mathf.Abs(this._rb.velocity.x) > 0)
+            if (Mathf.Abs(this._rb.velocity.x) > 0) // If moving on any x direction 
             {
-                this._character.ChangeState(RyzenState.Running.ToString());
+                this._playableCharacter.ChangeState(RyzenState.Running.ToString());
             }
-            else if (Mathf.Abs(this._rb.velocity.x) == 0)
+            else if (Mathf.Abs(this._rb.velocity.x) == 0) // Ryzen has 0 horizontal movement
             {
-                this._character.ChangeState(RyzenState.Idle.ToString());
+                this._playableCharacter.ChangeState(RyzenState.Idle.ToString());
             }
         }
-        else if (this._grounded && !this._character.isEngagedOnAttack() && this._dashing)
+        else if (this._grounded && !this._playableCharacter.engagedOnAttack && this._dashing) // Can't animate dash if engaged on attack
         {
-            this._character.ChangeState(RyzenState.Dashing.ToString());
+            this._playableCharacter.ChangeState(RyzenState.Dashing.ToString());
         }
     }
 }

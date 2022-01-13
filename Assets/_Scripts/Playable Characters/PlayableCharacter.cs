@@ -10,6 +10,7 @@ public abstract class PlayableCharacter : MonoBehaviour
 
     protected bool _invunerable = false;
 
+    // Getters
     public Rigidbody2D rb => this._rb;
     public bool isGrounded => this._characterMovement.grounded;
     public bool isDashing => this._characterMovement.dashing;
@@ -17,6 +18,7 @@ public abstract class PlayableCharacter : MonoBehaviour
 
     public bool takingHit => this._unit.takingHit;
     public bool invunerable => this._unit.invunerable;
+    public bool engagedOnAttack => this._characterCombat.engagedOnAttack;
 
 
     // Monobehaviour Cycle
@@ -27,12 +29,6 @@ public abstract class PlayableCharacter : MonoBehaviour
         this._characterCombat = GetComponent<PlayableChararacterCombat>();
         this._characterMovement = GetComponent<PlayableCharacterMovement>();
         this._unit = GetComponent<Unit>();
-    }
-
-    // State Check
-    public bool isEngagedOnAttack()
-    {
-        return this._characterCombat.engagedOnAttack;
     }
 
     // Upon Certain Events

@@ -91,14 +91,14 @@ public class RyzenCombat : PlayableChararacterCombat
     // Executing Stuff
     private void Shoot()
     {
-        this._character.ChangeState(RyzenState.Shoot.ToString());
+        this._playableCharacter.ChangeState(RyzenState.Shoot.ToString());
         Instantiate(this._arrowObject, this._shootingPoint.position, this._shootingPoint.rotation);
         Invoke("Disengage", 0.1f);
     }
 
     private void EmpoweredShoot()
     {
-        this._character.ChangeState(RyzenState.Shoot.ToString());
+        this._playableCharacter.ChangeState(RyzenState.Shoot.ToString());
         Instantiate(this._empoweredArrowObject, this._shootingPoint.position, this._shootingPoint.rotation);
         Invoke("Disengage", 0.1f);
     }
@@ -106,7 +106,7 @@ public class RyzenCombat : PlayableChararacterCombat
     protected override void Engage()
     {
         base.Engage();
-        this._character.ChangeState(RyzenState.LoadingShoot.ToString());
+        this._playableCharacter.ChangeState(RyzenState.LoadingShoot.ToString());
         this._canvasController.ActivateLoadingShootSlider(true);
     }
 
@@ -134,7 +134,7 @@ public class RyzenCombat : PlayableChararacterCombat
         }
 
         // Primary attack button Released
-        if (value.canceled && this._character.isGrounded)
+        if (value.canceled && this._playableCharacter.isGrounded)
         {
             this._attemptingToEngage = false;
             this.HandleShooting();
