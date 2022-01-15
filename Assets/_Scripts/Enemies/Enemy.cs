@@ -44,16 +44,16 @@ public class Enemy : MonoBehaviour, IDamageable
 
     protected void Awake()
     {
-        this._stateManager = GetComponent<IStateManager>();
-        this._rb = GetComponent<Rigidbody2D>();
-        this._enemyMovement = GetComponent<EnemyMovement>();
-        this._enemyCombat = GetComponent<EnemyCombat>();
-        this._player = FindObjectOfType<PlayableCharacter>().transform;
+        _stateManager = GetComponent<IStateManager>();
+        _rb = GetComponent<Rigidbody2D>();
+        _enemyMovement = GetComponent<EnemyMovement>();
+        _enemyCombat = GetComponent<EnemyCombat>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        _player = RyzenEntity.Instance.transform;
         this._currentHP = this._totalHP;
     }
 

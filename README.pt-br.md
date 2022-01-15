@@ -3,6 +3,7 @@
 </p>
 
 # Ryzen Sandbox - Estudando desenvolvimento de jogos 2D na Unity
+[![version](https://img.shields.io/badge/Unity-2020.3.25f1-brightgreen)](https://unity3d.com/pt/get-unity/download)
 
 Esse projeto é um sandbox 2D de plataforma criado para testar e estudar funcionalidades usando a Unity. Sinta-se a vontade para testar.
 
