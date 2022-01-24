@@ -7,14 +7,11 @@ public class RyzenEntity : MonoBehaviour
 {
     public static RyzenEntity Instance;
 
-    private StateMachine _stateMachine;
+    public StateMachine StateMachine { get; private set; }
+    public IdleState IdleState { get; private set; }
+    public WalkState WalkState { get; private set; }
+
     private RyzenCore _core;
-    private IdleState _idleState;
-    private WalkState _walkState;
-	
-	public StateMachine stateMachine => _stateMachine;
-	public IdleState idleState => _idleState;
-    public WalkState walkState => _walkState;
 
     Func<bool> InputNotZero() => () => RyzenInputHandler.Instance.currentInput.x != 0f;
     Func<bool> InputZero() => () => RyzenInputHandler.Instance.currentInput.x == 0f;
@@ -27,28 +24,28 @@ public class RyzenEntity : MonoBehaviour
         _core = GetComponent<RyzenCore>();
 
         //Initialize State Machine
-        _stateMachine = new StateMachine();
-        _idleState = new IdleState(_stateMachine, this, _core);
-        _walkState = new WalkState(_stateMachine, this, _core);
+        StateMachine = new StateMachine();
+        IdleState = new IdleState(StateMachine, this, _core);
+        WalkState = new WalkState(StateMachine, this, _core);
 
         //Setup State Transitions
-        _stateMachine.AddTransition(_idleState, _walkState, InputNotZero());
-        _stateMachine.AddTransition(_walkState, _idleState, InputZero());
+        StateMachine.AddTransition(IdleState, WalkState, InputNotZero());
+        StateMachine.AddTransition(WalkState, IdleState, InputZero());
 
         //Set Default State
-        _stateMachine.SetState(_idleState);
+        StateMachine.SetState(IdleState);
     }
 
     private void Update()
     {
         //Tick the state machine "Tick" method every frame
-        _stateMachine.Tick();
+        StateMachine.Tick();
     }
 	
 	private void FixedUpdate()
 	{
         //Tick the state machine "FixedTick" method every physics update
-        _stateMachine.FixedTick();
+        StateMachine.FixedTick();
 	}
 
     /// <summary>
@@ -57,7 +54,7 @@ public class RyzenEntity : MonoBehaviour
     /// <param name="velocityX"></param>
     public void SetVelocityX(float velocityX)
     {
-        GetComponent<Rigidbody2D>().velocity = new Vector2(velocityX, GetComponent<Rigidbody2D>().velocity.y);
+        _core.rgbd.velocity = new Vector2(velocityX, _core.rgbd.velocity.y);
     }
 
     /// <summary>
