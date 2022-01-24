@@ -190,6 +190,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 838248197, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
+      propertyPath: m_Size.y
+      value: 0.99652696
+      objectReference: {fileID: 0}
+    - target: {fileID: 838248197, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.0017365217
+      objectReference: {fileID: 0}
     - target: {fileID: 1972141231269503713, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
       propertyPath: m_Name
       value: Ryzen
