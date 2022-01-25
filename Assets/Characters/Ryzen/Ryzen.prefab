@@ -104,6 +104,9 @@ GameObject:
   - component: {fileID: 1972141231269503717}
   - component: {fileID: 838248197}
   - component: {fileID: 535416793}
+  - component: {fileID: 6893511656782608154}
+  - component: {fileID: 4765398773983202779}
+  - component: {fileID: 7977272448031084399}
   m_Layer: 7
   m_Name: Ryzen
   m_TagString: Playable
@@ -346,6 +349,52 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6893511656782608154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972141231269503713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c22fc2ac0bdb19c4ebdf748ba78f33df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4765398773983202779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972141231269503713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b60f557aeef03b438d35359852028f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  body: {fileID: 0}
+  feet: {fileID: 0}
+  anim: {fileID: 0}
+  rgbd: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  shootingPoint: {fileID: 0}
+  empoweredAffordancePoint: {fileID: 0}
+  capsuleCollider: {fileID: 0}
+  inputHandler: {fileID: 0}
+  ryzenData: {fileID: 0}
+--- !u!114 &7977272448031084399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972141231269503713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dae413ad339ec56409a70b138e99991a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1972141231884716901
 GameObject:
   m_ObjectHideFlags: 0
