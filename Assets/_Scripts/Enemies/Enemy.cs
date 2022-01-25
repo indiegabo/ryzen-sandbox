@@ -48,7 +48,6 @@ public class Enemy : MonoBehaviour, IDamageable
         this._rb = GetComponent<Rigidbody2D>();
         this._enemyMovement = GetComponent<EnemyMovement>();
         this._enemyCombat = GetComponent<EnemyCombat>();
-        this._player = FindObjectOfType<PlayableCharacter>().transform;
     }
 
     // Start is called before the first frame update

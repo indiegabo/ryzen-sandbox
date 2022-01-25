@@ -100,15 +100,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1972141231269503718}
   - component: {fileID: 1972141231269503719}
-  - component: {fileID: 4848936810722457688}
-  - component: {fileID: 2130771028932437166}
-  - component: {fileID: 2114831211254002122}
-  - component: {fileID: 5198260495867893350}
   - component: {fileID: 362009940}
   - component: {fileID: 1972141231269503717}
   - component: {fileID: 838248197}
   - component: {fileID: 535416793}
-  - component: {fileID: 292943476}
   m_Layer: 7
   m_Name: Ryzen
   m_TagString: Playable
@@ -153,74 +148,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4848936810722457688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1972141231269503713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c22fc2ac0bdb19c4ebdf748ba78f33df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2130771028932437166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1972141231269503713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa009ab6a20d0e843b446975144b7275, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _loadingShootTime: 0.45
-  _empoweringShootMin: 0.6
-  _empoweringShootMax: 0.9
-  _shootingPoint: {fileID: 218930736}
-  _arrowObject: {fileID: 4815655255666730516, guid: a9320e7daae7e5e46a006c0d2269052a, type: 3}
-  _empoweredArrowObject: {fileID: 574953280101503811, guid: 7693ce7ab4f1581419c3f3b6d57efb83, type: 3}
-  _empoweredAffordancePoint: {fileID: 954834319}
-  _empoweredAffordanceObject: {fileID: 4880115235459675884, guid: 3c294d47cf235ca4d8e6f3d62a6bce50, type: 3}
---- !u!114 &2114831211254002122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1972141231269503713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0245ab0ab36d13a488d2800bce07fea1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _whatIsGround:
-    serializedVersion: 2
-    m_Bits: 72
-  _playerFeet: {fileID: 1972141230930964039}
-  _groundCheckRadius: 0.15
-  _runSpeed: 3.5
-  _jumpForce: 6
-  _jumpTimeLimit: 0.3
-  _dashSpeed: 6
-  _dashDuration: 0.65
-  _timeBetweenDashes: 1
---- !u!114 &5198260495867893350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1972141231269503713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3667da26458480f4485d9788b9cf75ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _characterName: Ryzen
 --- !u!114 &362009940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,7 +175,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2130771028932437166}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: RangerCombat, Assembly-CSharp
         m_MethodName: OnPrimaryAttack
         m_Mode: 0
@@ -264,7 +191,7 @@ MonoBehaviour:
     m_ActionName: PlayerActions/Attack[/Keyboard/e,/DualShock4GamepadHID/buttonWest]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2114831211254002122}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: RyzenMovement, Assembly-CSharp
         m_MethodName: OnJumpAction
         m_Mode: 0
@@ -280,7 +207,7 @@ MonoBehaviour:
     m_ActionName: PlayerActions/Jump[/Keyboard/space,/DualShock4GamepadHID/buttonSouth]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2114831211254002122}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: RangerMovement, Assembly-CSharp
         m_MethodName: OnMovement
         m_Mode: 0
@@ -296,7 +223,7 @@ MonoBehaviour:
     m_ActionName: PlayerActions/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/DualShock4GamepadHID/dpad/up,/DualShock4GamepadHID/dpad/down,/DualShock4GamepadHID/dpad/left,/DualShock4GamepadHID/dpad/right,/DualShock4GamepadHID/leftStick/up,/DualShock4GamepadHID/leftStick/down,/DualShock4GamepadHID/leftStick/left,/DualShock4GamepadHID/leftStick/right]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2114831211254002122}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: RangerMovement, Assembly-CSharp
         m_MethodName: OnStickMovement
         m_Mode: 0
@@ -312,7 +239,7 @@ MonoBehaviour:
     m_ActionName: PlayerActions/StickMovement[/DualShock4GamepadHID/leftStick]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2114831211254002122}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: RyzenMovement, Assembly-CSharp
         m_MethodName: OnDashAction
         m_Mode: 0
@@ -419,25 +346,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &292943476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1972141231269503713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d3ea77c6aee9da4cb50878a2a5a1a24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _body: {fileID: 1972141231884716901}
-  _totalHP: 200
-  _invulnerabilityTimer: 1.5
-  _invunerabillityMiniDuration: 0.1
-  _invunerabillityTotalDuration: 1.5
-  _hitAnimationTime: 0.5
-  _defaultKnockBackForce: 5
 --- !u!1 &1972141231884716901
 GameObject:
   m_ObjectHideFlags: 0
