@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class EntityCore : MonoBehaviour
 {
-    [Header("Transforms")]
+    [Header("Entity Transforms")]
     public Transform body;
     public Transform feet;
 
-    [Header("Components")]
+    [Header("Entity Components")]
     public Animator anim;
     public Rigidbody2D rgbd;
     public SpriteRenderer spriteRenderer;

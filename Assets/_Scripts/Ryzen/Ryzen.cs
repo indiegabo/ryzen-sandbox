@@ -7,9 +7,6 @@ public class Ryzen : Entity<RyzenCore>
 {
     public static Ryzen Instance;
 
-    public RyzenIdleState _idleState;
-    public RyzenRunningState _runningState;
-
     Func<bool> InputNotZero() => () => RyzenInputHandler.Instance.currentHorizontalMovement.x != 0f;
     Func<bool> InputZero() => () => RyzenInputHandler.Instance.currentHorizontalMovement.x == 0f;
 
@@ -20,17 +17,18 @@ public class Ryzen : Entity<RyzenCore>
         //Setup Player Singleton for ease of access from enemies and other scripts
         Instance = this;
 
-        // Initiate States 
-        this._idleState = new RyzenIdleState(this.stateMachine, this, _core);
-        this._runningState = new RyzenRunningState(this.stateMachine, this, _core);
+        // Initiate States
+        State idleState = new RyzenIdleState(this.stateMachine, this, this._core);
+        State runningState = new RyzenRunningState(this.stateMachine, this, this._core);
 
-        //Setup State Transitions
-        this.stateMachine.AddTransition(this._idleState, this._runningState, InputNotZero());
-        this.stateMachine.AddTransition(this._runningState, this._idleState, InputZero());
+        // Idle State Transitions
+        idleState.AddTransition(runningState, this.InputNotZero());
 
+        // Running State Transitions
+        runningState.AddTransition(idleState, this.InputZero());
 
         //Set Default State
-        this.stateMachine.SetState(this._idleState);
+        this.stateMachine.SetActiveState(idleState);
     }
 
     private void Update()

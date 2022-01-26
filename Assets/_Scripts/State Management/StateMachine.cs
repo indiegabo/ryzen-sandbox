@@ -1,87 +1,61 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class StateMachine
 {
-    protected IState _currentState;
-    private Dictionary<Type, List<Transition>> _transitions = new Dictionary<Type, List<Transition>>();
-    private List<Transition> _currentTransitions = new List<Transition>();
-    private List<Transition> _anyTransitions = new List<Transition>();
-    private static List<Transition> EmptyTransitions = new List<Transition>(0);
+    protected State _activeState;
 
+    /// <summary>
+    /// Must be executed every Entity's monobehaviour update 
+    /// </summary>
     public void Tick()
     {
-        var transition = GetTransition();
-        if (transition != null)
-            SetState(transition.To);
-
-        _currentState?.Tick();
+        this.EvaluateNextState();
+        _activeState?.Tick();
     }
 
+    /// <summary>
+    /// Must be executed every Entity's monobehaviour fixedUpdate
+    /// </summary>
     public void FixedTick()
     {
-        var transition = GetTransition();
-        if (transition != null)
-            SetState(transition.To);
-
-        _currentState?.FixedTick();
+        this.EvaluateNextState();
+        _activeState?.FixedTick();
     }
 
-
-    public void SetState(IState state)
+    /// <summary>
+    /// Evaluates if the state should be transitioned. 
+    /// If so, executes the transitation.
+    /// </summary>
+    private void EvaluateNextState()
     {
-        if (state == _currentState)
+        State state = GetNextState();
+        if (state != null)
+            this.SetActiveState(state);
+    }
+
+    /// <summary>
+    /// Defines a given state as active
+    /// </summary>
+    /// <param name="state"> The state to be set as active </param>
+    public void SetActiveState(State state)
+    {
+        if (state == _activeState)
             return;
 
-        _currentState?.OnExit();
-        _currentState = state;
+        _activeState?.OnExit();
 
-        _transitions.TryGetValue(_currentState.GetType(), out _currentTransitions);
-        if (_currentTransitions == null)
-            _currentTransitions = EmptyTransitions;
+        _activeState = state;
 
-        _currentState.OnEnter();
+        _activeState.OnEnter();
     }
 
-    public void AddTransition(IState from, IState to, Func<bool> predicate)
+    /// <summary>
+    /// Returns a state that has been evaluated as true on it's transition's condition
+    /// </summary>
+    private State GetNextState()
     {
-        if (_transitions.TryGetValue(from.GetType(), out var transitions) == false)
-        {
-            transitions = new List<Transition>();
-            _transitions[from.GetType()] = transitions;
-        }
-
-        transitions.Add(new Transition(to, predicate));
-    }
-
-    public void AddAnyTransition(IState state, Func<bool> predicate)
-    {
-        _anyTransitions.Add(new Transition(state, predicate));
-    }
-
-    private class Transition
-    {
-        public Func<bool> Condition { get; }
-        public IState To { get; }
-
-        public Transition(IState to, Func<bool> condition)
-        {
-            To = to;
-            this.Condition = condition;
-        }
-    }
-
-    private Transition GetTransition()
-    {
-        foreach (var transition in _anyTransitions)
-            if (transition.Condition())
-                return transition;
-
-        foreach (var transition in _currentTransitions)
-            if (transition.Condition())
-                return transition;
+        foreach (StateTransition transition in this._activeState?.GetTransitions())
+            if (transition.condition())
+                return transition.to;
 
         return null;
     }

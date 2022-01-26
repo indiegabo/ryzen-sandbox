@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class RyzenCore : EntityCore
 {
-    [Header("Transforms")]
+    [Header("Ryzen Transforms")]
     public Transform shootingPoint;
     public Transform empoweredAffordancePoint;
 
-    [Header("Components")]
+    [Header("Ryzen Components")]
     public CapsuleCollider2D capsuleCollider;
     public RyzenInputHandler inputHandler;
 
-    [Header("Data")]
+    [Header("Ryzen Data")]
     public RyzenData ryzenData;
 }
