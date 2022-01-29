@@ -1,4 +1,6 @@
 
+using UnityEngine;
+
 public class StateMachine
 {
     protected State _activeState;
@@ -54,8 +56,10 @@ public class StateMachine
     private State GetNextState()
     {
         foreach (StateTransition transition in this._activeState?.GetTransitions())
-            if (transition.condition())
-                return transition.to;
+        {
+            if (transition.Condition())
+                return transition.To();
+        }
 
         return null;
     }

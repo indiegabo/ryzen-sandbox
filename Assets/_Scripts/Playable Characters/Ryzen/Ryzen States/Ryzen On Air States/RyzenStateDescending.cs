@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RyzenDescendingState : RyzenOnAirState
+public class RyzenStateDescending : RyzenStateOnAir
 {
 
-    public RyzenDescendingState(StateMachine stateMachine, Ryzen ryzen) : base(stateMachine, ryzen)
+    public RyzenStateDescending(Ryzen ryzen) : base(ryzen)
     {
     }
 
@@ -18,7 +18,7 @@ public class RyzenDescendingState : RyzenOnAirState
 
         if (Mathf.Abs(this._ryzen.core.rgbd.velocity.y) == 0)
         {
-            this._stateMachine.SetActiveState(this._ryzen.idleState);
+            this._ryzen.ChangeState(this._ryzen.idleState);
         }
     }
 

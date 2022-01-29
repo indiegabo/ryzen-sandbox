@@ -16,4 +16,13 @@ public abstract class Entity<T> : MonoBehaviour
         // Initialize State Machine
         this.stateMachine = new StateMachine();
     }
+
+    /// <summary>
+    /// Changes the Entity current state
+    /// </summary>
+    /// <param name="state"> The State wich should now be active </param>
+    public virtual void ChangeState(State state)
+    {
+        this.stateMachine.SetActiveState(state);
+    }
 }

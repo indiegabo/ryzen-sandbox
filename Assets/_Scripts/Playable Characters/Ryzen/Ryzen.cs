@@ -8,15 +8,14 @@ public class Ryzen : Entity<RyzenCore>
     public static Ryzen Instance;
 
     // States 
-    public RyzenSpawnState spawnState;
-    public RyzenIdleState idleState;
-    public RyzenRunningState runningState;
-    public RyzenAscendingState ascendingState;
-    public RyzenDescendingState descendingState;
+    public RyzenStateSpawn spawnState { get; private set; }
+    public RyzenStateIdle idleState { get; private set; }
+    public RyzenStateRunning runningState { get; private set; }
+    public RyzenStateAscending ascendingState { get; private set; }
+    public RyzenStateDescending descendingState { get; private set; }
 
-    Func<bool> InputNotZero() => () => RyzenInputHandler.Instance.currentHorizontalMovement.x != 0f;
-    Func<bool> InputZero() => () => RyzenInputHandler.Instance.currentHorizontalMovement.x == 0f;
 
+    // Monobehaviour Cycle
     protected override void Awake()
     {
         base.Awake();
@@ -25,17 +24,8 @@ public class Ryzen : Entity<RyzenCore>
         Instance = this;
 
         // Initiate States
-        this.spawnState = new RyzenSpawnState(this.stateMachine, this);
-        this.idleState = new RyzenIdleState(this.stateMachine, this);
-        this.runningState = new RyzenRunningState(this.stateMachine, this);
-        this.ascendingState = new RyzenAscendingState(this.stateMachine, this);
-        this.descendingState = new RyzenDescendingState(this.stateMachine, this);
-
-        // Idle State Transitions
-        this.idleState.AddTransition(this.runningState, this.InputNotZero());
-
-        // Running State Transitions
-        this.runningState.AddTransition(this.idleState, this.InputZero());
+        this.StartGroundedStates();
+        this.StartOnAirStates();
 
         //Set Default State
         this.stateMachine.SetActiveState(this.spawnState);
@@ -53,6 +43,8 @@ public class Ryzen : Entity<RyzenCore>
         this.stateMachine.FixedTick();
         this.EvaluateFlip();
     }
+
+    // Physics entity Logic
 
     /// <summary>
     /// Set player Rigidbody.velocity.x
@@ -83,5 +75,24 @@ public class Ryzen : Entity<RyzenCore>
             this.core.facingRight = !this.core.facingRight;
             this.transform.Rotate(0f, -180f, 0f);
         }
+    }
+
+    /// <summary>
+    /// Start Grounded States
+    /// </summary>
+    private void StartGroundedStates()
+    {
+        this.spawnState = new RyzenStateSpawn(this);
+        this.idleState = new RyzenStateIdle(this);
+        this.runningState = new RyzenStateRunning(this);
+    }
+
+    /// <summary>
+    /// Start On Air States
+    /// </summary>
+    private void StartOnAirStates()
+    {
+        this.ascendingState = new RyzenStateAscending(this);
+        this.descendingState = new RyzenStateDescending(this);
     }
 }

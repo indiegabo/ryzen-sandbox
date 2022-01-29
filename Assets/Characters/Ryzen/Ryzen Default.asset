@@ -16,10 +16,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   groundCheckRadius: 0
-  _runningSpeed: 5.5
-  facingRight: 1
-  jumpForce: 7
-  jumpTimeLimit: 0
+  _horizontalMovementSpeed: 4.5
+  jumpForce: 6
+  ascendingLimit: 0.3
   dashSpeed: 0
   dashDuration: 0
   timeBetweenDashes: 0

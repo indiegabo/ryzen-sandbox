@@ -23,9 +23,17 @@ public abstract class State
     /// </summary>
     /// <param name="to"> The state to be transitioned to </param>
     /// <param name="predicate"> The predicate function wich evaluates the condition </param>
-    public void AddTransition(State to, Func<bool> condition)
+    public void AddTransition(Func<State> To, Func<bool> Condition)
     {
-        this._transitions.Add(new StateTransition(to, condition));
+        this._transitions.Add(new StateTransition(To, Condition));
+    }
+
+    /// <summary>
+    /// Clears all transitions for that state
+    /// </summary>
+    public void ClearTransitions()
+    {
+        this._transitions.Clear();
     }
 
     public abstract void Tick();

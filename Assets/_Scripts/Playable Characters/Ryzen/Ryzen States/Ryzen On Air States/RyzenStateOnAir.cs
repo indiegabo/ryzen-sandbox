@@ -2,25 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RyzenState : State
+public class RyzenStateOnAir : RyzenState
 {
-    // Needed Components
-    protected readonly StateMachine _stateMachine;
-    protected readonly Ryzen _ryzen;
 
-    public RyzenState(StateMachine stateMachine, Ryzen ryzen)
+    public RyzenStateOnAir(Ryzen ryzen) : base(ryzen)
     {
-        this._stateMachine = stateMachine;
-        this._ryzen = ryzen;
     }
-
 
     /// <summary>
     /// Ticked on every frame
     /// </summary>
     public override void Tick()
     {
-
+        base.Tick();
     }
 
     /// <summary>
@@ -28,13 +22,16 @@ public class RyzenState : State
     /// </summary>
     public override void FixedTick()
     {
-
+        base.FixedTick();
+        this._ryzen.SetVelocityX(this._ryzen.core.inputHandler.currentHorizontalMovement.x * this._ryzen.core.data.horizontalMovementSpeed);
     }
+
     /// <summary>
     /// Ticked when the state machine enter this state
     /// </summary>
     public override void OnEnter()
     {
+        base.OnEnter();
     }
 
     /// <summary>
@@ -42,5 +39,8 @@ public class RyzenState : State
     /// </summary>
     public override void OnExit()
     {
+        base.OnExit();
     }
+
+
 }

@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class StateTransition
 {
     public static List<StateTransition> emptyTransitions = new List<StateTransition>(0);
-    public Func<bool> condition { get; }
-    public State to { get; }
+    public Func<bool> Condition { get; }
+    public Func<State> To { get; }
 
-    public StateTransition(State to, Func<bool> condition)
+    public StateTransition(Func<State> To, Func<bool> Condition)
     {
-        this.to = to;
-        this.condition = condition;
+        this.To = To;
+        this.Condition = Condition;
     }
 }

@@ -1,14 +1,16 @@
-using System.Collections;
+
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RyzenGroundedState : RyzenState
+public class RyzenStateRunning : RyzenStateGrounded
 {
-    protected bool _allowedToJump = true;
-
-    // Needed Components
-    public RyzenGroundedState(StateMachine stateMachine, Ryzen ryzen) : base(stateMachine, ryzen)
+    Func<State> IdleState() => () => this._ryzen.idleState;
+    Func<bool> InputZero() => () => this._ryzen.core.inputHandler.currentHorizontalMovement.x == 0f;
+    public RyzenStateRunning(Ryzen ryzen) : base(ryzen)
     {
+        // Register Default Transitions
+        this.AddTransition(this.IdleState(), this.InputZero());
     }
 
     /// <summary>
@@ -17,10 +19,6 @@ public class RyzenGroundedState : RyzenState
     public override void Tick()
     {
         base.Tick();
-        if (this._ryzen.core.inputHandler.attemptingToJump && this._allowedToJump)
-        {
-            this._stateMachine.SetActiveState(this._ryzen.ascendingState);
-        }
     }
 
     /// <summary>
@@ -29,13 +27,16 @@ public class RyzenGroundedState : RyzenState
     public override void FixedTick()
     {
         base.FixedTick();
+        this._ryzen.SetVelocityX(this._ryzen.core.inputHandler.currentHorizontalMovement.x * this._ryzen.core.data.horizontalMovementSpeed);
     }
+
     /// <summary>
     /// Ticked when the state machine enter this state
     /// </summary>
     public override void OnEnter()
     {
         base.OnEnter();
+        this._ryzen.core.anim.SetBool(RyzenStateEnum.Running, true);
     }
 
     /// <summary>
@@ -44,5 +45,6 @@ public class RyzenGroundedState : RyzenState
     public override void OnExit()
     {
         base.OnExit();
+        this._ryzen.core.anim.SetBool(RyzenStateEnum.Running, false);
     }
 }

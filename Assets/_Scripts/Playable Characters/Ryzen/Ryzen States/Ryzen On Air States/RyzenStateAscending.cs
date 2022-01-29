@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RyzenAscendingState : RyzenOnAirState
+public class RyzenStateAscending : RyzenStateOnAir
 {
 
     private float _ascendingTimeCounter = 0;
     private bool _ascending = false;
-    public RyzenAscendingState(StateMachine stateMachine, Ryzen ryzen) : base(stateMachine, ryzen)
+    public RyzenStateAscending(Ryzen ryzen) : base(ryzen)
     {
     }
 
@@ -27,7 +27,7 @@ public class RyzenAscendingState : RyzenOnAirState
         if (this._ascendingTimeCounter <= 0 || !this._ryzen.core.inputHandler.attemptingToJump)
         {
             this._ascending = false;
-            this._stateMachine.SetActiveState(this._ryzen.descendingState);
+            this._ryzen.ChangeState(this._ryzen.descendingState);
         }
     }
 

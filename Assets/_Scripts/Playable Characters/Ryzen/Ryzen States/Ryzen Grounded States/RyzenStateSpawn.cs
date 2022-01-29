@@ -1,13 +1,10 @@
-
 using System.Collections;
 using System.Collections.Generic;
-using System;
 using UnityEngine;
 
-public class RyzenIdleState : RyzenGroundedState
+public class RyzenStateSpawn : RyzenStateGrounded
 {
-    // Needed Components
-    public RyzenIdleState(StateMachine stateMachine, Ryzen ryzen) : base(stateMachine, ryzen)
+    public RyzenStateSpawn(Ryzen ryzen) : base(ryzen)
     {
     }
 
@@ -18,6 +15,11 @@ public class RyzenIdleState : RyzenGroundedState
     {
         base.Tick();
 
+        if (this._ryzen.core.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
+        {
+            this._ryzen.ChangeState(this._ryzen.idleState);
+        }
+
     }
 
     /// <summary>
@@ -27,14 +29,14 @@ public class RyzenIdleState : RyzenGroundedState
     {
         base.FixedTick();
     }
+
     /// <summary>
     /// Ticked when the state machine enter this state
     /// </summary>
     public override void OnEnter()
     {
         base.OnEnter();
-        this._ryzen.core.anim.SetBool(RyzenStateEnum.Idle, true);
-        this._ryzen.SetVelocityX(0f);
+        this._ryzen.core.anim.SetBool(RyzenStateEnum.Spawn, true);
     }
 
     /// <summary>
@@ -43,7 +45,15 @@ public class RyzenIdleState : RyzenGroundedState
     public override void OnExit()
     {
         base.OnExit();
-        this._ryzen.core.anim.SetBool(RyzenStateEnum.Idle, false);
+        this._ryzen.core.anim.SetBool(RyzenStateEnum.Spawn, false);
     }
 
+    private void EvaluateAnimationEnd()
+    {
+        if (this._ryzen.core.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
+        {
+            this._ryzen.ChangeState(this._ryzen.idleState);
+        }
+    }
 }
+
