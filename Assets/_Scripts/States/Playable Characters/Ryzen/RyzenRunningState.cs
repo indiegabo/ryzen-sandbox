@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RyzenRunningState : RyzenState
+public class RyzenRunningState : RyzenGroundedState
 {
     public RyzenRunningState(StateMachine stateMachine, Ryzen ryzen) : base(stateMachine, ryzen)
     {

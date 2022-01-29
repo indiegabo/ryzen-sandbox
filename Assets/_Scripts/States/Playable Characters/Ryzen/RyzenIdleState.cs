@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class RyzenIdleState : RyzenState
+public class RyzenIdleState : RyzenGroundedState
 {
     // Needed Components
     public RyzenIdleState(StateMachine stateMachine, Ryzen ryzen) : base(stateMachine, ryzen)

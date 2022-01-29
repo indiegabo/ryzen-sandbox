@@ -11,6 +11,7 @@ public class Ryzen : Entity<RyzenCore>
     public RyzenSpawnState spawnState;
     public RyzenIdleState idleState;
     public RyzenRunningState runningState;
+    public RyzenAscendingState ascendingState;
 
     Func<bool> InputNotZero() => () => RyzenInputHandler.Instance.currentHorizontalMovement.x != 0f;
     Func<bool> InputZero() => () => RyzenInputHandler.Instance.currentHorizontalMovement.x == 0f;
@@ -26,6 +27,7 @@ public class Ryzen : Entity<RyzenCore>
         this.spawnState = new RyzenSpawnState(this.stateMachine, this);
         this.idleState = new RyzenIdleState(this.stateMachine, this);
         this.runningState = new RyzenRunningState(this.stateMachine, this);
+        this.ascendingState = new RyzenAscendingState(this.stateMachine, this);
 
         // Idle State Transitions
         this.idleState.AddTransition(this.runningState, this.InputNotZero());
@@ -56,6 +58,15 @@ public class Ryzen : Entity<RyzenCore>
     public void SetVelocityX(float velocityX)
     {
         this._core.rgbd.velocity = new Vector2(velocityX, this._core.rgbd.velocity.y);
+    }
+
+    /// <summary>
+    /// Set player Rigidbody.velocity.y
+    /// </summary>
+    /// <param name="velocityY"></param>
+    public void SetVelocityY(float velocityY)
+    {
+        this._core.rgbd.velocity = new Vector2(this._core.rgbd.velocity.x, velocityY);
     }
 
     /// <summary>
