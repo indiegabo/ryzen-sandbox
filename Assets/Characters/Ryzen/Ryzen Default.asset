@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a84d480add95804199097bb2e622052, type: 3}
+  m_Name: Ryzen Default
+  m_EditorClassIdentifier: 
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
+  groundCheckRadius: 0
+  _runningSpeed: 5.5
+  facingRight: 1
+  jumpForce: 7
+  jumpTimeLimit: 0
+  dashSpeed: 0
+  dashDuration: 0
+  timeBetweenDashes: 0
+  invulnerabilityTimer: 0
+  invulnerabilityMiniDuration: 0
+  invulnerabilityTotalDuration: 0
+  hitAnimationTime: 0
+  defaultKnockbackForce: 0

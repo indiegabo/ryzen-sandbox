@@ -10,7 +10,9 @@ public class RyzenData : ScriptableObject
     [Range(0.1f, 1f)] public float groundCheckRadius;
 
     [Header("Movement Data")]
-    [Range(1.0f, 10.0f)] public float runSpeed;
+
+    [Header("Movement")]
+    [SerializeField] [Range(2f, 20f)] private float _runningSpeed = 7f;
 
     [Header("Jump Data")]
     [Range(1.0f, 10.0f)] public float jumpForce;
@@ -31,4 +33,7 @@ public class RyzenData : ScriptableObject
 
     [Header("Knockback")]
     [Range(0.1f, 200f)] public float defaultKnockbackForce;
+
+    // Getters 
+    public float runningSpeed => this._runningSpeed;
 }

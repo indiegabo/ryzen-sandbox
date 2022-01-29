@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityCore : MonoBehaviour
+public abstract class EntityCore : MonoBehaviour
 {
     [Header("Entity Transforms")]
     public Transform body;

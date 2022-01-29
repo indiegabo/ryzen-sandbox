@@ -13,5 +13,6 @@ public class RyzenCore : EntityCore
     public RyzenInputHandler inputHandler;
 
     [Header("Ryzen Data")]
-    public RyzenData ryzenData;
+    public RyzenData data;
+    [SerializeField] public bool facingRight = true;
 }

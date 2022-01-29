@@ -7,6 +7,7 @@ public abstract class Entity<T> : MonoBehaviour
     public StateMachine stateMachine { get; private set; }
     protected T _core;
 
+    public T core => this._core;
     protected virtual void Awake()
     {
         // Gets the entity core

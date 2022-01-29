@@ -239,6 +239,14 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: RyzenInputHandler, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 838248197, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
+      propertyPath: m_Size.y
+      value: 0.9952837
+      objectReference: {fileID: 0}
+    - target: {fileID: 838248197, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.0023581386
+      objectReference: {fileID: 0}
     - target: {fileID: 1972141231269503713, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
       propertyPath: m_Name
       value: Ryzen
@@ -249,11 +257,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1972141231269503718, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.89
+      value: -7.16
       objectReference: {fileID: 0}
     - target: {fileID: 1972141231269503718, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.325
+      value: -1.557
       objectReference: {fileID: 0}
     - target: {fileID: 1972141231269503718, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -296,6 +304,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 334524298}
     - target: {fileID: 4765398773983202779, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 1bdab9e60086e61489db832a4bf92c0c, type: 2}
+    - target: {fileID: 4765398773983202779, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
       propertyPath: feet
       value: 
       objectReference: {fileID: 1676856062}
@@ -323,6 +335,10 @@ PrefabInstance:
       propertyPath: empoweredAffordancePoint
       value: 
       objectReference: {fileID: 1378555705}
+    - target: {fileID: 6893511656782608154, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
+      propertyPath: _runningSpeed
+      value: 5.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
 --- !u!114 &362009939 stripped
@@ -669,11 +685,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 513326246317130576, guid: f64055048e94f6d4bb34bc51820bb5ba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.168024
+      value: 1.8979721
       objectReference: {fileID: 0}
     - target: {fileID: 513326246317130576, guid: f64055048e94f6d4bb34bc51820bb5ba, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.3161535
+      value: 6.3162456
       objectReference: {fileID: 0}
     - target: {fileID: 513326246317130576, guid: f64055048e94f6d4bb34bc51820bb5ba, type: 3}
       propertyPath: m_LocalPosition.z
@@ -920,11 +936,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3560750050536559222, guid: 2e2396885dc3bd647b2e269a376db185, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.1679373
+      value: 1.8979378
       objectReference: {fileID: 0}
     - target: {fileID: 3560750050536559222, guid: 2e2396885dc3bd647b2e269a376db185, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.1445491
+      value: 4.912549
       objectReference: {fileID: 0}
     - target: {fileID: 3560750050536559222, guid: 2e2396885dc3bd647b2e269a376db185, type: 3}
       propertyPath: m_LocalPosition.z
@@ -995,6 +1011,10 @@ PrefabInstance:
       propertyPath: _subject
       value: 
       objectReference: {fileID: 1687426088}
+    - target: {fileID: 1049354958, guid: dee01831507603540b686d8cbb45049b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 37.16
+      objectReference: {fileID: 0}
     - target: {fileID: 1052425736, guid: dee01831507603540b686d8cbb45049b, type: 3}
       propertyPath: _subject
       value: 

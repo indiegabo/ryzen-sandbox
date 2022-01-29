@@ -4,18 +4,11 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class RyzenIdleState : State
+public class RyzenIdleState : RyzenState
 {
     // Needed Components
-    private readonly StateMachine _stateMachine;
-    private readonly Ryzen _ryzen;
-    private readonly RyzenCore _core;
-
-    public RyzenIdleState(StateMachine stateMachine, Ryzen ryzen, RyzenCore core)
+    public RyzenIdleState(StateMachine stateMachine, Ryzen ryzen) : base(stateMachine, ryzen)
     {
-        this._stateMachine = stateMachine;
-        this._ryzen = ryzen;
-        this._core = core;
     }
 
     /// <summary>
@@ -23,6 +16,7 @@ public class RyzenIdleState : State
     /// </summary>
     public override void Tick()
     {
+        base.Tick();
 
     }
 
@@ -31,14 +25,15 @@ public class RyzenIdleState : State
     /// </summary>
     public override void FixedTick()
     {
-
+        base.FixedTick();
     }
     /// <summary>
     /// Ticked when the state machine enter this state
     /// </summary>
     public override void OnEnter()
     {
-        this._core.anim.SetBool(RyzenState.Idle, true);
+        base.OnEnter();
+        this._ryzen.core.anim.SetBool(RyzenStateEnum.Idle, true);
         this._ryzen.SetVelocityX(0f);
     }
 
@@ -47,7 +42,8 @@ public class RyzenIdleState : State
     /// </summary>
     public override void OnExit()
     {
-        this._core.anim.SetBool(RyzenState.Idle, false);
+        base.OnExit();
+        this._ryzen.core.anim.SetBool(RyzenStateEnum.Idle, false);
     }
 
 }
