@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.ricardogodoy.hierarchyseparator": {
+      "version": "https://github.com/RicardoQLG/HierarchySeparator.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "659aff390e42f6b26eb705b6adae62b74dad6968"
+    },
     "com.unity.2d.animation": {
       "version": "5.0.10",
       "depth": 0,

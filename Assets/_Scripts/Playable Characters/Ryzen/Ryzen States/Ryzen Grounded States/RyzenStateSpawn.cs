@@ -15,7 +15,7 @@ public class RyzenStateSpawn : RyzenStateGrounded
     {
         base.Tick();
 
-        if (this._ryzen.core.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
+        if (this._ryzen.currentAnimationEnded)
         {
             this._ryzen.ChangeState(this._ryzen.idleState);
         }
