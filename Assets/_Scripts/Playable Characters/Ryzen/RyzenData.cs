@@ -19,9 +19,9 @@ public class RyzenData : ScriptableObject
     [Range(0.1f, 1f)] public float ascendingLimit = 0.6f;
 
     [Header("Dash Data")]
-    [Range(2f, 6f)] public float dashSpeed;
-    [Range(0f, 2f)] public float dashDuration;
-    [Range(0f, 2f)] public float timeBetweenDashes;
+    [Range(2f, 15f)] public float dashSpeed = 3f;
+    [Range(0f, 2f)] public float dashDuration = 0.5f;
+    [Range(0f, 2f)] public float timeBetweenDashes = 1f;
 
     [Header("Invulnerability Data")]
     [Range(0.5f, 10f)] public float invulnerabilityTimer;

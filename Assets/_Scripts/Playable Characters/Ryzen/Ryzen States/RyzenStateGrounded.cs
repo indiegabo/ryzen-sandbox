@@ -5,7 +5,7 @@ using UnityEngine;
 public class RyzenStateGrounded : RyzenState
 {
 
-    // Needed Components
+    private float _nextDashAvailableAt = 0;
     public RyzenStateGrounded(Ryzen ryzen) : base(ryzen)
     {
     }
@@ -36,6 +36,7 @@ public class RyzenStateGrounded : RyzenState
     public override void OnEnter()
     {
         base.OnEnter();
+        RyzenInputHandler.OnDashAttempt += DashAttempt;
     }
 
     /// <summary>
@@ -44,5 +45,16 @@ public class RyzenStateGrounded : RyzenState
     public override void OnExit()
     {
         base.OnExit();
+        RyzenInputHandler.OnDashAttempt -= DashAttempt;
+    }
+
+    public void DashAttempt()
+    {
+        // Only Dashes again after the given time between dashes
+        if (this._ryzen.dasheEnabled)
+        {
+            this._ryzen.JustDashed();
+            this._ryzen.ChangeState(this._ryzen.dashingState);
+        }
     }
 }

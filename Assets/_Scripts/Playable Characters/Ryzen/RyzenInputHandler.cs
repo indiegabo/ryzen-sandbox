@@ -7,6 +7,10 @@ public class RyzenInputHandler : MonoBehaviour
 {
     public static RyzenInputHandler Instance;
 
+    // Event to be fired when dash button pressed
+    public delegate void RyzenAttemptingDash();
+    public static event RyzenAttemptingDash OnDashAttempt;
+
     // Logic
     private Vector2 _currentHorizontalMovement;
 
@@ -37,6 +41,14 @@ public class RyzenInputHandler : MonoBehaviour
         if (action.canceled)
         {
             this.attemptingToJump = false;
+        }
+    }
+
+    public void DashAction(InputAction.CallbackContext action)
+    {
+        if (action.started && OnDashAttempt != null)
+        {
+            OnDashAttempt();
         }
     }
 }

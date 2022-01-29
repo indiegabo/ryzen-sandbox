@@ -7,12 +7,18 @@ public class Ryzen : Entity<RyzenCore>
 {
     public static Ryzen Instance;
 
+
+    private bool _dashEnabled = true;
+
     // States 
     public RyzenStateSpawn spawnState { get; private set; }
     public RyzenStateIdle idleState { get; private set; }
     public RyzenStateRunning runningState { get; private set; }
+    public RyzenStateDashing dashingState { get; private set; }
     public RyzenStateAscending ascendingState { get; private set; }
     public RyzenStateDescending descendingState { get; private set; }
+
+    public bool dasheEnabled => this._dashEnabled;
 
 
     // Monobehaviour Cycle
@@ -85,6 +91,7 @@ public class Ryzen : Entity<RyzenCore>
         this.spawnState = new RyzenStateSpawn(this);
         this.idleState = new RyzenStateIdle(this);
         this.runningState = new RyzenStateRunning(this);
+        this.dashingState = new RyzenStateDashing(this);
     }
 
     /// <summary>
@@ -94,5 +101,18 @@ public class Ryzen : Entity<RyzenCore>
     {
         this.ascendingState = new RyzenStateAscending(this);
         this.descendingState = new RyzenStateDescending(this);
+    }
+
+
+    public void JustDashed()
+    {
+        StartCoroutine(this.DashDelay());
+    }
+
+    private IEnumerator DashDelay()
+    {
+        this._dashEnabled = false;
+        yield return new WaitForSeconds(this.core.data.timeBetweenDashes);
+        this._dashEnabled = true;
     }
 }

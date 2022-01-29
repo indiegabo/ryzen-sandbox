@@ -19,9 +19,9 @@ MonoBehaviour:
   _horizontalMovementSpeed: 4.5
   jumpForce: 6
   ascendingLimit: 0.3
-  dashSpeed: 0
-  dashDuration: 0
-  timeBetweenDashes: 0
+  dashSpeed: 7
+  dashDuration: 0.5
+  timeBetweenDashes: 0.75
   invulnerabilityTimer: 0
   invulnerabilityMiniDuration: 0
   invulnerabilityTotalDuration: 0

@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 551b6a4e6097a5a458051e4d0143782d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BarColor: {r: 0.35398751, g: 0.4716981, b: 0.18022428, a: 1}
+  m_BarColor: {r: 0.20265222, g: 0.31132078, b: 0.039649345, a: 1}
 --- !u!1 &341093440
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 551b6a4e6097a5a458051e4d0143782d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BarColor: {r: 0.08646317, g: 0.4158127, b: 0.6320754, a: 1}
+  m_BarColor: {r: 0.032751877, g: 0.1953946, b: 0.3018868, a: 1}
 --- !u!1001 &362009938
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -228,11 +228,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1972141231269503718, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.16
+      value: -2.17
       objectReference: {fileID: 0}
     - target: {fileID: 1972141231269503718, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.557
+      value: -3.16
       objectReference: {fileID: 0}
     - target: {fileID: 1972141231269503718, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -350,7 +350,19 @@ MonoBehaviour:
     m_ActionId: e3f3c356-1f89-4480-9d8a-08069058faf7
     m_ActionName: PlayerActions/Jump[/Keyboard/space,/DualShock4GamepadHID/buttonSouth]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 362009939}
+        m_TargetAssemblyTypeName: RyzenInputHandler, Assembly-CSharp
+        m_MethodName: DashAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 333eb0db-a7bf-4419-a892-db851895068e
     m_ActionName: PlayerActions/Dash[/Keyboard/q,/DualShock4GamepadHID/buttonEast]
   - m_PersistentCalls:
@@ -439,7 +451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 551b6a4e6097a5a458051e4d0143782d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BarColor: {r: 0.38679248, g: 0.129539, b: 0.34176093, a: 1}
+  m_BarColor: {r: 0.23584908, g: 0.025587406, b: 0.19761972, a: 1}
 --- !u!4 &630335994
 Transform:
   m_ObjectHideFlags: 0
@@ -622,7 +634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 551b6a4e6097a5a458051e4d0143782d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BarColor: {r: 0.46809357, g: 0.29521182, b: 0.5849056, a: 1}
+  m_BarColor: {r: 0.14901961, g: 0, b: 0.22352941, a: 1}
 --- !u!1001 &1017116062
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -761,7 +773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 551b6a4e6097a5a458051e4d0143782d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BarColor: {r: 0.5754717, g: 0.06243326, b: 0.06243326, a: 1}
+  m_BarColor: {r: 0.23584908, g: 0.018912429, b: 0.018912429, a: 1}
 --- !u!1001 &513326246146063312
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -775,11 +787,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 513326246317130576, guid: f64055048e94f6d4bb34bc51820bb5ba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8979721
+      value: 6.8880215
       objectReference: {fileID: 0}
     - target: {fileID: 513326246317130576, guid: f64055048e94f6d4bb34bc51820bb5ba, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.3162456
+      value: 6.316106
       objectReference: {fileID: 0}
     - target: {fileID: 513326246317130576, guid: f64055048e94f6d4bb34bc51820bb5ba, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1026,11 +1038,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3560750050536559222, guid: 2e2396885dc3bd647b2e269a376db185, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8979378
+      value: 6.8879375
       objectReference: {fileID: 0}
     - target: {fileID: 3560750050536559222, guid: 2e2396885dc3bd647b2e269a376db185, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.912549
+      value: 3.309549
       objectReference: {fileID: 0}
     - target: {fileID: 3560750050536559222, guid: 2e2396885dc3bd647b2e269a376db185, type: 3}
       propertyPath: m_LocalPosition.z
