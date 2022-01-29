@@ -12,11 +12,11 @@ public class RyzenData : ScriptableObject
     [Header("Movement Data")]
 
     [Header("Movement")]
-    [SerializeField] [Range(2f, 20f)] private float _runningSpeed = 7f;
+    [SerializeField] [Range(2f, 20f)] private float _horizontalMovementSpeed = 7f;
 
     [Header("Jump Data")]
-    [Range(1.0f, 10.0f)] public float jumpForce;
-    [Range(0.1f, 1f)] public float jumpTimeLimit;
+    [Range(1.0f, 10.0f)] public float jumpForce = 7f;
+    [Range(0.1f, 1f)] public float ascendingLimit = 0.6f;
 
     [Header("Dash Data")]
     [Range(2f, 6f)] public float dashSpeed;
@@ -35,5 +35,5 @@ public class RyzenData : ScriptableObject
     [Range(0.1f, 200f)] public float defaultKnockbackForce;
 
     // Getters 
-    public float runningSpeed => this._runningSpeed;
+    public float horizontalMovementSpeed => this._horizontalMovementSpeed;
 }

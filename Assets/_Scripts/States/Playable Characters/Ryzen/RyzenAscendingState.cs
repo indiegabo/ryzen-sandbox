@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RyzenAscendingState : RyzenState
+public class RyzenAscendingState : RyzenOnAirState
 {
 
+    private float _ascendingTimeCounter = 0;
+    private bool _ascending = false;
     public RyzenAscendingState(StateMachine stateMachine, Ryzen ryzen) : base(stateMachine, ryzen)
     {
     }
@@ -15,6 +17,18 @@ public class RyzenAscendingState : RyzenState
     public override void Tick()
     {
         base.Tick();
+
+        if (this._ryzen.core.inputHandler.attemptingToJump && this._ascending)
+        {
+            this._ryzen.SetVelocityY(this._ryzen.core.data.jumpForce);
+            this._ascendingTimeCounter -= Time.deltaTime;
+        }
+
+        if (this._ascendingTimeCounter <= 0 || !this._ryzen.core.inputHandler.attemptingToJump)
+        {
+            this._ascending = false;
+            this._stateMachine.SetActiveState(this._ryzen.descendingState);
+        }
     }
 
     /// <summary>
@@ -30,7 +44,9 @@ public class RyzenAscendingState : RyzenState
     public override void OnEnter()
     {
         base.OnEnter();
-        // start jump logic
+        this._ryzen.core.anim.SetBool(RyzenStateEnum.Ascending, true);
+        this._ascending = true;
+        this._ascendingTimeCounter = this._ryzen.core.data.ascendingLimit;
     }
 
     /// <summary>
@@ -39,5 +55,10 @@ public class RyzenAscendingState : RyzenState
     public override void OnExit()
     {
         base.OnExit();
+        this._ryzen.core.anim.SetBool(RyzenStateEnum.Ascending, false);
+        this._ascendingTimeCounter = 0;
+        this._ascending = false;
+        this._ryzen.core.inputHandler.attemptingToJump = false;
+
     }
 }

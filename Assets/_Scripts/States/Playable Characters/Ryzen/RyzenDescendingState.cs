@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RyzenGroundedState : RyzenState
+public class RyzenDescendingState : RyzenOnAirState
 {
-    protected bool _allowedToJump = true;
 
-    // Needed Components
-    public RyzenGroundedState(StateMachine stateMachine, Ryzen ryzen) : base(stateMachine, ryzen)
+    public RyzenDescendingState(StateMachine stateMachine, Ryzen ryzen) : base(stateMachine, ryzen)
     {
     }
 
@@ -17,9 +15,10 @@ public class RyzenGroundedState : RyzenState
     public override void Tick()
     {
         base.Tick();
-        if (this._ryzen.core.inputHandler.attemptingToJump && this._allowedToJump)
+
+        if (Mathf.Abs(this._ryzen.core.rgbd.velocity.y) == 0)
         {
-            this._stateMachine.SetActiveState(this._ryzen.ascendingState);
+            this._stateMachine.SetActiveState(this._ryzen.idleState);
         }
     }
 
@@ -36,6 +35,7 @@ public class RyzenGroundedState : RyzenState
     public override void OnEnter()
     {
         base.OnEnter();
+        this._ryzen.core.anim.SetBool(RyzenStateEnum.Descending, true);
     }
 
     /// <summary>
@@ -44,5 +44,6 @@ public class RyzenGroundedState : RyzenState
     public override void OnExit()
     {
         base.OnExit();
+        this._ryzen.core.anim.SetBool(RyzenStateEnum.Descending, false);
     }
 }

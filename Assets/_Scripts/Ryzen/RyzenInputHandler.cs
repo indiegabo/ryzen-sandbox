@@ -9,11 +9,11 @@ public class RyzenInputHandler : MonoBehaviour
 
     // Logic
     private Vector2 _currentHorizontalMovement;
-    private bool _jumpButtonPressed;
 
     // Getters
     public Vector2 currentHorizontalMovement => this._currentHorizontalMovement;
-    public bool jumpButtonPressed => this._jumpButtonPressed;
+    public bool attemptingToJump { get; set; }
+
 
     private void Awake()
     {
@@ -30,13 +30,13 @@ public class RyzenInputHandler : MonoBehaviour
         // Jump Button Pressed
         if (action.started)
         {
-            this._jumpButtonPressed = true;
+            this.attemptingToJump = true;
         }
 
         // Jump Button Released
         if (action.canceled)
         {
-            this._jumpButtonPressed = false;
+            this.attemptingToJump = false;
         }
     }
 }

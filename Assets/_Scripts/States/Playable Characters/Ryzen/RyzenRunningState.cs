@@ -23,8 +23,7 @@ public class RyzenRunningState : RyzenGroundedState
     public override void FixedTick()
     {
         base.FixedTick();
-        this._ryzen.SetVelocityX(this._ryzen.core.inputHandler.currentHorizontalMovement.x * this._ryzen.core.data.runningSpeed);
-        this.EvaluateFlip();
+        this._ryzen.SetVelocityX(this._ryzen.core.inputHandler.currentHorizontalMovement.x * this._ryzen.core.data.horizontalMovementSpeed);
     }
 
     /// <summary>
@@ -43,15 +42,5 @@ public class RyzenRunningState : RyzenGroundedState
     {
         base.OnExit();
         this._ryzen.core.anim.SetBool(RyzenStateEnum.Running, false);
-    }
-
-    public void EvaluateFlip()
-    {
-        if (this._ryzen.core.rgbd.velocity.x > 0 && !this._ryzen.core.facingRight
-        || this._ryzen.core.rgbd.velocity.x < 0 && this._ryzen.core.facingRight)
-        {
-            this._ryzen.core.facingRight = !this._ryzen.core.facingRight;
-            this._ryzen.FlipPlayer();
-        }
     }
 }

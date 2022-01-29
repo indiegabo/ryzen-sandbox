@@ -12,6 +12,7 @@ public class Ryzen : Entity<RyzenCore>
     public RyzenIdleState idleState;
     public RyzenRunningState runningState;
     public RyzenAscendingState ascendingState;
+    public RyzenDescendingState descendingState;
 
     Func<bool> InputNotZero() => () => RyzenInputHandler.Instance.currentHorizontalMovement.x != 0f;
     Func<bool> InputZero() => () => RyzenInputHandler.Instance.currentHorizontalMovement.x == 0f;
@@ -28,6 +29,7 @@ public class Ryzen : Entity<RyzenCore>
         this.idleState = new RyzenIdleState(this.stateMachine, this);
         this.runningState = new RyzenRunningState(this.stateMachine, this);
         this.ascendingState = new RyzenAscendingState(this.stateMachine, this);
+        this.descendingState = new RyzenDescendingState(this.stateMachine, this);
 
         // Idle State Transitions
         this.idleState.AddTransition(this.runningState, this.InputNotZero());
@@ -49,6 +51,7 @@ public class Ryzen : Entity<RyzenCore>
     {
         //Tick the state machine "FixedTick" method every physics update
         this.stateMachine.FixedTick();
+        this.EvaluateFlip();
     }
 
     /// <summary>
@@ -70,11 +73,15 @@ public class Ryzen : Entity<RyzenCore>
     }
 
     /// <summary>
-    /// Flip transform localScale if true
+    /// Evaluates if Ryzen should be flipped
     /// </summary>
-    /// <param name="flip"></param>
-    public void FlipPlayer()
+    public void EvaluateFlip()
     {
-        this.transform.Rotate(0f, -180f, 0f);
+        if (this.core.rgbd.velocity.x > 0 && !this.core.facingRight
+        || this.core.rgbd.velocity.x < 0 && this.core.facingRight)
+        {
+            this.core.facingRight = !this.core.facingRight;
+            this.transform.Rotate(0f, -180f, 0f);
+        }
     }
 }

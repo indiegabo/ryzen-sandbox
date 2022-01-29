@@ -123,26 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!212 &146611259 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 535416793, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-  m_PrefabInstance: {fileID: 362009938}
-  m_PrefabAsset: {fileID: 0}
---- !u!70 &146611260 stripped
-CapsuleCollider2D:
-  m_CorrespondingSourceObject: {fileID: 838248197, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-  m_PrefabInstance: {fileID: 362009938}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &146611261 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 1972141231269503717, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-  m_PrefabInstance: {fileID: 362009938}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &146611263 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1972141231269503719, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-  m_PrefabInstance: {fileID: 362009938}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &321252597
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,11 +153,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &334524298 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1972141231884716890, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-  m_PrefabInstance: {fileID: 362009938}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &341093440
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,38 +190,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 362009940, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 362009939}
-    - target: {fileID: 362009940, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 362009939}
-    - target: {fileID: 362009940, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetMovement
-      objectReference: {fileID: 0}
-    - target: {fileID: 362009940, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetMovement
-      objectReference: {fileID: 0}
-    - target: {fileID: 362009940, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RyzenInputHandler, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 362009940, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RyzenInputHandler, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 838248197, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: m_Size.y
-      value: 0.9952837
-      objectReference: {fileID: 0}
-    - target: {fileID: 838248197, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.0023581386
-      objectReference: {fileID: 0}
     - target: {fileID: 1972141231269503713, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
       propertyPath: m_Name
       value: Ryzen
@@ -295,50 +238,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4765398773983202779, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: anim
-      value: 
-      objectReference: {fileID: 146611263}
-    - target: {fileID: 4765398773983202779, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: body
-      value: 
-      objectReference: {fileID: 334524298}
-    - target: {fileID: 4765398773983202779, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: data
-      value: 
-      objectReference: {fileID: 11400000, guid: 1bdab9e60086e61489db832a4bf92c0c, type: 2}
-    - target: {fileID: 4765398773983202779, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: feet
-      value: 
-      objectReference: {fileID: 1676856062}
-    - target: {fileID: 4765398773983202779, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: rgbd
-      value: 
-      objectReference: {fileID: 146611261}
-    - target: {fileID: 4765398773983202779, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: inputHandler
-      value: 
-      objectReference: {fileID: 362009939}
-    - target: {fileID: 4765398773983202779, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: shootingPoint
-      value: 
-      objectReference: {fileID: 911964307}
-    - target: {fileID: 4765398773983202779, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: spriteRenderer
-      value: 
-      objectReference: {fileID: 146611259}
-    - target: {fileID: 4765398773983202779, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: capsuleCollider
-      value: 
-      objectReference: {fileID: 146611260}
-    - target: {fileID: 4765398773983202779, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: empoweredAffordancePoint
-      value: 
-      objectReference: {fileID: 1378555705}
-    - target: {fileID: 6893511656782608154, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: _runningSpeed
-      value: 5.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
 --- !u!114 &362009939 stripped
@@ -346,12 +245,103 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7977272448031084399, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
   m_PrefabInstance: {fileID: 362009938}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 362009940}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dae413ad339ec56409a70b138e99991a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &362009940 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1972141231269503713, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
+  m_PrefabInstance: {fileID: 362009938}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &362009941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362009940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 9bd07bfaff8fa204a88dbbca4f9af613, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 624df573-4068-4779-a4ac-21f3e7910426
+    m_ActionName: PlayerActions/Primary Attack[/Keyboard/e,/DualShock4GamepadHID/buttonWest]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 362009939}
+        m_TargetAssemblyTypeName: RyzenInputHandler, Assembly-CSharp
+        m_MethodName: JumpAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e3f3c356-1f89-4480-9d8a-08069058faf7
+    m_ActionName: PlayerActions/Jump[/Keyboard/space,/DualShock4GamepadHID/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 333eb0db-a7bf-4419-a892-db851895068e
+    m_ActionName: PlayerActions/Dash[/Keyboard/q,/DualShock4GamepadHID/buttonEast]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 362009939}
+        m_TargetAssemblyTypeName: RyzenInputHandler, Assembly-CSharp
+        m_MethodName: SetMovement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ce24b5cb-bd34-4c3b-9683-d0caaccc1b25
+    m_ActionName: PlayerActions/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/DualShock4GamepadHID/dpad/up,/DualShock4GamepadHID/dpad/down,/DualShock4GamepadHID/dpad/left,/DualShock4GamepadHID/dpad/right]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 362009939}
+        m_TargetAssemblyTypeName: RyzenInputHandler, Assembly-CSharp
+        m_MethodName: SetMovement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 871f7ae8-b77c-406d-b232-6ec572d04e10
+    m_ActionName: PlayerActions/StickMovement[/DualShock4GamepadHID/leftStick]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: PlayerActions
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!4 &475794518 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3560750050536559222, guid: 2e2396885dc3bd647b2e269a376db185, type: 3}
@@ -482,11 +472,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &911964307 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 218930736, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-  m_PrefabInstance: {fileID: 362009938}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &949479610
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,16 +601,6 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 513326246317130576, guid: f64055048e94f6d4bb34bc51820bb5ba, type: 3}
   m_PrefabInstance: {fileID: 513326246146063312}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1378555705 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 954834320, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-  m_PrefabInstance: {fileID: 362009938}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1676856062 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1972141230930964036, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-  m_PrefabInstance: {fileID: 362009938}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1687426088 stripped
 Transform:
