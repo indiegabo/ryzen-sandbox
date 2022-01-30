@@ -119,4 +119,9 @@ public class Ryzen : Entity<RyzenCore>
         yield return new WaitForSeconds(this.core.data.timeBetweenDashes);
         this._dashEnabled = true;
     }
+
+    public void PlayEmpoweredAffordance()
+    {
+        Instantiate(this.core.empoweredAffordanceObject, this.core.empoweredAffordancePoint.position, this.core.empoweredAffordancePoint.rotation);
+    }
 }

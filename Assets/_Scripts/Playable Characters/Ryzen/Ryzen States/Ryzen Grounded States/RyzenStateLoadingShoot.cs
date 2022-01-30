@@ -18,7 +18,7 @@ public class RyzenStateLoadingShoot : RyzenStateGrounded
     public RyzenStateLoadingShoot(Ryzen ryzen) : base(ryzen)
     {
         // Register Default Transitions
-        this.AddTransition(this.IdleState(), this.ButtonRelesead());
+        // this.AddTransition(this.IdleState(), this.ButtonRelesead());
     }
 
     /// <summary>
@@ -27,6 +27,10 @@ public class RyzenStateLoadingShoot : RyzenStateGrounded
     public override void Tick()
     {
         base.Tick();
+        if (!this._ryzen.core.inputHandler.attemptingToAttack)
+        {
+            this.HandleShooting();
+        }
         this.HandleEmpoweringScaling();
     }
 
@@ -59,6 +63,27 @@ public class RyzenStateLoadingShoot : RyzenStateGrounded
         this._ryzen.core.anim.SetBool(RyzenStateEnum.LoadingShoot, false);
         CanvasController.Instance.DisableLoadingShootSlider();
     }
+    private void HandleShooting()
+    {
+        Debug.Log("Handle Shooting");
+
+        // Case primary attack button was pressed long enough to power shoot
+        float empoweringMin = this._ryzen.core.data.empoweringShootMin + this._ryzen.core.data.loadingShootTime + this._engagedAt;
+        float empoweringMax = this._ryzen.core.data.empoweringShootMax + this._ryzen.core.data.loadingShootTime + this._engagedAt;
+
+        if (Time.time >= empoweringMin && Time.time <= empoweringMax)
+        {
+            Debug.Log("Shooting Empowered");
+        }
+
+        // Case minimum shoot button press time is reached... SHOOT
+        else if (Time.time >= this._ryzen.core.data.loadingShootTime + this._engagedAt)
+        {
+            Debug.Log("Shooting Normal");
+        }
+
+        this._ryzen.ChangeState(this._ryzen.idleState);
+    }
 
     private void HandleEmpoweringScaling()
     {
@@ -70,6 +95,7 @@ public class RyzenStateLoadingShoot : RyzenStateGrounded
         if (Time.time >= max && !this._currentEmpoweringMaxReached)
         {
             this._currentEmpoweringMaxReached = true;
+            this._ryzen.PlayEmpoweredAffordance();
         }
 
         if (Time.time < min || Time.time > max)

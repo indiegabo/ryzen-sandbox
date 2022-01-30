@@ -15,7 +15,7 @@ public class CanvasController : MonoBehaviour
     {
         Instance = this;
 
-        this.EnableLoadingShootSlider();
+        this.DisableLoadingShootSlider();
     }
     public void EnableLoadingShootSlider()
     {

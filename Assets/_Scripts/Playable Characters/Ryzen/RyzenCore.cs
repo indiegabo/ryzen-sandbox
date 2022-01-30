@@ -6,6 +6,7 @@ public class RyzenCore : EntityCore
 {
     [Header("Ryzen Transforms")]
     public Transform shootingPoint;
+    public GameObject empoweredAffordanceObject;
     public Transform empoweredAffordancePoint;
 
     [Header("Ryzen Components")]

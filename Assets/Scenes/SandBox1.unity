@@ -286,6 +286,10 @@ PrefabInstance:
       propertyPath: _spriteRenderer
       value: 
       objectReference: {fileID: 362009944}
+    - target: {fileID: 4765398773983202779, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
+      propertyPath: empoweredAffordanceObject
+      value: 
+      objectReference: {fileID: 4880115235459675884, guid: 3c294d47cf235ca4d8e6f3d62a6bce50, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
 --- !u!114 &362009939 stripped
