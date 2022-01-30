@@ -17,8 +17,11 @@ public class Ryzen : Entity<RyzenCore>
     public RyzenStateDashing dashingState { get; private set; }
     public RyzenStateAscending ascendingState { get; private set; }
     public RyzenStateDescending descendingState { get; private set; }
+    public RyzenStateLoadingShoot loadingShootState { get; private set; }
 
-    public bool dasheEnabled => this._dashEnabled;
+    // Logic
+    public bool grounded => Physics2D.OverlapCircle(this.core.feet.transform.position, this.core.data.groundCheckRadius, this.core.data.whatIsGround);
+    public bool dashEnabled => this._dashEnabled;
 
 
     // Monobehaviour Cycle
@@ -92,6 +95,7 @@ public class Ryzen : Entity<RyzenCore>
         this.idleState = new RyzenStateIdle(this);
         this.runningState = new RyzenStateRunning(this);
         this.dashingState = new RyzenStateDashing(this);
+        this.loadingShootState = new RyzenStateLoadingShoot(this);
     }
 
     /// <summary>

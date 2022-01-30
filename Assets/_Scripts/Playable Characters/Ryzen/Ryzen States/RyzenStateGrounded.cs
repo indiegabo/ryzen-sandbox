@@ -1,13 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RyzenStateGrounded : RyzenState
 {
+    protected bool _canShoot = false;
+    Func<State> DescendingState() => () => this._ryzen.descendingState;
+    Func<bool> IsDescending() => () => this._ryzen.core.rgbd.velocity.y < 0;
 
-    private float _nextDashAvailableAt = 0;
     public RyzenStateGrounded(Ryzen ryzen) : base(ryzen)
     {
+        this.AddTransition(this.DescendingState(), this.IsDescending());
     }
 
     /// <summary>
@@ -20,6 +24,11 @@ public class RyzenStateGrounded : RyzenState
         if (this._ryzen.core.inputHandler.attemptingToJump)
         {
             this._ryzen.ChangeState(this._ryzen.ascendingState);
+        }
+
+        if (this._ryzen.core.inputHandler.attemptingToAttack)
+        {
+            this._ryzen.ChangeState(this._ryzen.loadingShootState);
         }
     }
 
@@ -51,7 +60,7 @@ public class RyzenStateGrounded : RyzenState
     public void DashAttempt()
     {
         // Only Dashes again after the given time between dashes
-        if (this._ryzen.dasheEnabled)
+        if (this._ryzen.dashEnabled)
         {
             this._ryzen.JustDashed();
             this._ryzen.ChangeState(this._ryzen.dashingState);

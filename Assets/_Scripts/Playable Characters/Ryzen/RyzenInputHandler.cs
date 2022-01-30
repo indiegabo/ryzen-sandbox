@@ -17,6 +17,7 @@ public class RyzenInputHandler : MonoBehaviour
     // Getters
     public Vector2 currentHorizontalMovement => this._currentHorizontalMovement;
     public bool attemptingToJump { get; set; }
+    public bool attemptingToAttack { get; set; }
 
 
     private void Awake()
@@ -49,6 +50,21 @@ public class RyzenInputHandler : MonoBehaviour
         if (action.started && OnDashAttempt != null)
         {
             OnDashAttempt();
+        }
+    }
+
+    public void PrimaryAction(InputAction.CallbackContext action)
+    {
+        // Primary Action Button Pressed
+        if (action.started)
+        {
+            this.attemptingToAttack = true;
+        }
+
+        // Primary Action Button Released
+        if (action.canceled)
+        {
+            this.attemptingToAttack = false;
         }
     }
 }

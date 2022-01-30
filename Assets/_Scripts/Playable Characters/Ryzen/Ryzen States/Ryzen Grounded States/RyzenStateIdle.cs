@@ -11,6 +11,8 @@ public class RyzenStateIdle : RyzenStateGrounded
 
     public RyzenStateIdle(Ryzen ryzen) : base(ryzen)
     {
+        this._canShoot = true;
+
         // Register Transitions
         this.AddTransition(this.RunningState(), this.InputNotZero());
     }

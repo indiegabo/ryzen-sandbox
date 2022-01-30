@@ -9,6 +9,7 @@ public class RyzenStateRunning : RyzenStateGrounded
     Func<bool> InputZero() => () => this._ryzen.core.inputHandler.currentHorizontalMovement.x == 0f;
     public RyzenStateRunning(Ryzen ryzen) : base(ryzen)
     {
+        this._canShoot = true;
         // Register Default Transitions
         this.AddTransition(this.IdleState(), this.InputZero());
     }

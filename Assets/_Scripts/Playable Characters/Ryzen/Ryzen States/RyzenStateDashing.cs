@@ -38,7 +38,6 @@ public class RyzenStateDashing : RyzenState
         base.OnEnter();
         this._ryzen.core.anim.SetBool(RyzenStateEnum.Dashing, true);
         this._currentDashTimeRemaining = this._ryzen.core.data.dashDuration;
-        Debug.Log("Entered Dash State");
     }
 
     /// <summary>

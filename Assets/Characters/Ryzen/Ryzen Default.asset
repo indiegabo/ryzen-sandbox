@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 72
   groundCheckRadius: 0
   _horizontalMovementSpeed: 4.5
   jumpForce: 6
@@ -27,3 +27,6 @@ MonoBehaviour:
   invulnerabilityTotalDuration: 0
   hitAnimationTime: 0
   defaultKnockbackForce: 0
+  loadingShootTime: 0.45
+  empoweringShootMin: 0.3
+  empoweringShootMax: 0.45

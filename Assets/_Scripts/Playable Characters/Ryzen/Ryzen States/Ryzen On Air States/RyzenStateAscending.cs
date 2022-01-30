@@ -38,6 +38,7 @@ public class RyzenStateAscending : RyzenStateOnAir
     {
         base.FixedTick();
     }
+
     /// <summary>
     /// Ticked when the state machine enter this state
     /// </summary>
@@ -59,6 +60,5 @@ public class RyzenStateAscending : RyzenStateOnAir
         this._ascendingTimeCounter = 0;
         this._ascending = false;
         this._ryzen.core.inputHandler.attemptingToJump = false;
-
     }
 }

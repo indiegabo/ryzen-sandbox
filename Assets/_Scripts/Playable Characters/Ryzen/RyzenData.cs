@@ -31,8 +31,11 @@ public class RyzenData : ScriptableObject
     [Header("Animation Data")]
     [Range(0.5f, 1f)] public float hitAnimationTime;
 
-    [Header("Knockback")]
+    [Header("Combat")]
     [Range(0.1f, 200f)] public float defaultKnockbackForce;
+    [Range(0.1f, 1f)] public float loadingShootTime = 0.45f;
+    [Range(0.1f, 2f)] public float empoweringShootMin = 1f;
+    [Range(0.1f, 2f)] public float empoweringShootMax = 1.5f;
 
     // Getters 
     public float horizontalMovementSpeed => this._horizontalMovementSpeed;
