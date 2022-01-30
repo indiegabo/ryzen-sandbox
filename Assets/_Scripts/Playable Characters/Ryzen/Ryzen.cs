@@ -124,4 +124,14 @@ public class Ryzen : Entity<RyzenCore>
     {
         Instantiate(this.core.empoweredAffordanceObject, this.core.empoweredAffordancePoint.position, this.core.empoweredAffordancePoint.rotation);
     }
+
+    public void Shoot()
+    {
+        Instantiate(this.core.arrow, this.core.shootingPoint.position, this.core.shootingPoint.rotation);
+    }
+
+    public void EmpoweredShoot()
+    {
+        Instantiate(this.core.empoweredArrow, this.core.shootingPoint.position, this.core.shootingPoint.rotation);
+    }
 }

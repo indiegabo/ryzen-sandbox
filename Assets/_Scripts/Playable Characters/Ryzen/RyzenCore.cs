@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RyzenCore : EntityCore
 {
-    [Header("Ground Check Data")]
+    [Header("Ground Check")]
     public LayerMask whatIsGround;
     [Range(0.1f, 1f)] public float groundCheckRadius = 0.3f;
 
@@ -17,9 +17,14 @@ public class RyzenCore : EntityCore
     public CapsuleCollider2D capsuleCollider;
     public RyzenInputHandler inputHandler;
 
+    public bool facingRight = true;
+
+    [Header("Combat Objects")]
+    public GameObject arrow;
+    public GameObject empoweredArrow;
+
     [Header("Ryzen Data")]
     public RyzenData data;
-    [SerializeField] public bool facingRight = true;
 
 
 

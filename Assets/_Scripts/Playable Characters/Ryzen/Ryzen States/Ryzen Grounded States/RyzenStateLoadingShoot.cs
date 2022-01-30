@@ -71,13 +71,13 @@ public class RyzenStateLoadingShoot : RyzenStateGrounded
 
         if (Time.time >= empoweringMin && Time.time <= empoweringMax)
         {
-            Debug.Log("Shooting Empowered");
+            this._ryzen.EmpoweredShoot();
         }
 
         // Case minimum shoot button press time is reached... SHOOT
         else if (Time.time >= this._ryzen.core.data.loadingShootTime + this._engagedAt)
         {
-            Debug.Log("Shooting Normal");
+            this._ryzen.Shoot();
         }
 
         this._ryzen.ChangeState(this._ryzen.idleState);

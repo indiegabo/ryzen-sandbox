@@ -218,18 +218,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 838248197, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1972141230930964036, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.018
-      objectReference: {fileID: 0}
-    - target: {fileID: 1972141230930964036, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.389
-      objectReference: {fileID: 0}
     - target: {fileID: 1972141231269503713, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
       propertyPath: m_Name
       value: Ryzen
@@ -279,200 +267,27 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4765398773983202779, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: _anim
+      propertyPath: arrow
       value: 
-      objectReference: {fileID: 362009947}
+      objectReference: {fileID: 4815655255666730516, guid: a9320e7daae7e5e46a006c0d2269052a, type: 3}
     - target: {fileID: 4765398773983202779, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: _body
+      propertyPath: empoweredArrow
       value: 
-      objectReference: {fileID: 1710913968}
+      objectReference: {fileID: 574953280101503811, guid: 7693ce7ab4f1581419c3f3b6d57efb83, type: 3}
     - target: {fileID: 4765398773983202779, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: _feet
+      propertyPath: capsuleCollider
       value: 
-      objectReference: {fileID: 1721583471}
-    - target: {fileID: 4765398773983202779, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: _rgbd
-      value: 
-      objectReference: {fileID: 362009946}
-    - target: {fileID: 4765398773983202779, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: _spriteRenderer
-      value: 
-      objectReference: {fileID: 362009944}
-    - target: {fileID: 4765398773983202779, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: groundCheckRadius
-      value: 0.236
-      objectReference: {fileID: 0}
-    - target: {fileID: 4765398773983202779, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: whatIsGround.m_Bits
-      value: 72
-      objectReference: {fileID: 0}
-    - target: {fileID: 4765398773983202779, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: empoweredAffordanceObject
-      value: 
-      objectReference: {fileID: 4880115235459675884, guid: 3c294d47cf235ca4d8e6f3d62a6bce50, type: 3}
-    - target: {fileID: 5884560521204591127, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: m_Size.x
-      value: 0.4684739
       objectReference: {fileID: 0}
     - target: {fileID: 5884560521204591127, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
       propertyPath: m_Size.y
-      value: 1.0111732
-      objectReference: {fileID: 0}
-    - target: {fileID: 5884560521204591127, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5884560521204591127, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.0118258
+      value: 0.94153327
       objectReference: {fileID: 0}
     - target: {fileID: 5884560521204591127, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
       propertyPath: m_Offset.y
-      value: 0.006726265
+      value: -0.014040381
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
---- !u!114 &362009939 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7977272448031084399, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-  m_PrefabInstance: {fileID: 362009938}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 362009940}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dae413ad339ec56409a70b138e99991a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &362009940 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1972141231269503713, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-  m_PrefabInstance: {fileID: 362009938}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &362009941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 362009940}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 9bd07bfaff8fa204a88dbbca4f9af613, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 362009939}
-        m_TargetAssemblyTypeName: RyzenInputHandler, Assembly-CSharp
-        m_MethodName: PrimaryAction
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 624df573-4068-4779-a4ac-21f3e7910426
-    m_ActionName: PlayerActions/Primary Attack[/Keyboard/e,/DualShock4GamepadHID/buttonWest]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 362009939}
-        m_TargetAssemblyTypeName: RyzenInputHandler, Assembly-CSharp
-        m_MethodName: JumpAction
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: e3f3c356-1f89-4480-9d8a-08069058faf7
-    m_ActionName: PlayerActions/Jump[/Keyboard/space,/DualShock4GamepadHID/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 362009939}
-        m_TargetAssemblyTypeName: RyzenInputHandler, Assembly-CSharp
-        m_MethodName: DashAction
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 333eb0db-a7bf-4419-a892-db851895068e
-    m_ActionName: PlayerActions/Dash[/Keyboard/q,/DualShock4GamepadHID/buttonEast]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 362009939}
-        m_TargetAssemblyTypeName: RyzenInputHandler, Assembly-CSharp
-        m_MethodName: SetMovement
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: ce24b5cb-bd34-4c3b-9683-d0caaccc1b25
-    m_ActionName: PlayerActions/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/DualShock4GamepadHID/dpad/up,/DualShock4GamepadHID/dpad/down,/DualShock4GamepadHID/dpad/left,/DualShock4GamepadHID/dpad/right]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 362009939}
-        m_TargetAssemblyTypeName: RyzenInputHandler, Assembly-CSharp
-        m_MethodName: SetMovement
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 871f7ae8-b77c-406d-b232-6ec572d04e10
-    m_ActionName: PlayerActions/StickMovement[/DualShock4GamepadHID/leftStick]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: PlayerActions
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
---- !u!212 &362009944 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 535416793, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-  m_PrefabInstance: {fileID: 362009938}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &362009946 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 1972141231269503717, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-  m_PrefabInstance: {fileID: 362009938}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &362009947 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1972141231269503719, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-  m_PrefabInstance: {fileID: 362009938}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &475794518 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3560750050536559222, guid: 2e2396885dc3bd647b2e269a376db185, type: 3}
@@ -766,11 +581,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1972141231269503718, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
   m_PrefabInstance: {fileID: 362009938}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1710913968 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1972141231884716890, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-  m_PrefabInstance: {fileID: 362009938}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1711795390 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8566594082158803457, guid: 4b2aab6060da64648a16da47497fbd41, type: 3}
@@ -780,11 +590,6 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8185929923661879571, guid: 669ea205b94dc054fa43a894ede46724, type: 3}
   m_PrefabInstance: {fileID: 8185929923892907600}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1721583471 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1972141230930964036, guid: d7bae5e8222c2a14f873b32d808b1fd8, type: 3}
-  m_PrefabInstance: {fileID: 362009938}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2138493170
 GameObject:
