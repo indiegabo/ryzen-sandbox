@@ -20,7 +20,7 @@ public class Ryzen : Entity<RyzenCore>
     public RyzenStateLoadingShoot loadingShootState { get; private set; }
 
     // Logic
-    public bool grounded => Physics2D.OverlapCircle(this.core.feet.transform.position, this.core.data.groundCheckRadius, this.core.data.whatIsGround);
+    public bool grounded => Physics2D.OverlapCircle(this.core.feet.transform.position, this.core.groundCheckRadius, this.core.whatIsGround);
     public bool dashEnabled => this._dashEnabled;
 
 

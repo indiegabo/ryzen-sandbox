@@ -15,7 +15,8 @@ public class RyzenStateDescending : RyzenStateOnAir
     public override void Tick()
     {
         base.Tick();
-
+        Debug.Log(Mathf.Abs(this._ryzen.core.rgbd.velocity.y));
+        Debug.Log(this._ryzen.grounded);
         if (Mathf.Abs(this._ryzen.core.rgbd.velocity.y) == 0 && this._ryzen.grounded)
         {
             this._ryzen.ChangeState(this._ryzen.idleState);

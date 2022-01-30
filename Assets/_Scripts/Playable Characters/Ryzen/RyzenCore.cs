@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class RyzenCore : EntityCore
 {
+    [Header("Ground Check Data")]
+    public LayerMask whatIsGround;
+    [Range(0.1f, 1f)] public float groundCheckRadius = 0.3f;
+
     [Header("Ryzen Transforms")]
     public Transform shootingPoint;
     public GameObject empoweredAffordanceObject;
@@ -16,4 +20,15 @@ public class RyzenCore : EntityCore
     [Header("Ryzen Data")]
     public RyzenData data;
     [SerializeField] public bool facingRight = true;
+
+
+
+    // Debug stuff
+    public void OnDrawGizmosSelected()
+    {
+        if (this.feet == null)
+            return;
+
+        Gizmos.DrawWireSphere(this.feet.transform.position, this.groundCheckRadius);
+    }
 }

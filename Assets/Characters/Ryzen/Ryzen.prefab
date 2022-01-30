@@ -84,7 +84,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1972141230930964039}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.04, y: -0.504, z: 0}
+  m_LocalPosition: {x: 0.018, y: -0.389, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1972141231269503718}
@@ -101,11 +101,12 @@ GameObject:
   - component: {fileID: 1972141231269503718}
   - component: {fileID: 1972141231269503719}
   - component: {fileID: 1972141231269503717}
-  - component: {fileID: 838248197}
+  - component: {fileID: 5884560521204591127}
   - component: {fileID: 535416793}
   - component: {fileID: 6893511656782608154}
   - component: {fileID: 4765398773983202779}
   - component: {fileID: 7977272448031084399}
+  - component: {fileID: 362009941}
   m_Layer: 7
   m_Name: Ryzen
   m_TagString: Playable
@@ -171,8 +172,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!70 &838248197
-CapsuleCollider2D:
+--- !u!61 &5884560521204591127
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -184,9 +185,19 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.011035919, y: 0.0023581386}
-  m_Size: {x: 0.4469037, y: 0.9952837}
-  m_Direction: 0
+  m_Offset: {x: 0.0118258, y: 0.006726265}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.4684739, y: 1.0111732}
+  m_EdgeRadius: 0
 --- !u!212 &535416793
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -262,14 +273,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b60f557aeef03b438d35359852028f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  body: {fileID: 1972141231884716890}
-  feet: {fileID: 1972141230930964036}
-  anim: {fileID: 1972141231269503719}
-  rgbd: {fileID: 1972141231269503717}
-  spriteRenderer: {fileID: 535416793}
+  _body: {fileID: 1972141231884716890}
+  _feet: {fileID: 1972141230930964036}
+  _anim: {fileID: 1972141231269503719}
+  _rgbd: {fileID: 1972141231269503717}
+  _spriteRenderer: {fileID: 535416793}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 72
+  groundCheckRadius: 0.236
   shootingPoint: {fileID: 218930736}
+  empoweredAffordanceObject: {fileID: 4880115235459675884, guid: 3c294d47cf235ca4d8e6f3d62a6bce50, type: 3}
   empoweredAffordancePoint: {fileID: 954834320}
-  capsuleCollider: {fileID: 838248197}
+  capsuleCollider: {fileID: 0}
   inputHandler: {fileID: 7977272448031084399}
   data: {fileID: 11400000, guid: 1bdab9e60086e61489db832a4bf92c0c, type: 2}
   facingRight: 1
@@ -285,6 +301,116 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae413ad339ec56409a70b138e99991a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &362009941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972141231269503713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 9bd07bfaff8fa204a88dbbca4f9af613, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7977272448031084399}
+        m_TargetAssemblyTypeName: RyzenInputHandler, Assembly-CSharp
+        m_MethodName: PrimaryAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 624df573-4068-4779-a4ac-21f3e7910426
+    m_ActionName: PlayerActions/Primary Attack[/Keyboard/e,/DualShock4GamepadHID/buttonWest]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7977272448031084399}
+        m_TargetAssemblyTypeName: RyzenInputHandler, Assembly-CSharp
+        m_MethodName: JumpAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e3f3c356-1f89-4480-9d8a-08069058faf7
+    m_ActionName: PlayerActions/Jump[/Keyboard/space,/DualShock4GamepadHID/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7977272448031084399}
+        m_TargetAssemblyTypeName: RyzenInputHandler, Assembly-CSharp
+        m_MethodName: DashAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 333eb0db-a7bf-4419-a892-db851895068e
+    m_ActionName: PlayerActions/Dash[/Keyboard/q,/DualShock4GamepadHID/buttonEast]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7977272448031084399}
+        m_TargetAssemblyTypeName: RyzenInputHandler, Assembly-CSharp
+        m_MethodName: SetMovement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ce24b5cb-bd34-4c3b-9683-d0caaccc1b25
+    m_ActionName: PlayerActions/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/DualShock4GamepadHID/dpad/up,/DualShock4GamepadHID/dpad/down,/DualShock4GamepadHID/dpad/left,/DualShock4GamepadHID/dpad/right]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7977272448031084399}
+        m_TargetAssemblyTypeName: RyzenInputHandler, Assembly-CSharp
+        m_MethodName: SetMovement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 871f7ae8-b77c-406d-b232-6ec572d04e10
+    m_ActionName: PlayerActions/StickMovement[/DualShock4GamepadHID/leftStick]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: PlayerActions
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1972141231884716901
 GameObject:
   m_ObjectHideFlags: 0

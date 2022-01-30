@@ -5,9 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Ryzen Data", menuName = "Ryzen/Data")]
 public class RyzenData : ScriptableObject
 {
-    [Header("Ground Check Data")]
-    public LayerMask whatIsGround;
-    [Range(0.1f, 1f)] public float groundCheckRadius;
 
     [Header("Movement Data")]
 
