@@ -18,6 +18,7 @@ public class Ryzen : Entity<RyzenCore>
     public RyzenStateAscending ascendingState { get; private set; }
     public RyzenStateDescending descendingState { get; private set; }
     public RyzenStateLoadingShoot loadingShootState { get; private set; }
+    public RyzenStateShoot shootState { get; private set; }
 
     // Logic
     public bool grounded => Physics2D.OverlapCircle(this.core.feet.transform.position, this.core.groundCheckRadius, this.core.whatIsGround);
@@ -96,6 +97,7 @@ public class Ryzen : Entity<RyzenCore>
         this.runningState = new RyzenStateRunning(this);
         this.dashingState = new RyzenStateDashing(this);
         this.loadingShootState = new RyzenStateLoadingShoot(this);
+        this.shootState = new RyzenStateShoot(this);
     }
 
     /// <summary>

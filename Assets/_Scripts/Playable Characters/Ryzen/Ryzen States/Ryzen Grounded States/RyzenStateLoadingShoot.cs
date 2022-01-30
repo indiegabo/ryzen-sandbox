@@ -45,6 +45,7 @@ public class RyzenStateLoadingShoot : RyzenStateGrounded
     public override void OnEnter()
     {
         base.OnEnter();
+        this._ryzen.SetVelocityX(0f);
         this._ryzen.core.anim.SetBool(RyzenStateEnum.LoadingShoot, true);
         this._engagedAt = Time.time;
         CanvasController.Instance.EnableLoadingShootSlider();
@@ -72,12 +73,16 @@ public class RyzenStateLoadingShoot : RyzenStateGrounded
         if (Time.time >= empoweringMin && Time.time <= empoweringMax)
         {
             this._ryzen.EmpoweredShoot();
+            this._ryzen.ChangeState(this._ryzen.shootState);
+            return;
         }
 
         // Case minimum shoot button press time is reached... SHOOT
         else if (Time.time >= this._ryzen.core.data.loadingShootTime + this._engagedAt)
         {
             this._ryzen.Shoot();
+            this._ryzen.ChangeState(this._ryzen.shootState);
+            return;
         }
 
         this._ryzen.ChangeState(this._ryzen.idleState);

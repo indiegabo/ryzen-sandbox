@@ -7,5 +7,5 @@ static class RyzenStateEnum
     public const string Ascending = "Ascending";
     public const string Descending = "Descending";
     public const string LoadingShoot = "LoadingShoot";
-    public const string Shooting = "Shooting";
+    public const string Shoot = "Shoot";
 }
