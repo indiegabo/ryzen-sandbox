@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1906705993475303299}
   - component: {fileID: 3905887823751113908}
-  - component: {fileID: 3461568457607011573}
+  - component: {fileID: 5650983624475361603}
   m_Layer: 0
   m_Name: EagleEye
   m_TagString: Untagged
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3461568457607011573
+--- !u!114 &5650983624475361603
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,10 +92,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4880115235459675884}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 105efb29bdbb59147a26eca0124eb047, type: 3}
+  m_Script: {fileID: 11500000, guid: ae8be8c48770f2e448b30b46c9d3a822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _empoweredAnimationTime: 0.5
-  _empowerenmentScale: 7.5
+  _empoweredAnimationTime: 1
+  _empowerenmentScale: 4
   _eagleSound: {fileID: 8300000, guid: b2fbaa9eb31094347a6d0aca2bd14be8, type: 3}
-  _soundVolume: 0.05
+  _soundVolume: 0.1

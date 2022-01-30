@@ -27,10 +27,7 @@ public class RyzenStateLoadingShoot : RyzenStateGrounded
     public override void Tick()
     {
         base.Tick();
-        if (!this._ryzen.core.inputHandler.attemptingToAttack)
-        {
-            this.HandleShooting();
-        }
+        this.HandleShooting();
         this.HandleEmpoweringScaling();
     }
 
@@ -65,7 +62,8 @@ public class RyzenStateLoadingShoot : RyzenStateGrounded
     }
     private void HandleShooting()
     {
-        Debug.Log("Handle Shooting");
+        if (this._ryzen.core.inputHandler.attemptingToAttack)
+            return;
 
         // Case primary attack button was pressed long enough to power shoot
         float empoweringMin = this._ryzen.core.data.empoweringShootMin + this._ryzen.core.data.loadingShootTime + this._engagedAt;
@@ -87,6 +85,8 @@ public class RyzenStateLoadingShoot : RyzenStateGrounded
 
     private void HandleEmpoweringScaling()
     {
+        if (!this._ryzen.core.inputHandler.attemptingToAttack)
+            return;
 
         float min = this._engagedAt + this._ryzen.core.data.loadingShootTime;
         float max = this._engagedAt + this._ryzen.core.data.loadingShootTime + this._ryzen.core.data.empoweringShootMin;
