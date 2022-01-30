@@ -25,11 +25,8 @@ public class RyzenData : ScriptableObject
     [Range(0.1f, 1f)] public float invulnerabilityMiniDuration;
     [Range(0.1f, 5f)] public float invulnerabilityTotalDuration;
 
-    [Header("Animation Data")]
-    [Range(0.5f, 1f)] public float hitAnimationTime;
-
     [Header("Combat")]
-    [Range(0.1f, 200f)] public float defaultKnockbackForce;
+    [Range(0.1f, 200f)] public float defaultKnockbackForce = 2f;
     [Range(0.1f, 1f)] public float loadingShootTime = 0.45f;
     [Range(0.1f, 2f)] public float empoweringShootMin = 1f;
     [Range(0.1f, 2f)] public float empoweringShootMax = 1.5f;

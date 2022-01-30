@@ -16,6 +16,7 @@ public class RyzenCore : EntityCore
     [Header("Ryzen Components")]
     public CapsuleCollider2D capsuleCollider;
     public RyzenInputHandler inputHandler;
+    public Unit unit;
 
     public bool facingRight = true;
 
@@ -25,7 +26,6 @@ public class RyzenCore : EntityCore
 
     [Header("Ryzen Data")]
     public RyzenData data;
-
 
 
     // Debug stuff

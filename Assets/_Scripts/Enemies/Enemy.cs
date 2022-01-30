@@ -10,9 +10,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     [Header("Needed objects")]
     [SerializeField] protected GameObject _body;
-
-    // Non Param needed objects
-    protected Transform _player;
+    [SerializeField] protected Transform _player;
 
     // Needed Components
     protected EnemyMovement _enemyMovement;

@@ -1,24 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RyzenState : State
+public class RyzenStateHit : RyzenState
 {
-    // Needed Components
-    protected readonly Ryzen _ryzen;
 
-    public RyzenState(Ryzen ryzen)
+    public RyzenStateHit(Ryzen ryzen) : base(ryzen)
     {
-        this._ryzen = ryzen;
     }
-
 
     /// <summary>
     /// Ticked on every frame
     /// </summary>
     public override void Tick()
     {
-
+        base.Tick();
+        if (this._ryzen.currentAnimationEnded)
+            this._ryzen.ChangeState(this._ryzen.idleState);
     }
 
     /// <summary>
@@ -26,13 +25,16 @@ public class RyzenState : State
     /// </summary>
     public override void FixedTick()
     {
-
+        base.FixedTick();
     }
+
     /// <summary>
     /// Ticked when the state machine enter this state
     /// </summary>
     public override void OnEnter()
     {
+        base.OnEnter();
+        this._ryzen.core.anim.SetBool(RyzenStateEnum.Hit, true);
     }
 
     /// <summary>
@@ -40,9 +42,11 @@ public class RyzenState : State
     /// </summary>
     public override void OnExit()
     {
+        base.OnExit();
+        this._ryzen.core.anim.SetBool(RyzenStateEnum.Hit, false);
     }
 
-    public void TookHit()
+    public void HandleHit()
     {
 
     }

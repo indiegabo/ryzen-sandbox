@@ -23,6 +23,7 @@ public class Ryzen : Entity<RyzenCore>
     // Logic
     public bool grounded => Physics2D.OverlapCircle(this.core.feet.transform.position, this.core.groundCheckRadius, this.core.whatIsGround);
     public bool dashEnabled => this._dashEnabled;
+    public bool takingHit => this.core.unit.takingHit;
 
 
     // Monobehaviour Cycle
@@ -79,6 +80,9 @@ public class Ryzen : Entity<RyzenCore>
     /// </summary>
     public void EvaluateFlip()
     {
+        if (this.takingHit)
+            return;
+
         if (this.core.rgbd.velocity.x > 0 && !this.core.facingRight
         || this.core.rgbd.velocity.x < 0 && this.core.facingRight)
         {
