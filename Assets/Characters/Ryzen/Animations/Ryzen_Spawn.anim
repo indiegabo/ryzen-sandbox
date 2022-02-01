@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ryzen_Shoot
+  m_Name: Ryzen_Spawn
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,7 +20,13 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 7777496382138874780, guid: be70e5eb35cdabd49bf636a24cd0259c, type: 3}
+      value: {fileID: 3313009983954948343, guid: c989010309ddd60468a055b979944ed8, type: 3}
+    - time: 0.125
+      value: {fileID: 7903622835035478640, guid: c989010309ddd60468a055b979944ed8, type: 3}
+    - time: 0.25
+      value: {fileID: -8865641061155440334, guid: c989010309ddd60468a055b979944ed8, type: 3}
+    - time: 0.375
+      value: {fileID: 1675274322439092758, guid: c989010309ddd60468a055b979944ed8, type: 3}
     attribute: m_Sprite
     path: Body
     classID: 212
@@ -40,13 +46,16 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 7777496382138874780, guid: be70e5eb35cdabd49bf636a24cd0259c, type: 3}
+    - {fileID: 3313009983954948343, guid: c989010309ddd60468a055b979944ed8, type: 3}
+    - {fileID: 7903622835035478640, guid: c989010309ddd60468a055b979944ed8, type: 3}
+    - {fileID: -8865641061155440334, guid: c989010309ddd60468a055b979944ed8, type: 3}
+    - {fileID: 1675274322439092758, guid: c989010309ddd60468a055b979944ed8, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.125
+    m_StopTime: 0.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    // Needed Objects
+    // Needed Components
     [Header("Needed Objects")]
-    [SerializeField] GameObject _body;
+    [SerializeField] GameObject _spriteRendererContainer;
 
     // Unit Health 
     [Header("Unit Health")]
@@ -14,11 +14,12 @@ public class Unit : MonoBehaviour
 
     [Header("Invulnerability")]
     [SerializeField] [Range(0.5f, 10f)] protected float _invulnerabilityTimer = 1.5f;
-    [SerializeField] [Range(0.1f, 1f)] protected float _invunerabillityMiniDuration = 0.1f;
+    [SerializeField] [Range(0.1f, 1f)] protected float _invunerabillityMinDuration = 0.1f;
     [SerializeField] [Range(0.1f, 5f)] protected float _invunerabillityTotalDuration = 1.5f;
 
     // Needed Components
     protected SpriteRenderer _spriteRenderer;
+
 
     // Config non parameter
     protected float _currentHP;
@@ -31,12 +32,10 @@ public class Unit : MonoBehaviour
     public bool invunerable => this._invunerable;
     protected float _invunerabillityTotalTimer = 0.0f;
 
-    // MonoBehaviour Cycle
     protected virtual void Awake()
     {
-        this._spriteRenderer = this._body.GetComponent<SpriteRenderer>();
+        this._spriteRenderer = this._spriteRendererContainer.GetComponent<SpriteRenderer>();
     }
-
     protected virtual void Start()
     {
         this._currentHP = this._totalHP;
@@ -49,7 +48,6 @@ public class Unit : MonoBehaviour
             this.InvunerabilityEffect();
         }
     }
-
 
     public virtual void LoseHP(float amount)
     {
@@ -82,7 +80,8 @@ public class Unit : MonoBehaviour
         }
 
         this._invulnerabilityTimer += Time.deltaTime;
-        if (this._invulnerabilityTimer >= this._invunerabillityMiniDuration)
+
+        if (this._invulnerabilityTimer >= this._invunerabillityMinDuration)
         {
             this._invulnerabilityTimer = 0.0f;
             if (this._spriteRenderer.enabled)

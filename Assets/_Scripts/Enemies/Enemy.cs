@@ -10,9 +10,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     [Header("Needed objects")]
     [SerializeField] protected GameObject _body;
-
-    // Non Param needed objects
-    protected Transform _player;
+    [SerializeField] protected Transform _player;
 
     // Needed Components
     protected EnemyMovement _enemyMovement;
@@ -48,7 +46,6 @@ public class Enemy : MonoBehaviour, IDamageable
         this._rb = GetComponent<Rigidbody2D>();
         this._enemyMovement = GetComponent<EnemyMovement>();
         this._enemyCombat = GetComponent<EnemyCombat>();
-        this._player = FindObjectOfType<PlayableCharacter>().transform;
     }
 
     // Start is called before the first frame update

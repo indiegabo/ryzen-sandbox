@@ -4,8 +4,9 @@ public class Parallaxable : MonoBehaviour
 {
     [Header("Needed Objects")]
     [SerializeField] private Transform _subject;
-    private float _smoothing = 0.8f;
-    private Camera _camera;
+    [SerializeField] private Camera _camera;
+    [SerializeField] [Range(0.1f, 2f)] private float _smoothing = 0.8f;
+
     private Vector2 _startPos;
     private float _startingZ;
     private float travel => this._camera.transform.position.x - this._startPos.x;
@@ -15,13 +16,13 @@ public class Parallaxable : MonoBehaviour
 
     private void Awake()
     {
-        this._camera = Camera.main;
+        if (this._camera == null)
+        {
+            this._camera = Camera.main;
+        }
+
         this._startPos = this.transform.position;
         this._startingZ = this.transform.position.z;
-    }
-
-    private void Start()
-    {
     }
 
     private void Update()

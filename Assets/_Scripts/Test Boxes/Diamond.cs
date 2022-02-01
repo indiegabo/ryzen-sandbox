@@ -13,22 +13,22 @@ public class Diamond : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayableCharacterEventManager.OnPLayableCharacterJumped += PlayableCharacterJumped;
-        PlayableCharacterEventManager.OnPlayableCharacterDashed += PlayableCharacterDashed;
+        RyzenEventManager.OnRyzenJumped += RyzenJumped;
+        RyzenEventManager.OnRyzenDashed += RyzenDashed;
     }
 
     private void OnDisable()
     {
-        PlayableCharacterEventManager.OnPLayableCharacterJumped -= PlayableCharacterJumped;
-        PlayableCharacterEventManager.OnPlayableCharacterDashed -= PlayableCharacterDashed;
+        RyzenEventManager.OnRyzenJumped -= RyzenJumped;
+        RyzenEventManager.OnRyzenDashed -= RyzenDashed;
     }
 
-    public void PlayableCharacterJumped(GameObject jumpingChararacter)
+    public void RyzenJumped(GameObject jumpingChararacter)
     {
         this._animator.SetTrigger("_blink_red");
     }
 
-    public void PlayableCharacterDashed(GameObject dashingChararacter)
+    public void RyzenDashed(GameObject dashingChararacter)
     {
         this._animator.SetTrigger("_blink_blue");
     }

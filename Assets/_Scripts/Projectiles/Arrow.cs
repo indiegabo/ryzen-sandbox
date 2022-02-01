@@ -52,6 +52,6 @@ public class Arrow : MonoBehaviour, IDamager
             this._empoweredParticleSystem.transform.parent = gameObject.transform.parent;
         }
 
-        Destroy(gameObject, 0.1f);
+        Destroy(gameObject);
     }
 }

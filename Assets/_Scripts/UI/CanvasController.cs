@@ -8,13 +8,24 @@ public class CanvasController : MonoBehaviour
     [Header("Loading Shoot Slider")]
     [SerializeField] private Slider _loadingShootSlider;
     [SerializeField] private float _startingValue = 0f;
+
+    public static CanvasController Instance;
+
     private void Awake()
     {
-        this.ActivateLoadingShootSlider(false);
+        Instance = this;
+
+        this.DisableLoadingShootSlider();
     }
-    public void ActivateLoadingShootSlider(bool active)
+    public void EnableLoadingShootSlider()
     {
-        this._loadingShootSlider.gameObject.SetActive(active);
+        this._loadingShootSlider.gameObject.SetActive(true);
+        this._loadingShootSlider.value = this._startingValue;
+    }
+
+    public void DisableLoadingShootSlider()
+    {
+        this._loadingShootSlider.gameObject.SetActive(false);
         this._loadingShootSlider.value = this._startingValue;
     }
 
