@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RyzenStateHit : RyzenState
+public class RyzenStateDead : RyzenState
 {
 
-    public RyzenStateHit(Ryzen ryzen) : base(ryzen)
+    public RyzenStateDead(Ryzen ryzen) : base(ryzen)
     {
     }
 
@@ -24,8 +24,6 @@ public class RyzenStateHit : RyzenState
     public override void FixedTick()
     {
         base.FixedTick();
-        if (this._ryzen.currentAnimationEnded)
-            this._ryzen.ChangeState(this._ryzen.idleState);
     }
 
     /// <summary>
@@ -34,7 +32,8 @@ public class RyzenStateHit : RyzenState
     public override void OnEnter()
     {
         base.OnEnter();
-        this._ryzen.core.anim.SetBool(RyzenStateEnum.Hit, true);
+        this._ryzen.core.anim.SetBool(RyzenStateEnum.Dead, true);
+        this._ryzen.SetVelocityX(0f);
     }
 
     /// <summary>
@@ -43,11 +42,6 @@ public class RyzenStateHit : RyzenState
     public override void OnExit()
     {
         base.OnExit();
-        this._ryzen.core.anim.SetBool(RyzenStateEnum.Hit, false);
-    }
-
-    public void HandleHit()
-    {
-
+        this._ryzen.core.anim.SetBool(RyzenStateEnum.Dead, false);
     }
 }

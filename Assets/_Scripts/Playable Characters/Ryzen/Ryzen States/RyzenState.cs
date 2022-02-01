@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,6 +34,8 @@ public class RyzenState : State
     /// </summary>
     public override void OnEnter()
     {
+        RyzenUnit.OnRyzenGotHit += this.TookHit;
+        RyzenUnit.OnRyzenDied += this.Died;
     }
 
     /// <summary>
@@ -40,10 +43,17 @@ public class RyzenState : State
     /// </summary>
     public override void OnExit()
     {
+        RyzenUnit.OnRyzenGotHit -= this.TookHit;
+        RyzenUnit.OnRyzenDied -= this.Died;
     }
 
-    public void TookHit()
+    private void TookHit()
     {
+        this._ryzen.ChangeState(this._ryzen.hitState);
+    }
 
+    private void Died()
+    {
+        this._ryzen.ChangeState(this._ryzen.deadState);
     }
 }

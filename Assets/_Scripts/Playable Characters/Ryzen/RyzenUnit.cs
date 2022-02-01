@@ -8,11 +8,18 @@ public class RyzenUnit : PlayableUnit
     [SerializeField] [Range(0.5f, 1f)] protected float _hitAnimationTime = 0.25f;
 
     [Header("Knockback")]
-    [SerializeField] [Range(0.1f, 200f)] protected float _defaultKnockBackForce = 0.25f;
+    [SerializeField] [Range(0f, 200f)] protected float _defaultKnockBackForce = 0.25f;
 
     protected Ryzen _ryzen;
     protected float _currentKnockBackForce = 0f;
     protected GameObject _currentAggressor = null;
+
+    // Event to be fired when Ryzen gets hit
+    public delegate void RyzenGotHit();
+    public static event RyzenGotHit OnRyzenGotHit;
+
+    public delegate void RyzenDied();
+    public static event RyzenDied OnRyzenDied;
 
     protected override void Awake()
     {
@@ -40,7 +47,7 @@ public class RyzenUnit : PlayableUnit
 
     public override void TakeDamage(float amount, GameObject aggressor, float? knockBackForce)
     {
-        if (this._invunerable)
+        if (this._invunerable || this.dead)
             return;
 
         this.LoseHP(amount);
@@ -59,13 +66,16 @@ public class RyzenUnit : PlayableUnit
     public void Die()
     {
         // Dies
+        if (OnRyzenDied != null)
+            OnRyzenDied();
     }
 
     public void TakeHit(GameObject aggressor)
     {
         this._takingHit = true;
         this._currentAggressor = aggressor;
-        // Trigger hit state
+        if (OnRyzenGotHit != null)
+            OnRyzenGotHit();
         this.StartInvulnerability();
         Invoke("DoneTakingHit", this._hitAnimationTime);
     }
