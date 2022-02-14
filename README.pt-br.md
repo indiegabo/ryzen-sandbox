@@ -21,7 +21,7 @@ Nós criamos uma Máquina de Estados (State Machine) para o Ryzen e ela funciona
 Acredito que ela poderia salvar muitas de suas horas por te permitir não lidar com o Animator Controller e suas transições na Unity tornando
 a escalabilidade do seu projeto muito melhor.
 
-Sinta-se livre para utilizar e até me dar um feedback. O código da Máquina de Estados está em [Assets/\_Scripts/State Management](Assets/_Scripts/State%20Management) e o todo o código referente ao Ryzen está em [Assets/\_Scripts/Playable%20Characters/Ryzen](Assets/_Scripts/Playable%20Characters/Ryzen).
+Sinta-se livre para utilizar e até me dar um feedback. O código da Máquina de Estados está em [Assets/\_Scripts/State Management](Assets/_Scripts/State%20Management) e o todo o código referente ao Ryzen está em [Assets/\_Scripts/Playable%20Characters/Ryzen](Assets/\_Scripts/Playable Characters/Ryzen).
 
 ###### Geral
 
