@@ -20,7 +20,7 @@ We have built an State Machine for Ryzen and it works really well as we tested.
 
 I believe it could save many hours of dealing with Unity's Animator Controller transitions cause it turns scaling the project much easier. Feel free to give it a try.
 
-You can find it's code under [Assets/\_Scripts/State Management](Assets/_Scripts/State%20Management) and all Ryzen's code under [Assets/\_Scripts/Playable%20Characters/Ryzen](Assets/_Scripts/Playable%20Characters/Ryzen).
+You can find it's code under [Assets/\_Scripts/State Management](Assets/_Scripts/State%20Management) and all Ryzen's code under [Assets/\_Scripts/Playable Characters/Ryzen](Assets/_Scripts/Playable%20Characters/Ryzen).
 
 ###### General
 
