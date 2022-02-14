@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 4765398773983202779}
   - component: {fileID: 7977272448031084399}
   - component: {fileID: 362009941}
+  - component: {fileID: 554710821}
   m_Layer: 7
   m_Name: Ryzen
   m_TagString: Playable
@@ -185,7 +186,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0118258, y: 0.006726265}
+  m_Offset: {x: 0.0118258, y: -0.014040381}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -196,7 +197,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4684739, y: 1.0111732}
+  m_Size: {x: 0.31605846, y: 0.94153327}
   m_EdgeRadius: 0
 --- !u!212 &535416793
 SpriteRenderer:
@@ -287,8 +288,11 @@ MonoBehaviour:
   empoweredAffordancePoint: {fileID: 954834320}
   capsuleCollider: {fileID: 0}
   inputHandler: {fileID: 7977272448031084399}
-  data: {fileID: 11400000, guid: 1bdab9e60086e61489db832a4bf92c0c, type: 2}
+  unit: {fileID: 554710821}
   facingRight: 1
+  arrow: {fileID: 4815655255666730516, guid: a9320e7daae7e5e46a006c0d2269052a, type: 3}
+  empoweredArrow: {fileID: 574953280101503811, guid: 7693ce7ab4f1581419c3f3b6d57efb83, type: 3}
+  data: {fileID: 11400000, guid: 1bdab9e60086e61489db832a4bf92c0c, type: 2}
 --- !u!114 &7977272448031084399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,6 +415,25 @@ MonoBehaviour:
   m_DefaultActionMap: PlayerActions
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &554710821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972141231269503713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f44f9c5fc153244186f23faa74d9726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteRendererContainer: {fileID: 1972141231884716901}
+  _totalHP: 80
+  _invulnerabilityTimer: 1.5
+  _invunerabillityMinDuration: 0.1
+  _invunerabillityTotalDuration: 1.5
+  _hitAnimationTime: 0.25
+  _defaultKnockBackForce: 0
 --- !u!1 &1972141231884716901
 GameObject:
   m_ObjectHideFlags: 0

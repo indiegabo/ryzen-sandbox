@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStateManager : MonoBehaviour, IStateManager
+public class EnemyStateManager : MonoBehaviour
 {
     [Header("Config")]
     [SerializeField] private string _enemyName = "";

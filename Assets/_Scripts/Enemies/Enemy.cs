@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour, IDamageable
     // Needed Components
     protected EnemyMovement _enemyMovement;
     protected EnemyCombat _enemyCombat;
-    protected IStateManager _stateManager;
+    protected EnemyStateManager _stateManager;
     protected Rigidbody2D _rb;
 
     // HP Stuff
@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     protected void Awake()
     {
-        this._stateManager = GetComponent<IStateManager>();
+        this._stateManager = GetComponent<EnemyStateManager>();
         this._rb = GetComponent<Rigidbody2D>();
         this._enemyMovement = GetComponent<EnemyMovement>();
         this._enemyCombat = GetComponent<EnemyCombat>();

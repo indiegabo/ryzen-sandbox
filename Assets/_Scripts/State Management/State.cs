@@ -3,20 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public abstract class State
 {
 
-    // Transitions
+    /// <summary>
+    /// List of all possible transitions for that State
+    /// </summary>  
     private List<StateTransition> _transitions = new List<StateTransition>();
 
 
     /// <summary>
     /// Returns the state transitions list
     /// </summary>  
-    public List<StateTransition> GetTransitions()
-    {
-        return this._transitions;
-    }
+    public List<StateTransition> transitions => this._transitions;
 
     /// <summary>
     /// Adds a Transition to the state
