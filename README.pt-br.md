@@ -14,17 +14,21 @@ Vejo que já conheceu o Ryzen, nosso arqueiro arcano extremamente preciso que nu
 
 Aqui estão algumas funcionalidades que já implementamos:
 
+###### **NOVO** Coded State Machine
+
+Nós criamos uma Máquina de Estados (State Machine) para o Ryzen e ela funciona muito bem de acordo com nossos testes! Aeee!
+
+Acredito que ela poderia salvar muitas de suas horas por te permitir não lidar com o Animator Controller e suas transições na Unity tornando
+a escalabilidade do seu projeto muito melhor.
+
+Sinta-se livre para utilizar e até me dar um feedback. O código da Máquina de Estados está em [Assets/\_Scripts/State Management](Assets/_Scripts/State%20Management) e o todo o código referente ao Ryzen está em [Assets/\_Scripts/Playable Characters/Ryzen](Assets/_Scripts/Playable%20Characters/Ryzen).
+
 ###### Geral
 
 - [Unity Input System](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/QuickStartGuide.html)
-- Mudança de estado das animações através de script para escapar do inferno que poder vir a ser o Animator.
-- Sistema de controle de personagem desacoplado, delegando responsabilidades para facilitar possível escalonamento
 - Camera Pixel Perfect
 - Feedback visual para o "Power Shooting" através de Slider do Canvas
 - Eventos do personagem preparados para serem enviados. Atualmente se o Ryzen iniciar um pulo, haverá um feedback visual do evento através de um diamante no canto direito superior da tela piscar.
-
-  **Novidade**
-
 - CineMachine utilizado para que a câmera siga o Ryzen
 - O cenário agora é composto por várias camadas
 - O cenário agora está com efeito parallax aplicado a ele.
@@ -38,9 +42,6 @@ Aqui estão algumas funcionalidades que já implementamos:
 - Ryzen agora pode rolar (dash). Porém, apenas se estiver no chão.
 - Caso o botão de Ataque primário seja pressionado durante um pulo ou dash (e continuar pressionado ao fim da ação) ele automaticamente engajará em combate.
 - Pulos e Rolagens cancelam o ataque atual.
-
-  **Novidade**
-
 - Tanto a ação de pulo quanto a ação de rolamento do Ryzen disparam eventos que podem ser capturados por qualquer outra entidade do jogo.
 
 ###### Cenário

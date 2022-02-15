@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Garbage
+  - Playable
+  - Platform
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -12,8 +15,8 @@ TagManager:
   - Ground
   - Water
   - UI
-  - Player
-  - 
+  - Platforms
+  - Action
   - 
   - 
   - 
